@@ -40,7 +40,7 @@ Add the following to the file
       "changeSet": {
         "id": "1",
         "author": "YourNameHere",
-        "comment": "Add table lb_groups",
+        "comment": "Add table customers",
         "changes": [
           {
             "createTable": {
@@ -141,7 +141,7 @@ Add the following to the file.
       "changeSet": {
         "id": "2",
         "author": "YourNameHere",
-        "comment": "Add table lb_groups",
+        "comment": "Add table orders",
         "tagDatabase": {
           "tag": "Two"
         },
@@ -588,9 +588,9 @@ nano runOnce/changelog-load-status-data.json
 ```
 ```
       "changeSet": {
-        "id": "Two-Table-1",
-        "author": "BlaineCarter",
-        "comment": "Add table lb_groups",
+        "id": "5",
+        "author": "YourNameHere",
+        "comment": "Load Order_Statuses data",
         "validCheckSum": "8:d0961735f2e626c20cb6df76860055ef",
         "changes": [{
 ```
