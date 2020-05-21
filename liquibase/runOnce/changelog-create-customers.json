@@ -1,0 +1,53 @@
+{
+  "databaseChangeLog": [
+    {
+      "preConditions": [
+        {
+          "runningAs": {
+            "username": "HOL_CICD"
+          }
+        }
+      ]
+    },
+    {
+      "changeSet": {
+        "id": "1",
+        "author": "YourNameHere",
+        "comment": "Add table lb_groups",
+        "tagDatabase": {
+          "tag": "One"
+        },
+        "changes": [
+          {
+            "createTable": {
+              "tableName": "customers",
+              "columns": [
+                {
+                  "column": {
+                    "name": "id",
+                    "type": "int",
+                    "autoIncrement": true,
+                    "constraints": {
+                      "primaryKeyName": "customers_pk",
+                      "primaryKey": true
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "email",
+                    "type": "varchar(200)",
+                    "constraints": {
+                      "uniqueConstraintName": "customers_email_uk",
+                      "unique": true
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "databaseChangeLog": [
+    {
+      "preConditions": [
+        {
+          "runningAs": {
+            "username": "HOL_CICD"
+          }
+        }
+      ]
+    },
+    {
+      "changeSet": {
+        "id": "2",
+        "author": "YourNameHere",
+        "comment": "Add table lb_groups",
+        "tagDatabase": {
+          "tag": "Two"
+        },
+        "changes": [
+          {
+            "createTable": {
+              "tableName": "orders",
+              "columns": [
+                {
+                  "column": {
+                    "name": "id",
+                    "type": "int",
+                    "autoIncrement": true,
+                    "constraints": {
+                      "primaryKey": true,
+                      "primaryKeyName": "orders_pk"
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "order_datetime",
+                    "type": "timestamp",
+                    "defaultValueComputed": "CURRENT_TIMESTAMP",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "customer_id",
+                    "type": "int",
+                    "constraints": {
+                      "nullable": false,
+                      "foreignKeyName": "orders_customer_id_fk",
+                      "references": "HOL_CICD.CUSTOMERS(id)"
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "order_status",
+                    "type": "varchar2(10)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
