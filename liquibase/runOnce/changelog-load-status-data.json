@@ -1,11 +1,20 @@
 {
   "databaseChangeLog": [
     {
-      "preConditions": [
+            "preConditions": [
         {
-          "runningAs": {
-            "username": "HOL_CICD"
-          }
+          "or": [
+            {
+              "runningAs": {
+                "username": "HOL_CICD"
+              }
+            },
+            {
+              "runningAs": {
+                "username": "HOL_CICD_PROD"
+              }
+            }
+          ]
         }
       ]
     },

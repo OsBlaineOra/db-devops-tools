@@ -31,7 +31,7 @@ Use the admin password to log in
     1. Click the Add button.
     1. Select Jenkins.
     1. Set Kind to "Username with password"
-    1. Set Username to "hol_cicd"
+    1. Set Username to "hol_cicd_prod"
     1. Set Password to "HandsOnLabUser1" (if you changed the password when you created the schema, use that password)
     1. Click Add
 1. Build section
