@@ -22,7 +22,7 @@
       "changeSet": {
         "id": "2",
         "author": "YourNameHere",
-        "comment": "Add table lb_groups",
+        "comment": "Add table orders",
         "tagDatabase": {
           "tag": "Two"
         },
@@ -59,7 +59,7 @@
                     "constraints": {
                       "nullable": false,
                       "foreignKeyName": "orders_customer_id_fk",
-                      "references": "HOL_CICD.CUSTOMERS(id)"
+                      "references": "CUSTOMERS(id)"
                     }
                   }
                 },

@@ -30,7 +30,6 @@
         "changes": [
           {
             "insert": {
-              "schemaName": "HOL_CICD",
               "tableName": "customers",
               "columns": [
                 {
@@ -50,7 +49,6 @@
           },
           {
             "insert": {
-              "schemaName": "HOL_CICD",
               "tableName": "customers",
               "columns": [
                 {
@@ -70,7 +68,6 @@
           },
           {
             "insert": {
-              "schemaName": "HOL_CICD",
               "tableName": "orders",
               "columns": [
                 {
@@ -90,7 +87,6 @@
           },
           {
             "insert": {
-              "schemaName": "HOL_CICD",
               "tableName": "orders",
               "columns": [
                 {

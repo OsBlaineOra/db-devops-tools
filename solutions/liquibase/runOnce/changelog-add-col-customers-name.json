@@ -29,7 +29,6 @@
         "changes": [
           {
             "addColumn": {
-              "schemaName": "HOL_CICD",
               "tableName": "customers",
               "columns": [
                 {

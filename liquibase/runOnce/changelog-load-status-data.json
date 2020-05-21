@@ -29,7 +29,6 @@
         "changes": [
           {
             "loadData": {
-              "schemaName": "HOL_CICD",
               "tableName": "order_statuses",
               "file": "runOnce/status-data.csv"
             }

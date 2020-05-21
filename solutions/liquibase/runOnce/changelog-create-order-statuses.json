@@ -29,7 +29,6 @@
         "changes": [
           {
             "createTable": {
-              "schemaName": "HOL_CICD",
               "tableName": "order_statuses",
               "columns": [
                 {

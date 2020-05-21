@@ -22,7 +22,7 @@
       "changeSet": {
         "id": "1",
         "author": "YourNameHere",
-        "comment": "Add table lb_groups",
+        "comment": "Add table customers",
         "tagDatabase": {
           "tag": "One"
         },
