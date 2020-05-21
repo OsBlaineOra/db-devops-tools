@@ -1,0 +1,42 @@
+{
+  "databaseChangeLog": [
+    {
+      "preConditions": [
+        {
+          "runningAs": {
+            "username": "HOL_CICD"
+          }
+        }
+      ]
+    },
+    {
+      "changeSet": {
+        "id": "3",
+        "author": "YourNameHere",
+        "comment": "Add name column to customers table",
+        "tagDatabase": {
+          "tag": "Three"
+        },
+        "changes": [
+          {
+            "addColumn": {
+              "schemaName": "HOL_CICD",
+              "tableName": "customers",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "type": "varchar(255)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

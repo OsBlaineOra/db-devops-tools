@@ -11,3 +11,4 @@
 *.rar
 
 liquibase.properties
+oracle_wallet
