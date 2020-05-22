@@ -77,12 +77,19 @@ This password is for the .zip file and not your database.
 oci db autonomous-database generate-wallet --autonomous-database-id ${DB_OCID} --password Pw4ZipFile --file ~/Wallet_MyAtpDb.zip
 ```
 
+Click the "Oracle Cloud" logo to return to the dashboard.
+
 Later, after everything is setup, you will use SQLDeveloper Web to access your database.  
-Run the following command and save the URL for later.
+Run the following command in the Cloud Shell.
 ```
 oci db autonomous-database get --autonomous-database-id $DB_OCID --query 'data."connection-urls"."sql-dev-web-url"' --raw-output
 ```
-Click the "Oracle Cloud" logo to return to the dashboard.
+1. Copy the Url
+1. Open a new browser tab
+1. Paste in the URL to open SQLDeveloper Web.
+   ![](images/sqlDevWebLogon.png)  
+1. Sign in using the admin user and password for your database.
+   ![](images/sqlDevWeb.png)
    
 ## Create a Compute instance
 1. Click "Create a VM instance" in the Compute box.
@@ -229,17 +236,10 @@ sudo yum install -y sqlcl
 alias sql="/opt/oracle/sqlcl/bin/sql"
 sql -v
 ```
-
-### Use SQLcl to create the database schemas
+Use SQLcl to create the database schemas
 ```
 sql admin/notMyPassword@MyAtpDb_TP @create_schema.sql
 ```
-
-## Open a new browser tab and go to the SQLDeveloper Web URL you saved earlier.
-   ![](images/sqlDevWebLogon.png)  
-
-Sign in using the schema and password you just created.
-   ![](images/sqlDevWeb.png)
 
 ### Install Liquibase
 ```
