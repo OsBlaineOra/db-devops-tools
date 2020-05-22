@@ -1,0 +1,34 @@
+{
+  "databaseChangeLog": [
+    {
+      "include": {
+        "file": "runOnce/changelog-create-customers.json"
+      }
+    },
+    {
+      "include": {
+        "file": "runOnce/changelog-create-orders.json"
+      }
+    },
+    {
+      "include": {
+        "file": "runOnce/changelog-add-col-customers-name.json"
+      }
+    },
+    {
+      "include": {
+        "file": "runOnce/changelog-create-order-statuses.json"
+      }
+    },
+    {
+      "include": {
+        "file": "runOnce/changelog-load-status-data.json"
+      }
+    },
+    {
+      "include": {
+        "file": "runOnce/changelog-load-test-data.json"
+      }
+    }
+  ]
+}

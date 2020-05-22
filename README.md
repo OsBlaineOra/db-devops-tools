@@ -17,6 +17,17 @@ Next paragraph of background information
 * Oracle Cloud Account
 * GitHub account
 
+### Oracle Cloud Shell
+This lab contains instructions based on using the following tools inside the Oracle Cloud Shell - (Oracle Linux).
+   * SSH
+   * nano text editor  
+      When you have finised editing a file and are ready to close and save.
+      1. Ctrl-X
+      1. Y
+      1. Enter   
+
+If you are comortable using SSH and/or a different editor in your own environment, feel free to use your preffered tools.
+
 ## Create an Oracle Always-Free Cloud Account
 You can setup an Always-Free account.
 
