@@ -14,7 +14,7 @@ Add the following values.  Correct the password if you have changed it.
 ```
 changeLogFile: master.json
 url: jdbc:oracle:thin:@demos_tp?TNS_ADMIN=/opt/oracle_wallet
-username: hol_cicd
+username: hol_dev
 password: HandsOnLabUser1
 classpath: ojdbc8.jar
 ```
@@ -31,7 +31,7 @@ Add the following to the file
       "preConditions": [
         {
           "runningAs": {
-            "username": "HOL_CICD"
+            "username": "HOL_DEV"
           }
         }
       ]
@@ -132,7 +132,7 @@ Add the following to the file.
       "preConditions": [
         {
           "runningAs": {
-            "username": "HOL_CICD"
+            "username": "HOL_DEV"
           }
         }
       ]
@@ -178,7 +178,7 @@ Add the following to the file.
                     "constraints": {
                       "nullable": false,
                       "foreignKeyName": "orders_customer_id_fk",
-                      "references": "HOL_CICD.CUSTOMERS(id)"
+                      "references": "HOL_DEV.CUSTOMERS(id)"
                     }
                   }
                 },
@@ -249,7 +249,7 @@ Add the following to the file
       "preConditions": [
         {
           "runningAs": {
-            "username": "HOL_CICD"
+            "username": "HOL_DEV"
           }
         }
       ]
@@ -265,7 +265,7 @@ Add the following to the file
         "changes": [
           {
             "addColumn": {
-              "schemaName": "HOL_CICD",
+              "schemaName": "HOL_DEV",
               "tableName": "customers",
               "columns": [
                 {
@@ -367,7 +367,7 @@ Add the following to the file
       "preConditions": [
         {
           "runningAs": {
-            "username": "HOL_CICD"
+            "username": "HOL_DEV"
           }
         }
       ]
@@ -383,7 +383,7 @@ Add the following to the file
         "changes": [
           {
             "createTable": {
-              "schemaName": "HOL_CICD",
+              "schemaName": "HOL_DEV",
               "tableName": "order_statuses",
               "columns": [
                 {
@@ -470,7 +470,7 @@ Add the following
       "preConditions": [
         {
           "runningAs": {
-            "username": "HOL_CICD"
+            "username": "HOL_DEV"
           }
         }
       ]
@@ -486,7 +486,7 @@ Add the following
         "changes": [
           {
             "loadData": {
-              "schemaName": "HOL_CICD",
+              "schemaName": "HOL_DEV",
               "tableName": "order_statuses",
               "file": "runOnce/status-data.csv"
             }
@@ -642,7 +642,7 @@ nano runOnce/changelog-load-test-data.json
       "preConditions": [
         {
           "runningAs": {
-            "username": "HOL_CICD"
+            "username": "HOL_DEV"
           }
         }
       ]
@@ -659,7 +659,7 @@ nano runOnce/changelog-load-test-data.json
         "changes": [
           {
             "insert": {
-              "schemaName": "HOL_CICD",
+              "schemaName": "HOL_DEV",
               "tableName": "customers",
               "columns": [
                 {
@@ -679,7 +679,7 @@ nano runOnce/changelog-load-test-data.json
           },
           {
             "insert": {
-              "schemaName": "HOL_CICD",
+              "schemaName": "HOL_DEV",
               "tableName": "customers",
               "columns": [
                 {
@@ -699,7 +699,7 @@ nano runOnce/changelog-load-test-data.json
           },
           {
             "insert": {
-              "schemaName": "HOL_CICD",
+              "schemaName": "HOL_DEV",
               "tableName": "orders",
               "columns": [
                 {
@@ -719,7 +719,7 @@ nano runOnce/changelog-load-test-data.json
           },
           {
             "insert": {
-              "schemaName": "HOL_CICD",
+              "schemaName": "HOL_DEV",
               "tableName": "orders",
               "columns": [
                 {
@@ -797,7 +797,7 @@ liquibase --contexts="test" rollback Five
 ```
 ## Run Diff
 ```
-liquibase --referenceUrl="jdbc:oracle:thin:hol_cicd_good/HandsOnLabUser1@demos_tp?TNS_ADMIN=/home/opc/wallet" diff
+liquibase --referenceUrl="jdbc:oracle:thin:hol_dev_good/HandsOnLabUser1@demos_tp?TNS_ADMIN=/home/opc/wallet" diff
 ```
 Edit properties
 ```
@@ -806,7 +806,7 @@ nano liquibase.properties
 Add reference db connection information
 ```
 referenceUrl: jdbc:oracle:thin:@demos_tp?TNS_ADMIN=/home/opc/wallet
-referenceUsername: hol_cicd_good
+referenceUsername: hol_dev_good
 referencePassword: HandsOnLabUser1
 ```
 ```

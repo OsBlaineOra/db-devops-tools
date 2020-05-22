@@ -6,12 +6,12 @@
           "or": [
             {
               "runningAs": {
-                "username": "HOL_CICD"
+                "username": "HOL_DEV"
               }
             },
             {
               "runningAs": {
-                "username": "HOL_CICD_PROD"
+                "username": "HOL_PROD"
               }
             }
           ]
