@@ -263,18 +263,16 @@ sudo systemctl status jenkins
 sudo systemctl enable jenkins
 ```
 
-### Open port 8080 in the internal firewall
+### Open ports 8080 and 8000 in the internal firewall
 ```
 sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
 sudo firewall-cmd --permanent --zone=public --add-port=8000/tcp
 sudo firewall-cmd --reload
 ```
 
+(30 - 45 minutes)
 ## Goto Jenkins section
 
-
-
-(30 - 45 minutes)
 ## Goto Liquibase section
 
 # TODO
