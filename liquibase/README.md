@@ -11,12 +11,12 @@ Create a file liquibase.properties
 nano liquibase.properties
 ```
 Add the following values.  Correct the password if you have changed it.
-```
+```yaml
 changeLogFile: master.json
 url: jdbc:oracle:thin:@demos_tp?TNS_ADMIN=/opt/oracle/wallet
 username: hol_dev
 password: HandsOnLabUser1
-classpath: ojdbc8.jar
+classpath: /opt/oracle/ojdbc8.jar
 ```
 
 Create a file runOnce/changelog-create-customers.json
@@ -24,7 +24,7 @@ Create a file runOnce/changelog-create-customers.json
 nano runOnce/changelog-create-customers.json
 ```
 Add the following to the file
-```
+```json
 {
   "databaseChangeLog": [
     {
@@ -91,7 +91,7 @@ Create a file master.json
 nano master.json
 ```
 Add the following to the file
-```
+```json
 {
   "databaseChangeLog": [
     {
@@ -117,13 +117,13 @@ liquibase update
 liquibase tag One
 ```
 Look at the LB data
-```
-select * from databasechangelog order by id;
+```sql
+select * from hol_dev.databasechangelog order by id;
 ```
 
 ## Tags from the changelog
 You can add a tag to a changelog with the following section
-```
+```json
       "tagDatabase": {
         "tag": "<YourTagGoesHer>"
       },
@@ -134,7 +134,7 @@ Create a file runOnce/changelog-create-orders.json
 nano runOnce/changelog-create-orders.json
 ```
 Add the following to the file.  
-```
+```json
 {
   "databaseChangeLog": [
     {
@@ -225,7 +225,7 @@ nano master.json
 ```
 Modify the file to include the new changelog.
 
-```
+```json
 {
   "databaseChangeLog": [
     {
@@ -249,8 +249,63 @@ liquibase update
 Look at changes in SDW
 
 Look at LB tables
+```sql
+select * from hol_dev.databasechangelog order by id;
 ```
-select * from databasechangelog order by id;
+Note: The very last tag added in a set of changelogs will be overwritten by a tag added from the command line.
+
+## Shema Diff
+Your database has been setup with two schemas, hol_dev and hol_prod.  Running ```liquibase update``` in your shell session is configured to update hol_dev and you have configured Jenkins to update hol_prod whenever your code is pushed to GitHub.
+
+Switch to SQL Developer Web and run the following query to show the existing tables in hol_dev and hol_prod.
+```sql
+select owner, table_name
+  from all_tables
+ where owner in ('HOL_DEV', 'HOL_PROD')
+order by 1,2;
+```
+As you can see, tables have been created in hol_dev and not hol_prod.
+
+You can also use the  ```liquibase diff``` to compare schemas by passing in a 'reference Url'.
+
+```
+liquibase --referenceUrl="jdbc:oracle:thin:hol_prod/HandsOnLabUser1@demos_tp?TNS_ADMIN=/opt/oracle/wallet" diff
+```
+If you plan to use the 'diff' comand a lot, you can add the reference values to the liquibase.properties file
+```
+nano liquibase.properties
+```
+Add reference db connection information
+```yaml
+referenceUrl: jdbc:oracle:thin:@demos_tp?TNS_ADMIN=/opt/oracle/wallet
+referenceUsername: hol_prod
+referencePassword: HandsOnLabUser1
+```
+You can also filter the diff report to specific diffTypes.
+```
+liquibase --diffTypes=tables,columns diff
+```
+Push your changes to GitHub to test the Jenkins integration.
+```bash
+cd /opc/db-devops-tools
+git status
+git add .
+git commit -m"Added customers and orders tables."
+git push
+cd liquibase
+```
+Switch to your Jenkins tab and make sure the build does not error.  Once the build is complete, run the diff command again.
+```
+liquibase diff
+```
+
+### Generate diffChangeLog
+You can use the ```diffChangeLog``` command to compae your current schema to a "known good" and auto-generate a changelog.  You could use this changelog to sync your current schema with the reference schema.  
+**Do not run this changelog, it is only an example**
+```
+liquibase --changeLogFile=diff-changelog.json diffChangeLog
+cat diff-changelog.json
+rm diff-changelog.json
 ```
 
 ## Add column
@@ -260,7 +315,7 @@ Create a file runOnce/changelog-add-col-customers-name.json
 nano runOnce/changelog-add-col-customers-name.json
 ```
 Add the following to the file
-```
+```json
 {
   "databaseChangeLog": [
     {
@@ -315,7 +370,7 @@ Add the new change log to the bottom of the file master.json
 nano master.json
 ```
 
-```
+```json
 {
   "databaseChangeLog": [
 ...
@@ -349,7 +404,7 @@ Edit the file runOnce/changelog-add-col-customers-name.json
 nano runOnce/changelog-add-col-customers-name.json
 ```
 Add a `"nullable": false` constraint to the column.
-```
+```json
 ...
                 {
                   "column": {
@@ -380,6 +435,19 @@ Re-run the changes
 ```
 liquibase update
 ```
+Push your changes to GitHub
+```bash
+cd /opc/db-devops-tools
+git status
+git add .
+git commit -m"Added customers and orders tables."
+git push
+cd liquibase
+```
+Switch to your Jenkins tab in your browser and make sure the build does not error.  Once the build is complete, run the diff command again.
+```
+liquibase diff
+```
 
 ## Multiple changes in a set
 Create a file runOnce/changelog-order-statuses.json
@@ -387,7 +455,7 @@ Create a file runOnce/changelog-order-statuses.json
 nano runOnce/changelog-create-order-statuses.json
 ```
 Add the following to the file
-```
+```json
 {
   "databaseChangeLog": [
     {
@@ -462,7 +530,7 @@ Add the new change log to the bottom of the file master.json
 nano master.json
 ```
 
-```
+```json
 {
   "databaseChangeLog": [
 ...
@@ -499,7 +567,7 @@ Create a file runOnce/changelog-load-status-data.json
 nano runOnce/changelog-load-status-data.json
 ```
 Add the following
-```
+```json
 {
   "databaseChangeLog": [
     {
@@ -547,7 +615,7 @@ Add the new change log to the bottom of the file master.json
 nano master.json
 ```
 
-```
+```json
 {
   "databaseChangeLog": [
 ...
@@ -566,8 +634,8 @@ liqubase update
 
 ```
 
-```
-select * from order_statuses;
+```sql
+select * from hol_dev.order_statuses;
 ```
 
 
@@ -595,7 +663,7 @@ Data changes, pl/sql
 nano runOnce/changelog-load-status-data.json
 ```
 
-```
+```json
 ,
           {
             "rollback": {
@@ -631,7 +699,7 @@ add ```"validCheckSum": "<but is now value>",``` to the changeset
 ```
 nano runOnce/changelog-load-status-data.json
 ```
-```
+```json
       "changeSet": {
         "id": "5",
         "author": "YourNameHere",
@@ -649,10 +717,6 @@ remove "validCheckSum": "8:d0961735f2e626c20cb6df76860055ef",
 nano runOnce/changelog-load-status-data.json
 ```
 
-
-
-
-
 Run the corrected change
 ```
 liquibase update
@@ -660,8 +724,23 @@ liquibase update
 This time everything should run.
 
 Check the data in SDW
+```sql
+select * from hol_dev.order_statuses;
 ```
-select * from order_statuses;
+Push your changes to GitHub
+```bash
+cd /opc/db-devops-tools
+git status
+git add .
+git commit -m"Added customers and orders tables."
+git push
+cd liquibase
+```
+Switch to your Jenkins tab in your browser and make sure the build does not error.  Once the build is complete, check the hol_prod data in SDW.  
+**Data differences are not shown in the diff results.**
+
+```sql
+select * from hol_prod.order_statuses;
 ```
 
 ## Load Test data - Context
@@ -671,7 +750,7 @@ Modify liquibase.properties
 nano liquibase.properties
 ```
 Add the following at the bottom
-```
+```yaml
 contexts: !test
 ```
 Create a file runOnce/changelog-load-test-data.json
@@ -680,7 +759,7 @@ Create a file runOnce/changelog-load-test-data.json
 nano runOnce/changelog-load-test-data.json
 ```
 
-```
+```json
 {
   "databaseChangeLog": [
     {
@@ -816,7 +895,7 @@ Add the new change log to the bottom of the file master.json
 nano master.json
 ```
 
-```
+```json
 {
   "databaseChangeLog": [
 ...
@@ -833,48 +912,30 @@ nano master.json
 ```
 liquibase update
 ```
-Nothing runs
+Nothing runs.  
+Adding ```contexts: !test``` to the liquibase.properties file will cause liquibase to not run any changes with a context of 'test'.  If you did not include the contexts entry, liquibase will not test any context.
 
-```
-select * from customers;
-select * from orders;
+```sql
+select * from hol_dev.customers;
+select * from hol_dev.orders;
 ```
 
 ### Run with context
 ```
 liquibase --contexts="test" update
 ```
+Remember, comand line options such as ```--contexts="test"``` will override the same setting in the liquibase.properties file.  In this case it instructs liquibase to include the 'test' changes.
 
-To rollback this changeset you need to use --contexts="test"
+To rollback this changeset you need to use --contexts="test".
 ```
 liquibase --contexts="test" rollback Five
 ```
-## Run Diff
-```
-liquibase --referenceUrl="jdbc:oracle:thin:hol_dev_good/HandsOnLabUser1@demos_tp?TNS_ADMIN=/home/opc/wallet" diff
-```
-Edit properties
-```
-nano liquibase.properties
-```
-Add reference db connection information
-```
-referenceUrl: jdbc:oracle:thin:@demos_tp?TNS_ADMIN=/home/opc/wallet
-referenceUsername: hol_dev_good
-referencePassword: HandsOnLabUser1
-```
-```
-liquibase --diffTypes=tables,columns diff
-```
-## Generate diffChangeLog
-```
-liquibase --changeLogFile=diff-changelog.json diffChangeLog
-cat diff-changelog.json
-```
-## GenerateChanglogFile - Rev eng
+
+## GenerateChanglogFile - Reverse engineer your current schema
 ```
 liquibase --changeLogFile=generated.json generateChangeLog
 cat generated.json
+rm generated.json
 ```
 ## Drop All
 ```
@@ -906,8 +967,3 @@ liquibase dropAll
 
 
 
-
-## integrate with Jenkins
-### Run pipeline
-git pull
-liquibase update
