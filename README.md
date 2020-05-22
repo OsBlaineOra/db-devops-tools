@@ -95,48 +95,52 @@ Click the "Oracle Cloud" logo to return to the dashboard.
    ```
    ssh-keygen -t rsa -N "" -b 2048 -C "cloud_shell" -f ~/.ssh/id_rsa
    ```
-1. Display the public key, copy it then paste it in the SSH KEYS box.
+1. In the cloud shell, display the public key, copy it then paste it in the SSH KEYS box.
    ```
    cat ~/.ssh/id_rsa.pub
    ```
    ![](images/createComputeForm2.png)
-   (you may also want to save a copy of the private key ~/.ssh/id_rsa on your local machine.)
+   If you intend to SSH into your compute instance from any other machine, you may click the "+ Another Key" button and enter the public key for that machine.  
+   (you may also want to save a copy of the Cloud Shell private key '~/.ssh/id_rsa' on your local machine.  DO NOT SHARE your private key, this key allows access to your compute instance.)
 1. Click "Create".
-1. Once the Compute instance is Running, locate the Public IP Address and click Copy.
+1. Once the Compute instance is Running, locate the Public IP Address and click Copy.  
+Keep this IP address handy, it will be used throught the lab.
 1. In your Cloud Shell, create an environment variable to store the IP.
    ```
    export COMPUTE_IP=<yourIP>
    ```
    ![](images/saveComputeIp.png)
-1. Next, you will need to open port 8080.
-1. Click "Public Subnet"
-   ![](images/openPort1.png)
-1. Click the Security List name.
-   ![](images/openPort2.png)
-1. Click Add Ingress Rule.
-   ![](images/openPort3.png)
-1. In the SOURCE CIDR box enter
-   ```
-   0.0.0.0/0
-   ```
-1. In the DESTINATION PORT RANGE box enter
-   ```
-   8080
-   ```
-1. Click Add Ingress Rule.
-   ![](images/openPort4.png)
+
+1. Next, you will need to open ports 8080 and 8000.
+   1. Click "Public Subnet"
+      ![](images/openPort1.png)
+   1. Click the Security List name.
+      ![](images/openPort2.png)
+   1. Click Add Ingress Rule.
+      ![](images/openPort3.png)
+   1. In the SOURCE CIDR box enter
+      ```
+      0.0.0.0/0
+      ```
+   1. In the DESTINATION PORT RANGE box enter
+      ```
+      8080
+      ```
+   1. Click Add Ingress Rule.
+      ![](images/openPort4.png)
+   1. Repeat for port 8000.
 
    **Be Aware**  
-   **This will open port 8080 for any instance using the default security list**  
+   **This will open ports 8080 8000 for any instance using the default security list**  
 
-1. In the Cloud Shell, use SCP to send the security wallet (downloaded earlier) to new Compute instance.
+1. In the Cloud Shell, use SCP to upload the security wallet (downloaded earlier) to new Compute instance.
    ```
    scp Wallet_MyAtpDb.zip opc@${COMPUTE_IP}:/home/opc/
    ```
    ![](images/scpWallet.png)
 
 1. Maximize the Cloud Shell.
-1. Use SSH to access your Compute instance from the Cloud Shell
+1. Use SSH to access your Compute instance from the Cloud Shell.
    ```
    ssh opc@${COMPUTE_IP}
    ```
