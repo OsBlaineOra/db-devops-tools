@@ -80,7 +80,7 @@ oci db autonomous-database generate-wallet --autonomous-database-id ${DB_OCID} -
 Later, after everything is setup, you will use SQLDeveloper Web to access your database.  
 Run the following command and save the URL for later.
 ```
-oci db autonomous-database get --autonomous-database-id $DB_OCID --query 'data."connection-urls"."sql-dev-web-url"' --raw-output | sed 's/admin/hol_dev/g'
+oci db autonomous-database get --autonomous-database-id $DB_OCID --query 'data."connection-urls"."sql-dev-web-url"' --raw-output
 ```
 Click the "Oracle Cloud" logo to return to the dashboard.
    
