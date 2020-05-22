@@ -1,7 +1,7 @@
 # Liquibase
 In the Cloud Shell ssh session.
 ```
-cd project/liquibase
+cd /home/opc/db-devops-tools/liquibase
 ```
 
 ## Create Files
@@ -13,7 +13,7 @@ nano liquibase.properties
 Add the following values.  Correct the password if you have changed it.
 ```
 changeLogFile: master.json
-url: jdbc:oracle:thin:@demos_tp?TNS_ADMIN=/opt/oracle_wallet
+url: jdbc:oracle:thin:@demos_tp?TNS_ADMIN=/opt/oracle/wallet
 username: hol_dev
 password: HandsOnLabUser1
 classpath: ojdbc8.jar
@@ -30,9 +30,18 @@ Add the following to the file
     {
       "preConditions": [
         {
-          "runningAs": {
-            "username": "HOL_DEV"
-          }
+          "or": [
+            {
+              "runningAs": {
+                "username": "HOL_DEV"
+              }
+            },
+            {
+              "runningAs": {
+                "username": "HOL_PROD"
+              }
+            }
+          ]
         }
       ]
     },
@@ -131,9 +140,18 @@ Add the following to the file.
     {
       "preConditions": [
         {
-          "runningAs": {
-            "username": "HOL_DEV"
-          }
+          "or": [
+            {
+              "runningAs": {
+                "username": "HOL_DEV"
+              }
+            },
+            {
+              "runningAs": {
+                "username": "HOL_PROD"
+              }
+            }
+          ]
         }
       ]
     },
@@ -248,9 +266,18 @@ Add the following to the file
     {
       "preConditions": [
         {
-          "runningAs": {
-            "username": "HOL_DEV"
-          }
+          "or": [
+            {
+              "runningAs": {
+                "username": "HOL_DEV"
+              }
+            },
+            {
+              "runningAs": {
+                "username": "HOL_PROD"
+              }
+            }
+          ]
         }
       ]
     },
@@ -366,9 +393,18 @@ Add the following to the file
     {
       "preConditions": [
         {
-          "runningAs": {
-            "username": "HOL_DEV"
-          }
+          "or": [
+            {
+              "runningAs": {
+                "username": "HOL_DEV"
+              }
+            },
+            {
+              "runningAs": {
+                "username": "HOL_PROD"
+              }
+            }
+          ]
         }
       ]
     },
@@ -469,9 +505,18 @@ Add the following
     {
       "preConditions": [
         {
-          "runningAs": {
-            "username": "HOL_DEV"
-          }
+          "or": [
+            {
+              "runningAs": {
+                "username": "HOL_DEV"
+              }
+            },
+            {
+              "runningAs": {
+                "username": "HOL_PROD"
+              }
+            }
+          ]
         }
       ]
     },
@@ -641,9 +686,18 @@ nano runOnce/changelog-load-test-data.json
     {
       "preConditions": [
         {
-          "runningAs": {
-            "username": "HOL_DEV"
-          }
+          "or": [
+            {
+              "runningAs": {
+                "username": "HOL_DEV"
+              }
+            },
+            {
+              "runningAs": {
+                "username": "HOL_PROD"
+              }
+            }
+          ]
         }
       ]
     },
@@ -833,7 +887,7 @@ ls -la docs
 ```
 Use the following command to start a simple HTTP server with Python.
 ```
-pushd /home/opc/project/liquibase/docs; python -m SimpleHTTPServer; popd
+pushd /home/opc/db-devops-tools/liquibase/docs; python -m SimpleHTTPServer; popd
 ```
 Go to ```<yourComputeIP>:8000``` to review the docs.
 ## Run all
