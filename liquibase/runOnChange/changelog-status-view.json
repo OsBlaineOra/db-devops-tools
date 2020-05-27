@@ -1,0 +1,40 @@
+{
+  "databaseChangeLog": [
+    {
+      "preConditions": [
+        {
+          "or": [
+            {
+              "runningAs": {
+                "username": "HOL_DEV"
+              }
+            },
+            {
+              "runningAs": {
+                "username": "HOL_PROD"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "changeSet": {
+        "id": "7",
+        "author": "YourNameHere",
+        "comment": "Create or replace status view",
+        "runOnChange": true,
+        "changes": [
+          {
+            "createView": {
+              "fullDefinition": true,
+              "selectQuery": "create or replace view status as select status order_status, description from order_statuses",
+              "viewName": "DD_DEQUEUE_ERRORS"
+            }
+          }
+        ],
+        "rollback": ""
+      }
+    }
+  ]
+}

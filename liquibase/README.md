@@ -931,6 +931,237 @@ To rollback this changeset you need to use --contexts="test".
 liquibase --contexts="test" rollback Five
 ```
 
+## Run on Change
+Some database objects are created using the "Create or Replace" syntax such as Views and PL/SQL objects (Functions, Procedures, Packages and Triggers).  
+It is a good practice to maintain the source for these objects directly in your VCS and have liquibase "re-compile" them whenever they change.
+
+Tyically the source for these objects would reside in another directory but for simplicity sake in this lab, they are located in the runOnChange directory with the Liquibase changelogs.
+
+Review the following files.
+runOnce/status_view.sql
+```
+cat runOnce/status_view.sql
+```
+runOnce/admin_tools.pks
+```
+cat runOnce/admin_tools.pks
+```
+runOnce/admin_tools.pkg
+```
+cat runOnce/admin_tools.pkg
+```
+
+Create a file runOnChange/changelog-status-view.json
+
+```
+nano runOnChange/changelog-status-view.json
+```
+Add the following
+```json
+{
+  "databaseChangeLog": [
+    {
+      "preConditions": [
+        {
+          "or": [
+            {
+              "runningAs": {
+                "username": "HOL_DEV"
+              }
+            },
+            {
+              "runningAs": {
+                "username": "HOL_PROD"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "changeSet": {
+        "id": "7",
+        "author": "YourNameHere",
+        "comment": "Create or replace status view",
+        "runOnChange": true,
+        "changes": [
+          {
+            "createView": {
+              "fullDefinition": true,
+              "selectQuery": "create or replace view status as select status order_status from order_statuses",
+              "viewName": "DD_DEQUEUE_ERRORS"
+            }
+          }
+        ],
+        "rollback": ""
+      }
+    }
+  ]
+}
+```
+
+Add this new changelog to the file master.json
+```
+nano master.json
+```
+Modify the file to include the new changelog.
+
+```json
+{
+  "databaseChangeLog": [
+...,
+    {
+      "include": {
+        "file": "runOnChange/changelog-status-view.json"
+      }
+    }
+  ]
+}
+```
+### Run the changes on your Database
+```
+liquibase update
+```
+
+Look at changes in SDW
+
+Look at LB tables
+```sql
+select * from hol_dev.databasechangelog order by dateexecuted;
+```
+Notice the dateexecuted timestamp.
+
+Edit the view SQL in the changelog
+
+```
+nano runOnChange/changelog-status-view.json
+```
+Change the SQL in "selectQuery" to the following.
+
+```
+              "selectQuery": "create or replace view status as select status order_status, description from order_statuses",
+```
+### Run the changes on your Database
+```
+liquibase update
+```
+Look at changes in SDW
+
+Look at LB tables
+```sql
+select * from hol_dev.databasechangelog order by dateexecuted;
+```
+Notice the dateexecuted timestamp has changed.
+
+Create a file runOnChange/changelog-gen_cust-fnc.json
+
+```
+nano runOnChange/changelog-gen_cust-fnc.json
+```
+Add the following
+```json
+{
+  "databaseChangeLog": [
+    {
+      "preConditions": [
+        {
+          "or": [
+            {
+              "runningAs": {
+                "username": "HOL_DEV"
+              }
+            },
+            {
+              "runningAs": {
+                "username": "HOL_PROD"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "changeSet": {
+        "id": "8",
+        "author": "YourNameHere",
+        "comment": "Create or replace generate customers function",
+        "runOnChange": true,
+        "changes": [
+          {
+            "createProcedure": {
+              "dbms": "oracle",
+              "encoding": "utf8",
+              "path": "gen_cust.fnc",
+              "relativeToChangelogFile": true
+            }
+          }
+        ],
+        "rollback": ""
+      }
+    }
+  ]
+}
+```
+
+Notice this changelog references a file in the "path" value and that this file path is relative to the changelog file.
+```
+              "path": "gen_cust.fnc",
+              "relativeToChangelogFile": true
+```
+
+Add this new changelog to the file master.json
+```
+nano master.json
+```
+Modify the file to include the new changelog.
+
+```json
+{
+  "databaseChangeLog": [
+...,
+    {
+      "include": {
+        "file": "runOnce/changelog-gen_cust-fnc.json"
+      }
+    }
+  ]
+}
+```
+### Run the changes on your Database
+```
+liquibase update
+```
+Look at changes in SDW
+
+Look at LB tables
+```sql
+select * from hol_dev.databasechangelog order by dateexecuted;
+```
+Notice the dateexecuted timestamp.
+
+Edit the gen_cust.fnc file
+```
+nano runOnChange/gen_cust.fnc.json
+```
+
+Change the Max customer constant to 25.
+```
+c_max_customers   CONSTANT INTEGER := 25;
+```
+
+### Run the changes on your Database
+```
+liquibase update
+```
+
+Look at LB tables
+```sql
+select * from hol_dev.databasechangelog order by dateexecuted;
+```
+Notice the dateexecuted timestamp has changed.
+
+A changelog flagged ```"runOnChange": true,``` will re-run whenever the changelog itself is changed or the file it's referencing has changed.
+
 ## GenerateChanglogFile - Reverse engineer your current schema
 ```
 liquibase --changeLogFile=generated.json generateChangeLog

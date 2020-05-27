@@ -1,0 +1,41 @@
+{
+  "databaseChangeLog": [
+    {
+      "preConditions": [
+        {
+          "or": [
+            {
+              "runningAs": {
+                "username": "HOL_DEV"
+              }
+            },
+            {
+              "runningAs": {
+                "username": "HOL_PROD"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "changeSet": {
+        "id": "8",
+        "author": "YourNameHere",
+        "comment": "Create or replace generate customers function",
+        "runOnChange": true,
+        "changes": [
+          {
+            "createProcedure": {
+              "dbms": "oracle",
+              "encoding": "utf8",
+              "path": "gen_cust.fnc",
+              "relativeToChangelogFile": true
+            }
+          }
+        ],
+        "rollback": ""
+      }
+    }
+  ]
+}

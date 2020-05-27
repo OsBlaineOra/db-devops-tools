@@ -29,6 +29,16 @@
       "include": {
         "file": "runOnce/changelog-load-test-data.json"
       }
+    },
+    {
+      "include": {
+        "file": "runOnChange/changelog-status-view.json"
+      }
+    },
+    {
+      "include": {
+        "file": "runOnChange/changelog-gen_cust-fnc.json"
+      }
     }
   ]
 }
