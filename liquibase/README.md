@@ -1160,7 +1160,18 @@ select * from hol_dev.databasechangelog order by dateexecuted;
 ```
 Notice the dateexecuted timestamp has changed.
 
-A changelog flagged ```"runOnChange": true,``` will re-run whenever the changelog itself is changed or the file it's referencing has changed.
+A changelog flagged ```"runOnChange": true,``` will re-run whenever the changelog itself is changed or the file it's referencing has changed.  
+
+Push your changes to GitHub
+```bash
+cd /opc/db-devops-tools
+git status
+git add .
+git commit -m"Added customers and orders tables."
+git push
+cd liquibase
+```
+Switch to your Jenkins tab in your browser and make sure the build does not error.  Once the build is complete, check the hol_prod data in SDW.  
 
 ## GenerateChanglogFile - Reverse engineer your current schema
 ```
@@ -1194,7 +1205,3 @@ liquibase DBDoc docs
 ```
 liquibase dropAll
 ```
-
-
-
-
