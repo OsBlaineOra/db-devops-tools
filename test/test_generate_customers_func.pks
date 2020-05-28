@@ -4,6 +4,9 @@ create or replace package test_generate_customers_func as
   -- %suitepath(generate_customers)
   -- %rollback(manual)
 
+  -- %beforeall
+  procedure before_all;
+  
   -- %test(Generates all requested)
   procedure gen_all;
 end;

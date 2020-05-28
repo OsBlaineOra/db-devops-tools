@@ -110,14 +110,47 @@ With the following
 ```
 In this test you are telling utPLSQL (ut) to expect that when you call the generate_customers function passing in 20 that it will return 20.
 
-Run manually
-Git push
-Check results
-Check coverage
-
-### rollback(manual)
+1. Run manually
+1. Git push
+1. Check results
+1. Check coverage
+1. Query customers
+    ```
+    select * from hol_prod.customers;
+    ```
+1. Run again in Jenkins. Test Fails because the previous test data is still there.
 
 ### Before All
+
+Edit the package spec
+```
+nano test/test_generate_customers_func.pks
+```
+Add the following between the ```-- %rollback(manual)``` and ```-- %test(Generates all requested)``` lines
+```
+  -- %beforeall
+  procedure before_all;
+```
+Edit the package body
+```
+nano test/test_generate_customers_func.pkb
+```
+Add the following before the line ```procedure gen_all is```
+```
+  procedure before_all
+    is
+  begin
+    delete_added_customers;
+  end;
+```
+
+1. Git push
+1. Check results
+1. Check coverage
+1. Query customers
+    ```
+    select * from hol_prod.customers;
+    ```
 
 ### Add failing test (gen 25 of 30)
 
