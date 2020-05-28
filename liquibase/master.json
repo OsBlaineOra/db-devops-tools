@@ -42,7 +42,7 @@
     },
     {
       "include": {
-        "file": "runOnChange/changelog-test_gen_cust-pkg"
+        "file": "runOnChange/changelog-test_gen_cust-pkg.json"
       }
     }
   ]
