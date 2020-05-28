@@ -23,7 +23,7 @@ create or replace package body test_generate_customers_func as
 
   procedure gen_to_limit is
   begin
-    ut.expect( generate_customers( 30 ) ).to_( equal(18) );
+    ut.expect( generate_customers( 30 ) ).to_( equal(23) );
   end;
 
   procedure over_limit is
