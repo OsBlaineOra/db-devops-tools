@@ -233,6 +233,9 @@ Add the following before the end of the package
       );
     END LOOP;
     ```
+    This will create 30 new customers in the table before the test is run.
+1. Git add/commit/push
+1. Check results
 
 ### Add setup to test (insert 30 then run test)
 
