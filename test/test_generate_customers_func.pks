@@ -1,6 +1,6 @@
 create or replace package test_generate_customers_func as
 
-  -- %suite(Between string function)
+  -- %suite(Generate Customers function)
 
   -- %test(Generates all requested)
   procedure gen_all;
