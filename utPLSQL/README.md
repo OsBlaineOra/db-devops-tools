@@ -324,7 +324,7 @@ To
 
 ## Handling Exceptions
 Even though we have 100% code coverage, there is still at least one potential bug.  
-If a user calls this function and passes in a non numeric value the function will throw an exception.  Add a test to check for the exception.
+If a user calls this function and passes in a non numeric value the function will throw an exception "numeric or value error".  Add a test to check for the expected exception.
 
 Edit the package spec
 ```
@@ -336,6 +336,8 @@ Add the following before the end of the package
   --%throws(-06502)
   procedure alpha_in;
 ```
+You use the ```--%throws(<Exception number>)``` annotation to test for the exception number you expect to be thrown.  
+
 Edit the package body
 ```
 nano test/test_generate_customers_func.pkb
@@ -348,10 +350,54 @@ Add the following before the end of the package
     created := generate_customers( 'x' );
   end;
 ```
-In this test you're not ex
+In this test you're expecting an exception to be thrown so there will not be a value to test for.
 
 1. Git add/commit/push
-1. Check results, all 4 tests should now pass.
+1. Check results, all 5 tests should pass.
+
+### Test for the exception to be handled
+It's a good practice to handle expected exceptions rather than letting them crash up the stack.  Modify the test so that when the exception is handled the function will return a null.
+
+
+Edit the package spec
+```
+nano test/test_generate_customers_func.pks
+```
+Change the following code
+```
+  -- %test(Throws numeric or value error for non numeric input)  
+  --%throws(-06502)
+  procedure alpha_in;
+```
+To
+```
+  -- %test(Non numeric input returns a null)  
+  procedure alpha_in;
+```
+You use the ```--%throws(<Exception number>)``` annotation to test for the exception number you expect to be thrown.  
+
+Edit the package body
+```
+nano test/test_generate_customers_func.pkb
+```
+Change the following code
+```
+  procedure alpha_in is
+    created integer;
+  begin
+    created := generate_customers( 'x' );
+  end;
+```
+To
+```
+  procedure alpha_in is
+  begin
+    ut.expect( generate_customers( 'x' ) ).to_( be_null );
+  end;
+```
+
+1. Git add/commit/push
+1. Check results, this test should fail.
 
 ### After All???
 check count  
