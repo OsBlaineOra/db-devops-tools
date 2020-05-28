@@ -4,8 +4,6 @@ create or replace package body test_generate_customers_func as
   begin
     delete from customers
     where name like 'Xcustxxx%';
-
-    commit;
   end;
 
 
@@ -39,8 +37,7 @@ create or replace package body test_generate_customers_func as
                   new_name,
                   translate(new_name, ' ', '.') ||'@example.com'
                );
-      
-            COMMIT;
+
             END LOOP;
 
     ut.expect( generate_customers( 30 ) ).to_( equal(0) );
