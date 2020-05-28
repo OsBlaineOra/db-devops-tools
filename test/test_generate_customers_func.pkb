@@ -12,7 +12,7 @@ create or replace package body test_generate_customers_func as
   procedure before_all
     is
   begin
-    delete_added_members;
+    delete_added_customers;
   end;
 
 
