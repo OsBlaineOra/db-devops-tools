@@ -40,7 +40,7 @@ CREATE OR REPLACE FUNCTION generate_customers (amount IN NUMBER)
   
      RETURN adjusted_amount;
 exception
-    when VALUE_ERROR then
+    when others then
       return null;
 END generate_customers;
 /
