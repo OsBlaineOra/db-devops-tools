@@ -8,10 +8,9 @@ create or replace package body test_generate_customers_func as
     commit;
   end;
 
- procedure always_pass is
-    l_is_true boolean := true;
+  procedure gen_all is
   begin
-    ut.expect( l_is_true ).to_be_true();
+    ut.expect( generate_customers( 20 ) ).to_( equal(20) );
   end;
 end;
 /
