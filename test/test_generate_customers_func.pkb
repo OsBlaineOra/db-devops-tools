@@ -26,12 +26,25 @@ create or replace package body test_generate_customers_func as
 
   procedure gen_to_limit is
   begin
-    ut.expect( generate_customers( 20 ) ).to_( equal(5) );
+    ut.expect( generate_customers( 30 ) ).to_( equal(18) );
   end;
 
   procedure over_limit is
+              FOR counter IN 1 .. 30 LOOP
+            new_name := 'custxxxTestOL' || counter || ' ' || CURRENT_TIMESTAMP;
+               INSERT INTO customers (
+                  name,
+                  email
+               ) VALUES (
+                  new_name,
+                  translate(new_name, ' ', '.') ||'@example.com'
+               );
+      
+            COMMIT;
+            END LOOP;
+
   begin
-    ut.expect( generate_customers( 20 ) ).to_( equal(0) );
+    ut.expect( generate_customers( 30 ) ).to_( equal(0) );
   end;
 
   procedure null_ammount is
