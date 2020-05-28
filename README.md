@@ -252,6 +252,13 @@ Use SQLcl to install utPLSQL
 sql admin/notMyPassword@MyAtpDb_TP @utPLSQL/source/install_headless_with_trigger.sql ut3 XNtxj8eEgA6X6b6f DATA
 ```
 
+### Install utPLSQL-cli
+```
+curl -LOk $(curl --silent https://api.github.com/repos/utPLSQL/utPLSQL-cli/releases/latest | awk '/browser_download_url/ { print $2 }' | grep ".zip\"" | sed 's/"//g')
+sudo unzip utPLSQL-cli.zip -d /opt/ && sudo chmod -R u+x /opt/utPLSQL-cli
+sudo cp /opt/oracle/ojdbc8.jar /opt/utPLSQL-cli/lib
+```
+
 ### Install Liquibase
 ```
 wget https://github.com/liquibase/liquibase/releases/download/liquibase-parent-3.6.3/liquibase-3.6.3-bin.tar.gz

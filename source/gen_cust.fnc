@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION generate_customers (amount IN NUMBER)
      RETURN NUMBER
-  IS
+  AS
     c_max_customers   CONSTANT INTEGER := 25;
     customer_count number;
     adjusted_amount   NUMBER := amount;
