@@ -20,7 +20,8 @@ create or replace package test_generate_customers_func as
   -- %test(Returns null for null input)
   procedure null_ammount;
 
-  -- %test(Expect Error)
+  -- %test(Expect numeric or value error)  
+  --%throws(-06502)
   procedure alpha_in;
 end;
 /
