@@ -301,6 +301,27 @@ To
 1. Git add/commit/push
 1. Check results, this test should now fail.
 
+### Make the code change
+Edit the function
+```
+nano source/gen_cust.fnc
+```
+Change the code
+```
+      IF amount is null then 
+         Return 0;
+      END IF;
+```
+To
+```
+      IF amount is null then 
+         Return null;
+      END IF;
+```
+
+1. Git add/commit/push
+1. Check results, all 4 tests should now pass.
+
 ### exceptions
 
 ### After All???

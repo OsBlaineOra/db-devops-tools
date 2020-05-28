@@ -43,7 +43,7 @@ create or replace package body test_generate_customers_func as
 
   procedure null_ammount is
   begin
-    ut.expect( generate_customers( null ) ).to_( equal(0) );
+    ut.expect( generate_customers( null ) ).to_( be_null );
   end;
 end;
 /
