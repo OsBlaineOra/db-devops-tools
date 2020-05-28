@@ -241,6 +241,17 @@ Use SQLcl to create the database schemas
 sql admin/notMyPassword@MyAtpDb_TP @create_schema.sql
 ```
 
+### Install utPLSQL
+```
+curl -LOk $(curl --silent https://api.github.com/repos/utPLSQL/utPLSQL/releases/latest | awk '/browser_download_url/ { print $2 }' | grep ".tar.gz\"" | sed 's/"//g')
+# Extract downloaded "tar.gz" file
+tar xvzf utPLSQL.tar.gz 
+```
+Use SQLcl to install utPLSQL
+```
+sql admin/notMyPassword@MyAtpDb_TP @utPLSQL/source/install_headless_with_trigger.sql ut3 XNtxj8eEgA6X6b6f DATA
+```
+
 ### Install Liquibase
 ```
 wget https://github.com/liquibase/liquibase/releases/download/liquibase-parent-3.6.3/liquibase-3.6.3-bin.tar.gz
