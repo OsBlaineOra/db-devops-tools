@@ -46,5 +46,17 @@ create or replace package body test_generate_customers_func as
     ut.expect( generate_customers( 30 ) ).to_( equal(0) );
   end;
 
+
+  procedure null_ammount is
+  begin
+    ut.expect( generate_customers( null ) ).to_( be_null );
+  end;
+
+  procedure alpha_in is
+  begin
+    ut.expect( generate_customers( 'x' ) ).to_( be_null );
+  end;
+
+
 end;
 /

@@ -20,5 +20,8 @@ add clean up
 ## Test Coverage
 http://utplsql.org/utPLSQL/v3.0.4/userguide/coverage.html
 
-### null
+### null in 0 out
+### test for null out
+change ```equal(0)``` to ```be_null``
 
+### exceptions
