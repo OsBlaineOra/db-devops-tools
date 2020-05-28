@@ -29,7 +29,7 @@
             "createProcedure": {
               "dbms": "oracle",
               "encoding": "utf8",
-              "path": "gen_cust.fnc",
+              "path": "../../source/gen_cust.fnc",
               "relativeToChangelogFile": true
             }
           }
