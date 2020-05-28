@@ -322,7 +322,36 @@ To
 1. Git add/commit/push
 1. Check results, all 4 tests should now pass.
 
-### exceptions
+## Handling Exceptions
+Even though we have 100% code coverage, there is still at least one potential bug.  
+If a user calls this function and passes in a non numeric value the function will throw an exception.  Add a test to check for the exception.
+
+Edit the package spec
+```
+nano test/test_generate_customers_func.pks
+```
+Add the following before the end of the package
+```
+  -- %test(Throws numeric or value error for non numeric input)  
+  --%throws(-06502)
+  procedure alpha_in;
+```
+Edit the package body
+```
+nano test/test_generate_customers_func.pkb
+```
+Add the following before the end of the package
+```
+  procedure alpha_in is
+    created integer;
+  begin
+    created := generate_customers( 'x' );
+  end;
+```
+In this test you're not ex
+
+1. Git add/commit/push
+1. Check results, all 4 tests should now pass.
 
 ### After All???
 check count  
