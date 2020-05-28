@@ -174,7 +174,15 @@ Add the following before the end of the package
 
 1. Git add/commit/push
 1. Check results
-   This time it passed because the before_all setup procedure sets up the environment so that it only contains the two "test" records created by the liquibase insert step.
+   The new test fails.  3 new customers were created but it was expecting 23.  This is because the data was not cleaned up after the previous test.  
+   The before_all setup procedure is only run once before all tests run.
+1. Add the following after the ```procedure before_all;``` line
+  ```
+     --%aftereach
+     procedure delete_added_customers;
+  ```
+  This will call the cleanup procedure after each test is run.  
+  Alternativly, you could make it a ```--%beforeeach``` and have it reset the environment before each test runs.  But then you would need to have an ```--$afterall``` to do a final cleanup.
 1. Check coverage
     The coverage should now be at 80%.
 failing test (gen 25 of 30)
