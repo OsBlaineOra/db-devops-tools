@@ -266,11 +266,40 @@ Add the following before the end of the package
 1. Git add/commit/push
 1. Check results, all 4 tests should now pass.
 1. Check coverage
-   The coverage should now be at 93.33%.
+   The coverage should now be at 100%.
 
 
 ### test for null out
-change ```equal(0)``` to ```be_null``
+A change request has come in.  The user would like the function to return null when a null is passed in.  
+It is good practice to setup your tests so they test for what you want the code to do, before your change it.  
+
+Edit the package spec
+```
+nano test/test_generate_customers_func.pks
+```
+Change the line
+```
+  -- %test(Returns 0 for null input)
+```
+To
+```
+  -- %test(Returns null for null input)
+```
+Edit the package body
+```
+nano test/test_generate_customers_func.pkb
+```
+Change the line
+```
+    ut.expect( generate_customers( null ) ).to_( equal(0) );
+```
+To
+```
+    ut.expect( generate_customers( null ) ).to_( be_null );
+```
+
+1. Git add/commit/push
+1. Check results, this test should now fail.
 
 ### exceptions
 
