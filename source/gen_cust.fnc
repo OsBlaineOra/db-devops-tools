@@ -35,6 +35,8 @@ CREATE OR REPLACE FUNCTION generate_customers (amount IN NUMBER)
          ELSE
             adjusted_amount := 0;
          END IF;
+     ELSE
+       Return 0;
      END IF;
   
      RETURN adjusted_amount;
