@@ -215,7 +215,24 @@ Add the following before the end of the package
 
 1. Git add/commit/push
 1. Check results
-   The new test fails.  
+   The new test fails.  Since the 'after each' procedure is working there is still room to generate new customers before the limit.  You will need to add a little setup code to make sure there are more customers than the limit before running the test.  
+    Edit the package body
+    ```
+    nano test/test_generate_customers_func.pkb
+    ```
+    Add the following before the ```ut.expect(...``` line
+    ```
+    FOR counter IN 1 .. 30 LOOP
+      new_name := 'custxxxTestOL' || counter || ' ' || CURRENT_TIMESTAMP;
+      INSERT INTO customers (
+        name,
+        email
+      ) VALUES (
+        new_name,
+        translate(new_name, ' ', '.') ||'@example.com'
+      );
+    END LOOP;
+    ```
 
 ### Add setup to test (insert 30 then run test)
 
