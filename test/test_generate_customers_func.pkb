@@ -27,6 +27,7 @@ create or replace package body test_generate_customers_func as
   end;
 
   procedure over_limit is
+    new_name varchar2(200);
   begin
   
               FOR counter IN 1 .. 30 LOOP
@@ -41,7 +42,7 @@ create or replace package body test_generate_customers_func as
       
             COMMIT;
             END LOOP;
-            
+
     ut.expect( generate_customers( 30 ) ).to_( equal(0) );
   end;
 
