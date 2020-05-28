@@ -39,8 +39,5 @@ CREATE OR REPLACE FUNCTION generate_customers (amount IN NUMBER)
       END IF;
   
      RETURN adjusted_amount;
-exception
-    when others then
-      return null;
 END generate_customers;
 /

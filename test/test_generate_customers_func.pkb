@@ -47,8 +47,9 @@ create or replace package body test_generate_customers_func as
   end;
 
   procedure alpha_in is
+    created integer;
   begin
-    ut.expect( generate_customers( 'x' ) ).to_( be_null );
+    created := generate_customers( 'x' );
   end;
 end;
 /
