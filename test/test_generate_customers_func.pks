@@ -2,16 +2,16 @@ create or replace package test_generate_customers_func as
 
   -- %suite(Between string function)
 
-  -- %test(Returns substring from start position to end position)
-  procedure normal_case;
+  -- %test(Generates all requested)
+  procedure gen_all;
 
-  -- %test(Returns substring when start position is zero)
-  procedure zero_start_position;
+  -- %test(Generates up to the limit)
+  procedure gen_to_limit;
 
-  -- %test(Returns string until end if end position is greater than string length)
-  procedure big_end_position;
+  -- %test(Already at the limit, Generates 0)
+  procedure over_limit;
 
-  -- %test(Returns null for null input string value)
-  procedure null_string;
+  -- %test(Returns null for null input)
+  procedure null_ammount;
 end;
 /
