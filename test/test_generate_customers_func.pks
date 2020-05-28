@@ -1,6 +1,7 @@
 create or replace package test_generate_customers_func as
 
   -- %suite(Generate Customers function)
+  -- %suitepath(generate_customers)
 
   -- %beforeall
   procedure before_all;
