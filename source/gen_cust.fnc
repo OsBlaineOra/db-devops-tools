@@ -8,7 +8,7 @@ CREATE OR REPLACE FUNCTION generate_customers (amount IN NUMBER)
 
   begin
       IF amount is null then 
-         Return null;
+         Return 0;
       END IF;
 
       SELECT COUNT (*) INTO customer_count FROM customers;

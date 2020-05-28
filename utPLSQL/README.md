@@ -188,7 +188,7 @@ Add the following before the end of the package
 1. Git add/commit/push
 1. Check results, both tests should now pass.
 1. Check coverage
-    The coverage should now be at 86.67%.
+   The coverage should now be at 86.67%.
 
 ### Already over the limit
 Edit the package spec
@@ -216,6 +216,8 @@ Add the following before the end of the package
 1. Git add/commit/push
 1. Check results
    The new test fails.  Since the 'after each' procedure is working there is still room to generate new customers before the limit.  You will need to add a little setup code to make sure there are more customers than the limit before running the test.  
+
+### Add setup to test (insert 30 then run test)
     Edit the package body
     ```
     nano test/test_generate_customers_func.pkb
@@ -235,17 +237,43 @@ Add the following before the end of the package
     ```
     This will create 30 new customers in the table before the test is run.
 1. Git add/commit/push
-1. Check results
+1. Check results, all 3 tests should now pass.
+1. Check coverage
+   The coverage should now be at 93.33%.
 
-### Add setup to test (insert 30 then run test)
+## Test for null in 0 out
+Edit the package spec
+```
+nano test/test_generate_customers_func.pks
+```
+Add the following before the end of the package
+```
+  -- %test(Returns 0 for null input)
+  procedure null_ammount;
+```
+Edit the package body
+```
+nano test/test_generate_customers_func.pkb
+```
+Add the following before the end of the package
+```
+  procedure null_ammount is
+  begin
+    ut.expect( generate_customers( null ) ).to_( equal(0) );
+  end;
+```
 
-### After All
-check count
-add clean up
+1. Git add/commit/push
+1. Check results, all 4 tests should now pass.
+1. Check coverage
+   The coverage should now be at 93.33%.
 
 
-### null in 0 out
 ### test for null out
 change ```equal(0)``` to ```be_null``
 
 ### exceptions
+
+### After All???
+check count  
+add clean up

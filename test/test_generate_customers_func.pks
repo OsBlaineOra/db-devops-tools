@@ -18,5 +18,8 @@ create or replace package test_generate_customers_func as
 
   -- %test(Already at the limit, Generates 0)
   procedure over_limit;
+
+  -- %test(Returns 0 for null input)
+  procedure null_ammount;
 end;
 /
