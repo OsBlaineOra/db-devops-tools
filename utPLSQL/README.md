@@ -146,13 +146,38 @@ Add the following before the line ```procedure gen_all is```
 
 1. Git push
 1. Check results
+   This time it passed because the before_all setup procedure sets up the environment so that it only contains the two "test" records created by the liquibase insert step.
 1. Check coverage
-1. Query customers
-    ```
-    select * from hol_prod.customers;
-    ```
+    The coverage should now be at 80%.
 
-### Add failing test (gen 25 of 30)
+### Add a test for requesting more than the limit.
+Edit the package spec
+```
+nano test/test_generate_customers_func.pks
+```
+Add the following after the line  ```  procedure gen_all;```
+```
+  -- %test(Generates up to the limit)
+  procedure gen_to_limit;
+```
+Edit the package body
+```
+nano test/test_generate_customers_func.pkb
+```
+Add the following before the end of the package
+```
+  procedure gen_to_limit is
+  begin
+    ut.expect( generate_customers( 30 ) ).to_( equal(23) );
+  end;
+```
+
+1. Git add/commit/push
+1. Check results
+   This time it passed because the before_all setup procedure sets up the environment so that it only contains the two "test" records created by the liquibase insert step.
+1. Check coverage
+    The coverage should now be at 80%.
+failing test (gen 25 of 30)
 
 ### After each
 
