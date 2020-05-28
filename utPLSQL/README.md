@@ -1,5 +1,7 @@
 # utPLSQL
 ### Create a test (gen 20)
+Run manually
+Git push
 
 ### Before All
 
@@ -15,5 +17,8 @@
 check count
 add clean up
 
+## Test Coverage
+http://utplsql.org/utPLSQL/v3.0.4/userguide/coverage.html
 
+### null
 
