@@ -27,18 +27,16 @@ create or replace package body test_generate_customers_func as
   procedure over_limit is
     new_name varchar2(200);
   begin
-  
-              FOR counter IN 1 .. 30 LOOP
-            new_name := 'custxxxTestOL' || counter || ' ' || CURRENT_TIMESTAMP;
-               INSERT INTO customers (
-                  name,
-                  email
-               ) VALUES (
-                  new_name,
-                  translate(new_name, ' ', '.') ||'@example.com'
-               );
-
-            END LOOP;
+    FOR counter IN 1 .. 30 LOOP
+      new_name := 'custxxxTestOL' || counter || ' ' || CURRENT_TIMESTAMP;
+      INSERT INTO customers (
+        name,
+        email
+      ) VALUES (
+        new_name,
+        translate(new_name, ' ', '.') ||'@example.com'
+      );
+    END LOOP;
 
     ut.expect( generate_customers( 30 ) ).to_( equal(0) );
   end;

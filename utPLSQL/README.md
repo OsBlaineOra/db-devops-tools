@@ -176,6 +176,8 @@ Add the following before the end of the package
 1. Check results
    The new test fails.  3 new customers were created but it was expecting 23.  This is because the data was not cleaned up after the previous test.  
    The before_all setup procedure is only run once before all tests run.
+
+### After each
 1. Add the following after the ```procedure before_all;``` line
   ```
      --%aftereach
@@ -183,13 +185,37 @@ Add the following before the end of the package
   ```
   This will call the cleanup procedure after each test is run.  
   Alternativly, you could make it a ```--%beforeeach``` and have it reset the environment before each test runs.  But then you would need to have an ```--$afterall``` to do a final cleanup.
+1. Git add/commit/push
+1. Check results, both tests should now pass.
 1. Check coverage
-    The coverage should now be at 80%.
-failing test (gen 25 of 30)
+    The coverage should now be at 86.67%.
 
-### After each
+### Already over the limit
+Edit the package spec
+```
+nano test/test_generate_customers_func.pks
+```
+Add the following before the end of the package
+```
+  -- %test(Already at the limit, Generates 0)
+  procedure over_limit;
+```
+Edit the package body
+```
+nano test/test_generate_customers_func.pkb
+```
+Add the following before the end of the package
+```
+  procedure over_limit is
+    new_name varchar2(200);
+  begin
+    ut.expect( generate_customers( 30 ) ).to_( equal(0) );
+  end;
+```
 
-### Add failing test (gen 0 of 30)
+1. Git add/commit/push
+1. Check results
+   The new test fails.  
 
 ### Add setup to test (insert 30 then run test)
 
