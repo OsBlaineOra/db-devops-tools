@@ -301,7 +301,7 @@ To
 1. Git add/commit/push
 1. Check results, this test should now fail.
 
-### Make the code change
+### Change the code to pass the test
 Edit the function
 ```
 nano source/gen_cust.fnc
