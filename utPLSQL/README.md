@@ -1,7 +1,16 @@
 # utPLSQL
+## Test Coverage 0%
+http://utplsql.org/utPLSQL/v3.0.4/userguide/coverage.html
+### Sonar Reporter
+```
+-f=ut_coverage_sonar_reporter -o=coverage.xml \
+```
+
 ### Create a test (gen 20)
 Run manually
 Git push
+Check results
+Check coverage
 
 ### rollback(manual)
 
@@ -19,8 +28,6 @@ Git push
 check count
 add clean up
 
-## Test Coverage
-http://utplsql.org/utPLSQL/v3.0.4/userguide/coverage.html
 
 ### null in 0 out
 ### test for null out
