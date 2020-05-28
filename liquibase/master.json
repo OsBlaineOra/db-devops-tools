@@ -39,6 +39,11 @@
       "include": {
         "file": "runOnChange/changelog-gen_cust-fnc.json"
       }
+    },
+    {
+      "include": {
+        "file": "runOnChange/changelog-test_gen_cust-pkg"
+      }
     }
   ]
 }
