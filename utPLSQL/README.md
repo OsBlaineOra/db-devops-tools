@@ -55,32 +55,22 @@ The fake test procedure creates a boolean variable set to true and tests to see 
 ```
 
 ## Test Coverage
-http://utplsql.org/utPLSQL/v3.0.4/userguide/coverage.html
 
-In your Jenkins project page, look under "Last Successful Artifacts" and click on "coverage.html".  (It may not be pretty since it's being served from the Jenkins page.)  
-Currently is should say "All files (0% lines covered at 0 hits/line)" since there is a function defined in the schema and none of the tests cover it.
+In your Jenkins project page, you will see a "Code Coverage" graph under the "Test Results Trend" graph.
 
-This HTML report is genereated when Jenkins runs the "Execute shell" step with the following command.
-Serve the html page
-```
-pushd /home/opc/db-devops-tools; python -m SimpleHTTPServer; popd
-```
-Open the report in your brower
-<yourPublicIp>:8000/coverage.html
+The current code coverage is 0%.
 
-### Run the test suite
+Your build is already configured to generate a Cobertura style coverage report by including the following parameters to the utPLSQL-cli call.
 
 ```
-/opt/utPLSQL-cli/bin/utplsql run hol_dev/HandsOnLabUser1@demos_TP?TNS_ADMIN=/opt/oracle/wallet \
--f=ut_coverage_html_reporter  -o=coverage.html \
--f=ut_xunit_reporter -o=xunit_test_results.xml
+-f=ut_coverage_cobertura_reporter -o=coverage.xml \
 ```
 
-There are other coverage reporters available such as a "Sonar Reporter" for example.
+There are other coverage reporters available such as an "HTML Reporter" for example.  Including this reporter will generate a dynamic web page to display your code coverage.
 ```
--f=ut_coverage_sonar_reporter -o=coverage.xml \
+-f=ut_coverage_html_reporter -o=coverage.html \
 ```
-If you're using Sonar, you would need to include and setup the Sonar plugin for Jenkins.  That is beyond the scope of this lab.
+You can find more information and other coverage reporting options [here](http://utplsql.org/utPLSQL/latest/userguide/coverage.html "utPLSQL code coverage documentation").
 
 ## Create a real test
 Edit the package spec
@@ -119,17 +109,27 @@ With the following
 ```
 In this test you are telling utPLSQL (ut) to expect that when you call the generate_customers function passing in 20 that it will return 20.
 
-1. Run manually
-   ```
-   /opt/utPLSQL-cli/bin/utplsql run hol_dev/HandsOnLabUser1@demos_TP?TNS_ADMIN=/opt/oracle/wallet \
+1. Run the tests locally
+    ```
+    /opt/utPLSQL-cli/bin/utplsql run hol_dev/HandsOnLabUser1@demos_TP?TNS_ADMIN=/opt/oracle/wallet \
     -f=ut_coverage_html_reporter  -o=coverage.html \
-    -f=ut_xunit_reporter -o=xunit_test_results.xml
-   ```
-1. Git push
-1. Check results
-1. Check coverage
-1. Run again in Jenkins. Test Fails because the previous test data is still there.
-1. Query customers
+    -f=ut_documentation_reporter -c
+    ```
+1. Reveiw the output to see that the test passed on Dev
+1. Start Web Server
+    ```
+    pushd /home/opc/db-devops-tools; python -m SimpleHTTPServer; popd
+    ```
+1. **In your browser**
+1. Check Dev code coverage \<yourPublicIp>:8000/coverage.html
+1. **In Cloud Shell**
+1. Ctrl-C to stop the web server
+1. Git add/commit/push
+1. Check Jenkins test results
+1. Check Jenkins code coverage
+1. **In Jenkins** click Build Now to run the build a second time  
+   The test Fails because the previous test data is still there.
+1. **In SQL Developer Web** Execute the following query in the worksheet to query the customers
     ```
     select * from hol_prod.customers;
     ```
@@ -151,8 +151,7 @@ nano test/test_generate_customers_func.pkb
 ```
 Add the following before the line ```procedure gen_all is```
 ```
-  procedure before_all
-    is
+  procedure before_all is
   begin
     delete_added_customers;
   end;
