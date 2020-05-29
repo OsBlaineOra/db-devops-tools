@@ -131,7 +131,7 @@ In this test you are telling utPLSQL (ut) to expect that when you call the gener
    The test Fails because the previous test data is still there.
 1. **In SQL Developer Web** Execute the following query in the worksheet to query the customers
     ```
-    select * from hol_prod.customers;
+    select * from hol_test.customers;
     ```
 
 ### Before All

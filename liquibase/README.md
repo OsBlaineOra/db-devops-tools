@@ -1,5 +1,5 @@
 # Liquibase
-In the Cloud Shell ssh session.
+**In the SSH session**
 ```
 cd /home/opc/db-devops-tools/liquibase
 ```
@@ -38,7 +38,7 @@ Add the following to the file
             },
             {
               "runningAs": {
-                "username": "HOL_PROD"
+                "username": "HOL_TEST"
               }
             }
           ]
@@ -148,7 +148,7 @@ Add the following to the file.
             },
             {
               "runningAs": {
-                "username": "HOL_PROD"
+                "username": "HOL_TEST"
               }
             }
           ]
@@ -255,21 +255,21 @@ select * from hol_dev.databasechangelog order by id;
 Note: The very last tag added in a set of changelogs will be overwritten by a tag added from the command line.
 
 ## Shema Diff
-Your database has been setup with two schemas, hol_dev and hol_prod.  Running ```liquibase update``` in your shell session is configured to update hol_dev and you have configured Jenkins to update hol_prod whenever your code is pushed to GitHub.
+Your database has been setup with two schemas, hol_dev and hol_test.  Running ```liquibase update``` in your shell session is configured to update hol_dev and you have configured Jenkins to update hol_test whenever your code is pushed to GitHub.
 
-Switch to SQL Developer Web and run the following query to show the existing tables in hol_dev and hol_prod.
+Switch to SQL Developer Web and run the following query to show the existing tables in hol_dev and hol_test.
 ```sql
 select owner, table_name
   from all_tables
- where owner in ('HOL_DEV', 'HOL_PROD')
+ where owner in ('HOL_DEV', 'HOL_TEST')
 order by 1,2;
 ```
-As you can see, tables have been created in hol_dev and not hol_prod.
+As you can see, tables have been created in hol_dev and not hol_test.
 
 You can also use the  ```liquibase diff``` to compare schemas by passing in a 'reference Url'.
 
 ```
-liquibase --referenceUrl="jdbc:oracle:thin:hol_prod/HandsOnLabUser1@demos_tp?TNS_ADMIN=/opt/oracle/wallet" diff
+liquibase --referenceUrl="jdbc:oracle:thin:hol_test/HandsOnLabUser1@demos_tp?TNS_ADMIN=/opt/oracle/wallet" diff
 ```
 If you plan to use the 'diff' comand a lot, you can add the reference values to the liquibase.properties file
 ```
@@ -278,7 +278,7 @@ nano liquibase.properties
 Add reference db connection information
 ```yaml
 referenceUrl: jdbc:oracle:thin:@demos_tp?TNS_ADMIN=/opt/oracle/wallet
-referenceUsername: hol_prod
+referenceUsername: hol_test
 referencePassword: HandsOnLabUser1
 ```
 You can also filter the diff report to specific diffTypes.
@@ -329,7 +329,7 @@ Add the following to the file
             },
             {
               "runningAs": {
-                "username": "HOL_PROD"
+                "username": "HOL_TEST"
               }
             }
           ]
@@ -469,7 +469,7 @@ Add the following to the file
             },
             {
               "runningAs": {
-                "username": "HOL_PROD"
+                "username": "HOL_TEST"
               }
             }
           ]
@@ -581,7 +581,7 @@ Add the following
             },
             {
               "runningAs": {
-                "username": "HOL_PROD"
+                "username": "HOL_TEST"
               }
             }
           ]
@@ -736,11 +736,11 @@ git commit -m"Added customers and orders tables."
 git push
 cd liquibase
 ```
-Switch to your Jenkins tab in your browser and make sure the build does not error.  Once the build is complete, check the hol_prod data in SDW.  
+Switch to your Jenkins tab in your browser and make sure the build does not error.  Once the build is complete, check the hol_test data in SDW.  
 **Data differences are not shown in the diff results.**
 
 ```sql
-select * from hol_prod.order_statuses;
+select * from hol_test.order_statuses;
 ```
 
 ## Load Test data - Context
@@ -773,7 +773,7 @@ nano runOnce/changelog-load-test-data.json
             },
             {
               "runningAs": {
-                "username": "HOL_PROD"
+                "username": "HOL_TEST"
               }
             }
           ]
@@ -971,7 +971,7 @@ Add the following
             },
             {
               "runningAs": {
-                "username": "HOL_PROD"
+                "username": "HOL_TEST"
               }
             }
           ]
@@ -1073,7 +1073,7 @@ Add the following
             },
             {
               "runningAs": {
-                "username": "HOL_PROD"
+                "username": "HOL_TEST"
               }
             }
           ]
@@ -1171,7 +1171,7 @@ git commit -m"Added customers and orders tables."
 git push
 cd liquibase
 ```
-Switch to your Jenkins tab in your browser and make sure the build does not error.  Once the build is complete, check the hol_prod data in SDW.  
+Switch to your Jenkins tab in your browser and make sure the build does not error.  Once the build is complete, check the hol_test data in SDW.  
 
 ## GenerateChanglogFile - Reverse engineer your current schema
 ```
@@ -1201,7 +1201,5 @@ liquibase update
 ```
 liquibase DBDoc docs
 ```
-## Drop All
-```
-liquibase dropAll
-```
+
+## Goto main section

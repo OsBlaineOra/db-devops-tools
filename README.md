@@ -153,18 +153,28 @@ Keep this IP address handy, it will be used throught the lab.
    ```
    ![](images/sshToCompute.png)
 
-## Install software
+## Setup your Compute Instance
+### Generate an rsa key pair in your compute instance
+This rsa key pair will be used to access your GitHub repo from the compute instance.
+1. Generate a new RSA key pair in the Cloud Shell.
+   ```
+   ssh-keygen -t rsa -N "" -b 2048 -C "CiCd-Compute-Instance" -f ~/.ssh/id_rsa
+   ```
+1. Display the public key, copy it and save it for the GitHub step below.
+   ```
+   cat ~/.ssh/id_rsa.pub
+   ```
 ### Update your instance
 ```
 sudo yum update -y
 ```
-This may take a few minutes since this is a new instance.  Please be patient.
+This may take a few minutes since this is a new instance.  Please be patient.  
+While the update is running...
 
-### GitHub
-While the update is running goto GitHub.com and fork the repository
-# TODO
-1. steps
-1. In the repository click Settings
+### Setup GitHub repository
+1. **In your browser** Go to https://github.com/OsBlaineOra/db-devops-tools
+1. Click the 'Fork' button
+1. **In your new repository** click Settings
 1. Click Webhooks
 1. Click the Add webhook button
 1. Use your Compute instance public IP to populate the Payload URL
@@ -172,7 +182,23 @@ While the update is running goto GitHub.com and fork the repository
    http://<YourPublicIP>:8080/github-webhook/
    ```
 1. Click the Add webhook button.
+1. Click 'Deploy keys'
+1. Enter a title for your key 'HoL Compute Instance'
+1. In the 'Key' field, past the public key you generated for this compute instance.
+1. Check 'Allow write access'
+1. Click 'Add key'
+1. Click the 'Code' tab
+1. Click the 'Clone or download' button
+1. If it doesn't say 'Clone with SSH' click the 'Use SSH' link
+1. Click the button with a clipboard icon next to the clone string to copy it. 
 1. Go back to the Cloud Shell and wait for the yum update to complete.
+
+### Install Git
+```
+sudo yum install -y git
+git --version
+git clone <The SSH string copied above>
+```
 
 ### Setup Wallet
 ```
@@ -212,15 +238,6 @@ sudo nano /opt/oracle/wallet/ojdbc.properties
 ### Download the Oracle Database Driver ojdbc8.jar
 ```
 sudo wget https://repo1.maven.org/maven2/com/oracle/ojdbc/ojdbc8/19.3.0.0/ojdbc8-19.3.0.0.jar -O /opt/oracle/ojdbc8.jar
-```
-
-### Install Git
-# TODO
-```
-sudo yum install -y git
-git --version
-git clone REPO
-cd REPO
 ```
 
 ### Install Java 8
@@ -288,50 +305,21 @@ sudo firewall-cmd --permanent --zone=public --add-port=8000/tcp
 sudo firewall-cmd --reload
 ```
 
+
 (30 - 45 minutes)
 ## Goto Jenkins section
 
 ## Goto Liquibase section
 
-# TODO
-
-# utPLSQL
-### Install utPLSQL
-### Install utPlsql-cli https://github.com/utPLSQL/utPLSQL-cli
-### Compile package
-### Create a test package
-### Create a passing test
-### Run tests in SQLcl
-### Create a failing test
-### Run tests
-### Fix test -rerun
-### Create a test for a new package / procedure
-### Run all tests
-### Run just tests for new p/p
-### Create the new package / procedure
-### Run all tests
-
-## integrate with Jenkins
-### http://utplsql.org/utPLSQL/v3.0.0/userguide/reporters.html
-
-## Ci/Cd
-### Set Jenkins to run on repo change
-### Clone repo
-### Add LB changeset - new table
-
-### Add PL/SQL Package
-Create a file liquibase/runOnChange/changelog-admin-pkg.json
-Create a file Code/admin.pkg
-git add .
-git commit -m "added admin package"
-
-### Create Utplsql test for new procedure
-### Create new procedure
-### Add LB changeset for new procedure
-### Git commit/push
-### check Jenkins output
+## Goto utPLSQL section
 
 
+
+
+
+
+
+# Template MD
 ## Section 1 title
 Section 1 opening paragraph.
 

@@ -11,7 +11,7 @@
             },
             {
               "runningAs": {
-                "username": "HOL_PROD"
+                "username": "HOL_TEST"
               }
             }
           ]
