@@ -13,10 +13,12 @@ Review the test package specification
 cat test/test_generate_customers_func.pks
 ```
 
-utPLSQL uses annotaions to define the unit tests.
+utPLSQL uses annotaions to define the unit tests.  
+
 ```-- %suite(Generate Customers function)``` declares that this is a test suite named "Generate Customers function"  
 
-```-- %suitepath(generate_customers)``` is used to define the path to the unit being tested.  In this case it is a single stored function "generate_customers".  If you were testing a function inside of a package you could declare the path all the way from the schema to the function ```-- %suitepath(my_schema.the_package.a_function)```.  Use a path definition that makes sense for your project.  
+```-- %suitepath(generate_customers)``` is used to define the path to the unit being tested.  In this case it is a single stored function "generate_customers".  If you were testing a function inside of a package you could declare the path all the way from the schema to the function  
+```-- %suitepath(my_schema.the_package.a_function)```.  Use a path definition that makes sense for your project.  
 
 The function that you will be testing inserts data and executes a commit.  You will need to manually rollback the test data and use ```-- %rollback(manual)``` so that utPLSQL will not attempt to control the rollbacks.  
 
@@ -66,10 +68,10 @@ pushd /home/opc/db-devops-tools; python -m SimpleHTTPServer; popd
 Open the report in your brower
 <yourPublicIp>:8000/coverage.html
 
-```
-DB_URL="demos_tp"
+### Run the test suite
 
-/opt/utPLSQL-cli/bin/utplsql run ${username}/${password}@${DB_URL}?TNS_ADMIN=/opt/oracle/wallet \
+```
+/opt/utPLSQL-cli/bin/utplsql run hol_dev/HandsOnLabUser1@demos_TP?TNS_ADMIN=/opt/oracle/wallet \
 -f=ut_coverage_html_reporter  -o=coverage.html \
 -f=ut_xunit_reporter -o=xunit_test_results.xml
 ```
@@ -118,14 +120,19 @@ With the following
 In this test you are telling utPLSQL (ut) to expect that when you call the generate_customers function passing in 20 that it will return 20.
 
 1. Run manually
+   ```
+   /opt/utPLSQL-cli/bin/utplsql run hol_dev/HandsOnLabUser1@demos_TP?TNS_ADMIN=/opt/oracle/wallet \
+    -f=ut_coverage_html_reporter  -o=coverage.html \
+    -f=ut_xunit_reporter -o=xunit_test_results.xml
+   ```
 1. Git push
 1. Check results
 1. Check coverage
+1. Run again in Jenkins. Test Fails because the previous test data is still there.
 1. Query customers
     ```
     select * from hol_prod.customers;
     ```
-1. Run again in Jenkins. Test Fails because the previous test data is still there.
 
 ### Before All
 
@@ -162,7 +169,7 @@ Edit the package spec
 ```
 nano test/test_generate_customers_func.pks
 ```
-Add the following after the line  ```  procedure gen_all;```
+Add the following before the end of the package
 ```
   -- %test(Generates up to the limit)
   procedure gen_to_limit;
@@ -180,15 +187,19 @@ Add the following before the end of the package
 ```
 
 1. Git add/commit/push
-1. Check results
+1. Check results  
    The new test fails.  3 new customers were created but it was expecting 23.  This is because the data was not cleaned up after the previous test.  
    The before_all setup procedure is only run once before all tests run.
 
 ### After each
-1. Add the following after the ```procedure before_all;``` line
+Edit the package spec
+```
+nano test/test_generate_customers_func.pks
+```
+Add the following after the ```procedure before_all;``` line
   ```
-     --%aftereach
-     procedure delete_added_customers;
+    --%aftereach
+    procedure delete_added_customers;
   ```
   This will call the cleanup procedure after each test is run.  
   Alternativly, you could make it a ```--%beforeeach``` and have it reset the environment before each test runs.  But then you would need to have an ```--$afterall``` to do a final cleanup.
@@ -225,24 +236,24 @@ Add the following before the end of the package
    The new test fails.  Since the 'after each' procedure is working there is still room to generate new customers before the limit.  You will need to add a little setup code to make sure there are more customers than the limit before running the test.  
 
 ### Add setup to test (insert 30 then run test)
-    Edit the package body
-    ```
-    nano test/test_generate_customers_func.pkb
-    ```
-    Add the following before the ```ut.expect(...``` line
-    ```
+Edit the package body
+```
+nano test/test_generate_customers_func.pkb
+```
+Add the following before the ```ut.expect(...``` line
+```
     FOR counter IN 1 .. 30 LOOP
-      new_name := 'custxxxTestOL' || counter || ' ' || CURRENT_TIMESTAMP;
-      INSERT INTO customers (
+        new_name := 'custxxxTestOL' || counter || ' ' || CURRENT_TIMESTAMP;
+        INSERT INTO customers (
         name,
         email
-      ) VALUES (
+        ) VALUES (
         new_name,
         translate(new_name, ' ', '.') ||'@example.com'
-      );
+        );
     END LOOP;
-    ```
-    This will create 30 new customers in the table before the test is run.
+```
+This will create 30 new customers in the table before the test is run.
 1. Git add/commit/push
 1. Check results, all 3 tests should now pass.
 1. Check coverage
@@ -271,7 +282,7 @@ Add the following before the end of the package
 ```
 
 1. Git add/commit/push
-1. Check results, all 4 tests should now pass.
+1. Check results, all 4 tests should pass.
 1. Check coverage
    The coverage should now be at 100%.
 
