@@ -3,7 +3,7 @@ create or replace package body test_generate_customers_func as
   procedure delete_added_customers is
   begin
     delete from customers
-    where name like 'custxxx%';
+     where name like 'custxxx%';
 
     commit;
   end;
@@ -28,14 +28,14 @@ create or replace package body test_generate_customers_func as
     new_name varchar2(200);
   begin
     FOR counter IN 1 .. 30 LOOP
-      new_name := 'custxxxTestOL' || counter || ' ' || CURRENT_TIMESTAMP;
-      INSERT INTO customers (
+        new_name := 'custxxxTestOL' || counter || ' ' || CURRENT_TIMESTAMP;
+        INSERT INTO customers (
         name,
         email
-      ) VALUES (
+        ) VALUES (
         new_name,
         translate(new_name, ' ', '.') ||'@example.com'
-      );
+        );
     END LOOP;
 
     ut.expect( generate_customers( 30 ) ).to_( equal(0) );
