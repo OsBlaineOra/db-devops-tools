@@ -59,10 +59,17 @@ In your Jenkins project page, look under "Last Successful Artifacts" and click o
 Currently is should say "All files (0% lines covered at 0 hits/line)" since there is a function defined in the schema and none of the tests cover it.
 
 This HTML report is genereated when Jenkins runs the "Execute shell" step with the following command.
+Serve the html page
+```
+pushd /home/opc/db-devops-tools; python -m SimpleHTTPServer; popd
+```
+Open the report in your brower
+<yourPublicIp>:8000/coverage.html
+
 ```
 DB_URL="demos_tp"
 
-utPLSQL-cli/bin/utplsql run ${username}/${password}@${DB_URL}?TNS_ADMIN=/opt/oracle/wallet \
+/opt/utPLSQL-cli/bin/utplsql run ${username}/${password}@${DB_URL}?TNS_ADMIN=/opt/oracle/wallet \
 -f=ut_coverage_html_reporter  -o=coverage.html \
 -f=ut_xunit_reporter -o=xunit_test_results.xml
 ```
