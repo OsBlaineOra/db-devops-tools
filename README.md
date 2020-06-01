@@ -310,7 +310,7 @@ Continue below while the update is running.
 
 
 (30 - 45 minutes)
-## Goto Jenkins section
+## Goto [Jenkins](Jenkins.md) section
 
 
 ```
@@ -322,7 +322,7 @@ Use SQLcl to create the database schemas
 sql admin/notMyPassword@MyAtpDb_TP @create_schema.sql
 ```
 
-## Goto Liquibase section
+## Goto [Liquibase](Liquibase.md) section
 
 ## Goto utPLSQL section
 

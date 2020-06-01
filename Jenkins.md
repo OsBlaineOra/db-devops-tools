@@ -57,10 +57,12 @@ Use the admin password to log in
     1. Select Execute shell
     1. Enter the following in the Command field
         ```
+        DB_URL="MyAtpDb_TP"
+
         cd liquibase
 
         /opt/liquibase/liquibase --changeLogFile=master.json \
-        --url=jdbc:oracle:thin:@demos_tp?TNS_ADMIN=/opt/oracle/wallet \
+        --url=jdbc:oracle:thin:@${DB_URL}?TNS_ADMIN=/opt/oracle/wallet \
         --username=${username} \
         --password=${password} \
         --classpath=/opt/oracle/ojdbc8.jar \
@@ -71,7 +73,7 @@ Use the admin password to log in
     1. Select Execute shell
     1. Enter the following in the Command field
         ```
-        DB_URL="demos_tp"
+        DB_URL="MyAtpDb_TP"
 
         /opt/utPLSQL-cli/bin/utplsql run ${username}/${password}@${DB_URL}?TNS_ADMIN=/opt/oracle/wallet \
         -f=ut_coverage_cobertura_reporter -o=coverage.xml \
@@ -81,10 +83,12 @@ Use the admin password to log in
     1. Select Execute shell
     1. Enter the following in the Command field
         ```
+        DB_URL="MyAtpDb_TP"
+
         cd liquibase
 
         /opt/liquibase/liquibase --changeLogFile=master.json \
-        --url=jdbc:oracle:thin:@demos_tp?TNS_ADMIN=/opt/oracle/wallet \
+        --url=jdbc:oracle:thin:@${DB_URL}?TNS_ADMIN=/opt/oracle/wallet \
         --username=${username} \
         --password=${password} \
         --classpath=/opt/oracle/ojdbc8.jar \
@@ -95,7 +99,7 @@ Use the admin password to log in
 1. Post-build Actions
     1. Click 'Add post-build action'
     1. Select 'Archive the artifacts'
-    1. In 'Files to archive' enter ```coverage.xml, xunit_test_results.xml, liquibaseDocs.zip ```  
+    1. In 'Files to archive' enter ```coverage.xml, xunit_test_results.xml, liquibase/liquibaseDocs.zip```  
        (Ignore any message about the files not existing)
     1. Click 'Add post-build action'
     1. Select 'Publish JUnit test result report'
