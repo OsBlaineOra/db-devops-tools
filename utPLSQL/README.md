@@ -34,17 +34,6 @@ Review the test package body
 cat test/test_generate_customers_func.pkb
 ```
 
-A helper procedure is included "delete_added_customers" that you will call to clean up the generated customers.
-```
-procedure delete_added_customers is
-  begin
-    delete from customers
-    where name like 'custxxx%';
-
-    commit;
-  end;
-```
-
 The fake test procedure creates a boolean variable set to true and tests to see if it's true.  This will always pass.
 ```
  procedure always_pass is
@@ -56,7 +45,7 @@ The fake test procedure creates a boolean variable set to true and tests to see 
 
 ## Test Coverage
 
-In your Jenkins project page, you will see a "Code Coverage" graph under the "Test Results Trend" graph.
+In your Jenkins project page, you will see a "Code Coverage" graph on the right hand side.
 
 The current code coverage is 0%.
 
@@ -150,12 +139,23 @@ Edit the package body
 nano test/test_generate_customers_func.pkb
 ```
 Add the following before the line ```procedure gen_all is```
+
 ```
+  procedure delete_added_customers is
+  begin
+    delete from customers
+    where name like 'custxxx%';
+
+    commit;
+  end;
+    
   procedure before_all is
   begin
     delete_added_customers;
   end;
 ```
+
+A helper procedure, "delete_added_customers", is included that you will call to clean up the generated customers.  In this case you are calling it before any tests are run to make sure any old test customers have been removed.
 
 1. Git push
 1. Check results

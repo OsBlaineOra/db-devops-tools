@@ -10,7 +10,10 @@ Use the admin password to log in
 
 1. Install suggested
 1. admin/Tester
-1. Save
+1. Name
+1. Email
+1. Save and continue
+1. Save and Finish
 1. Start using Jenkins
 1. Click 'Manage Jenkins'
 1. Click 'Manage Plugins'
@@ -18,17 +21,20 @@ Use the admin password to log in
 1. In the search box, enter 'utplsql'
 1. Locate 'utPLSQL plugin' and check the Install checkbox.
 1. In the search box, enter 'Cobertura'
-1. Locate 'Cobertura plugin' and check the Install checkbox.
+1. Locate 'Cobertura' and check the Install checkbox.
 1. Click Install without restart.
 1. Check 'Restart Jenkins when installation is complete and no jobs are running'
+1. Sign in as admin/Testser
 1. Click Back to Dashboard
 1. Click 'New Item'
+1. hol_db_cicd
 1. Freestyle Project
 1. [OK]
 1. Check 'Discard old builds'
 1. Source Code Management
     1. Select Git
     1. In Repository URL enter the https URL you copied from your fork of the repo
+    # Either include rsa key or put note about read only https
 1. Build Triggers
     1. Check "GitHub hook trigger for GITScm polling"
 1. Build Environment 

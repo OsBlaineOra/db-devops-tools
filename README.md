@@ -1,7 +1,7 @@
 # CI/CD Tools for Database Developers
 ## Before You Begin
 
-This 3.5-hour lab walks you through the steps to ...
+This 4-hour lab walks you through the steps to ...
 
 ### Background
 Enter background information here..
@@ -14,8 +14,8 @@ Next paragraph of background information
 ### What Do You Need?
 
 * Internet Browser
+* [GitHub](https://github.com/) Account
 * Oracle Cloud Account
-* GitHub account
 
 ## Create an Oracle Always-Free Cloud Account
 You can setup an Always-Free account.
@@ -55,6 +55,7 @@ https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.h
    You will receive an email when your new ATP Database instance has been provisioned.
 1. Locate your new database's OCID and click Copy.
    ![](images/dbOcid.png)
+# (ATP - 2 minutes)
 
 ## Cloud Shell
 Click on the Cloud Shell icon.  
@@ -90,7 +91,8 @@ oci db autonomous-database get --autonomous-database-id $DB_OCID --query 'data."
    ![](images/sqlDevWebLogon.png)  
 1. Sign in using the admin user and password for your database.
    ![](images/sqlDevWeb.png)
-   
+# (Cloud Shell - 2 minutes not counting CS spin up time)
+
 ## Create a Compute instance
 1. Click "Create a VM instance" in the Compute box.
    ![](images/cloudDashboard.png)
@@ -152,52 +154,13 @@ Keep this IP address handy, it will be used throught the lab.
    ssh opc@${COMPUTE_IP}
    ```
    ![](images/sshToCompute.png)
+# (5 min)
 
 ## Setup your Compute Instance
-### Generate an rsa key pair in your compute instance
-This rsa key pair will be used to access your GitHub repo from the compute instance.
-1. Generate a new RSA key pair in the Cloud Shell.
-   ```
-   ssh-keygen -t rsa -N "" -b 2048 -C "CiCd-Compute-Instance" -f ~/.ssh/id_rsa
-   ```
-1. Display the public key, copy it and save it for the GitHub step below.
-   ```
-   cat ~/.ssh/id_rsa.pub
-   ```
-### Update your instance
-```
-sudo yum update -y
-```
-This may take a few minutes since this is a new instance.  Please be patient.  
-While the update is running...
-
-### Setup GitHub repository
-1. **In your browser** Go to https://github.com/OsBlaineOra/db-devops-tools
-1. Click the 'Fork' button
-1. **In your new repository** click Settings
-1. Click Webhooks
-1. Click the Add webhook button
-1. Use your Compute instance public IP to populate the Payload URL
-   ```
-   http://<YourPublicIP>:8080/github-webhook/
-   ```
-1. Click the Add webhook button.
-1. Click 'Deploy keys'
-1. Enter a title for your key 'HoL Compute Instance'
-1. In the 'Key' field, past the public key you generated for this compute instance.
-1. Check 'Allow write access'
-1. Click 'Add key'
-1. Click the 'Code' tab
-1. Click the 'Clone or download' button
-1. If it doesn't say 'Clone with SSH' click the 'Use SSH' link
-1. Click the button with a clipboard icon next to the clone string to copy it. 
-1. Go back to the Cloud Shell and wait for the yum update to complete.
-
 ### Install Git
 ```
 sudo yum install -y git
 git --version
-git clone <The SSH string copied above>
 ```
 
 ### Setup Wallet
@@ -253,15 +216,14 @@ sudo yum install -y sqlcl
 alias sql="/opt/oracle/sqlcl/bin/sql"
 sql -v
 ```
-Use SQLcl to create the database schemas
-```
-sql admin/notMyPassword@MyAtpDb_TP @create_schema.sql
-```
 
 ### Install utPLSQL
+Download utPLSQL
 ```
 curl -LOk $(curl --silent https://api.github.com/repos/utPLSQL/utPLSQL/releases/latest | awk '/browser_download_url/ { print $2 }' | grep ".tar.gz\"" | sed 's/"//g')
-# Extract downloaded "tar.gz" file
+```
+Extract downloaded "tar.gz" file
+```
 tar xvzf utPLSQL.tar.gz 
 ```
 Use SQLcl to install utPLSQL
@@ -304,10 +266,61 @@ sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
 sudo firewall-cmd --permanent --zone=public --add-port=8000/tcp
 sudo firewall-cmd --reload
 ```
+### Generate an rsa key pair in your compute instance
+This rsa key pair will be used to access your GitHub repo from the compute instance.  
+(This is a different key than the one used in your Cloud Shell to access this compute instance.)
+1. Generate a new RSA key pair in the Cloud Shell.
+   ```
+   ssh-keygen -t rsa -N "" -b 2048 -C "CiCd-Compute-Instance" -f ~/.ssh/id_rsa
+   ```
+1. Display the public key, copy it and save it for the GitHub step below.
+   ```
+   cat ~/.ssh/id_rsa.pub
+   ```
+### Update your instance
+```
+sudo yum update -y
+```
+This may take a few minutes since this is a new instance.  
+Continue below while the update is running.
+
+### Setup GitHub repository
+1. **In your browser** Go to https://github.com/OsBlaineOra/db-devops-tools
+1. Click the 'Fork' button
+1. **In your new repository** click Settings
+1. Click 'Deploy keys'
+1. Cick 'Add deploy key'
+1. Enter a title for your key 'HoL Compute Instance'
+1. In the 'Key' field, past the public key you generated for this compute instance.
+1. Check 'Allow write access'
+1. Click 'Add key'
+1. Click Webhooks
+1. Click the Add webhook button
+1. Use your Compute instance public IP to populate the Payload URL
+   ```
+   http://<YourPublicIP>:8080/github-webhook/
+   ```
+1. Click the Add webhook button. (Ignore the error for now)
+1. Click the 'Code' tab
+1. Click the 'Clone or download' button
+1. If it doesn't say 'Clone with SSH' click the 'Use SSH' link
+1. Click the button with a clipboard icon next to the clone string to copy it. 
+1. Go back to the Cloud Shell and wait for the yum update to complete.
+(1:20 min)
 
 
 (30 - 45 minutes)
 ## Goto Jenkins section
+
+
+```
+git clone <The SSH string copied above>
+cd db-devops-tools
+```
+Use SQLcl to create the database schemas
+```
+sql admin/notMyPassword@MyAtpDb_TP @create_schema.sql
+```
 
 ## Goto Liquibase section
 
