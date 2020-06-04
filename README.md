@@ -69,8 +69,23 @@ https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.h
 ## Cloud Shell
 Click on the Cloud Shell icon.  
 ![](images/cloudShell.png)  
-This will open a preconfigured VM that we will use to setup our project.
+This will open a preconfigured VM that you will use to setup your project.
 
+### Working in the Oracle Cloud Shell
+* The instructions in this lab use nano to edit files.  (You are welcom to use another editor if you prefer.)  
+When instructed to save a file in nano do the following.
+   1. Ctrl-X
+   1. Y
+   1. Enter 
+* Depending on your browser, certain hot keys may preform browser actions rather than your expected actions.  For example, to paste in the cloud shell use ```Ctrl-Shift-V``` rather than ```Ctrl-V```.
+* At times you will be asked to use Git to add/commit/push your changes.  Use the follwoing commands.  
+```
+git add .
+git commit -m"enter your commit message here"
+git push
+```
+
+### Create an environment variable for your Database OCID
 Once the Cloud Shell is running, create and environment variable for your Database OCID you copied above.
 
 ```
@@ -120,14 +135,14 @@ Click the "Oracle Cloud" logo on the left of the menu bar to return to the dashb
    (you may also want to save a copy of the Cloud Shell private key '~/.ssh/id_rsa' on your local machine.  DO NOT SHARE your private key, this key allows access to your compute instance.)
 1. Click "Create".
 1. Once the Compute instance is Running, locate the Public IP Address and click Copy.  
-Keep this IP address handy, it will be used throught the lab.
+Keep this IP address handy, it will be used throught the lab and reffered to as \<YourPublicIP>.
 1. In your Cloud Shell, create an environment variable to store the IP.
    ```
    export COMPUTE_IP=<YourPublicIP>
    ```
    ![](images/saveComputeIp.png)
 
-1. Next, you will need to open ports 8080 and 8000.
+1. Next, you will open ports 8080 and 8000.
    1. Click "Public Subnet"
       ![](images/openPort1.png)
    1. Click the Security List name.
@@ -201,9 +216,6 @@ sudo nano /opt/oracle/wallet/ojdbc.properties
    javax.net.ssl.keyStorePassword=Pw4ZipFile
    ```
 1. Save the file
-   1. Ctrl-X
-   1. Y
-   1. Enter
 
 ### Download the Oracle Database Driver ojdbc8.jar
 ```
@@ -233,7 +245,8 @@ Extract downloaded "tar.gz" file
 ```
 tar xvzf utPLSQL.tar.gz 
 ```
-Use SQLcl to install utPLSQL
+Use SQLcl to install utPLSQL  
+('XNtxj8eEgA6X6b6f' is the default utPLSQL password.  You should change it.)
 ```
 sql admin/notMyPassword@MyAtpDb_TP @utPLSQL/source/install_headless_with_trigger.sql ut3 XNtxj8eEgA6X6b6f DATA
 ```
@@ -273,10 +286,11 @@ sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
 sudo firewall-cmd --permanent --zone=public --add-port=8000/tcp
 sudo firewall-cmd --reload
 ```
+
 ### Generate an rsa key pair in your compute instance
-This rsa key pair will be used to access your GitHub repo from the compute instance.  
+This rsa key pair will be used to access your GitHub repository from the compute instance.  
 (This is a different key than the one used in your Cloud Shell to access this compute instance.)
-1. Generate a new RSA key pair in the Cloud Shell.
+1. Generate a new RSA key pair
    ```
    ssh-keygen -t rsa -N "" -b 2048 -C "CiCd-Compute-Instance" -f ~/.ssh/id_rsa
    ```
@@ -295,39 +309,39 @@ Continue below while the update is running.
 1. **In your browser** Go to https://github.com/OsBlaineOra/db-devops-tools
 1. Click the 'Fork' button
 1. **In your new repository** click Settings
-1. Click 'Deploy keys'
-1. Cick 'Add deploy key'
-1. Enter a title for your key 'HoL Compute Instance'
-1. In the 'Key' field, past the public key you generated for this compute instance.
-1. Check 'Allow write access'
-1. Click 'Add key'
-1. Click Webhooks
-1. Click the Add webhook button
-1. Use your Compute instance public IP to populate the Payload URL
-   ```
-   http://<YourPublicIP>:8080/github-webhook/
-   ```
-1. Click the Add webhook button. (Ignore the error for now)
+1. Add your public key
+   1. Click 'Deploy keys'
+   1. Cick 'Add deploy key'
+   1. Enter a title for your key 'HoL Compute Instance'
+   1. In the 'Key' field, past the public key you generated for this compute instance.
+   1. Check 'Allow write access'
+   1. Click 'Add key'
+1. Add a Webhook
+   1. Click Webhooks
+   1. Click the Add webhook button
+   1. Use your Compute instance public IP to populate the Payload URL
+      ```
+      http://<YourPublicIP>:8080/github-webhook/
+      ```
+   1. Click the Add webhook button. (Ignore the error for now)
 1. Click the 'Code' tab
 1. Click the 'Clone or download' button
 1. If it doesn't say 'Clone with SSH' click the 'Use SSH' link
 1. Click the button with a clipboard icon next to the clone string to copy it. 
 1. Go back to the Cloud Shell and wait for the yum update to complete.
-(1:20 min)
+   # (1:20 min)
+1. Clone your new Git repositiry
+   ```
+   git clone <The SSH string copied above>
+   cd db-devops-tools
+   ```
+1. Use SQLcl to create the database schemas
+   ```
+   sql admin/notMyPassword@MyAtpDb_TP @create_schema.sql
+   ```
 
-
-(30 - 45 minutes)
+# (30 - 45 minutes)
 ## Goto [Jenkins](Jenkins.md) section
-
-
-```
-git clone <The SSH string copied above>
-cd db-devops-tools
-```
-Use SQLcl to create the database schemas
-```
-sql admin/notMyPassword@MyAtpDb_TP @create_schema.sql
-```
 
 ## Goto [Liquibase](Liquibase.md) section
 
