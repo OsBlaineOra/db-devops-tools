@@ -65,13 +65,13 @@ Click on the Cloud Shell icon.
 This will open a preconfigured VM that you will use to setup your project.
 
 ### Working in the Oracle Cloud Shell
-* The instructions in this lab use nano to edit files.  (You are welcom to use another editor if you prefer.)  
+* The instructions in this lab use nano to edit files.  (You are welcome to use another editor if you prefer.)  
 When instructed to save a file in nano do the following.
    1. Ctrl-X
    1. Y
    1. Enter 
 * When using nano in the cloud shell use ```Ctrl-Shift-V``` or ```Shift-Insert``` to paste, rather than ```Ctrl-V```.
-* At times you will be asked to use Git to add/commit/push your changes.  Use the follwoing commands.  
+* At times you will be asked to use Git to add/commit/push your changes.  Use the following commands.  
 ```
 git add .
 git commit -m"enter your commit message here"
@@ -131,7 +131,7 @@ Click the "Oracle Cloud" logo on the left of the menu bar to return to the dashb
    (you may also want to save a copy of the Cloud Shell private key '~/.ssh/id_rsa' on your local machine.  DO NOT SHARE your private key, this key allows access to your compute instance.)
 1. Click "Create".
 1. Once the Compute instance is Running, locate the Public IP Address and click Copy.  
-Keep this IP address handy, it will be used throught the lab and reffered to as \<YourPublicIP>.
+Keep this IP address handy, it will be used throughout the lab and referred to as \<YourPublicIP>.
 1. In the **Cloud Shell**, create an environment variable to store the IP.
    ```
    export COMPUTE_IP=<YourPublicIP>
@@ -310,7 +310,7 @@ Continue below while the update is running.
    Click Settings
 1. Add your public key
    1. Click 'Deploy keys'
-   1. Cick 'Add deploy key'
+   1. Click 'Add deploy key'
    1. Enter a title for your key 'HoL Compute Instance'
    1. In the 'Key' field, past the public key you generated for this compute instance.
    1. Check 'Allow write access'
@@ -330,7 +330,7 @@ Continue below while the update is running.
 1. Go back to the Cloud Shell and wait for the yum update to complete.
    # (1:20 min)
 1. **In your Compute instance**  
-   Clone your new Git repositiry
+   Clone your new Git repository
    ```
    git clone <The SSH string copied above>
    cd db-devops-tools
