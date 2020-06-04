@@ -15,18 +15,11 @@ This 4-hour lab walks you through the steps to
 1. Use Liquibase to make changes to your Database schema
 1. Use utPLSQL to unit test your Database PL/SQL code
 
-### Background
-Enter background information here..
-
-Next paragraph of background information
-* List item 1.
-* List item 2.
-* List item 3.
-
 ### What Do You Need?
 
 * Internet Browser
-* [GitHub](https://github.com/) Account
+* [GitHub](https://github.com/) Account  
+   If you do not already have a GitHub account, create one now
 
 ## Create an Oracle Always-Free Cloud Account
 1. Go to https://www.oracle.com/cloud/free/
@@ -60,7 +53,7 @@ https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.h
    ![](images/createATPForm1.png)
 1. Scroll down to "Create administrator credentials".  Enter and confirm the ADMIN password.
 1. Scroll to the bottom and click "Create Autonomous Database".  
-   ![](images/createATPForm2.png)
+   ![](images/createATPForm2.png)  
    You will receive an email when your new ATP Database instance has been provisioned.
 1. Locate your new database's OCID and click Copy.
    ![](images/dbOcid.png)
@@ -77,7 +70,7 @@ When instructed to save a file in nano do the following.
    1. Ctrl-X
    1. Y
    1. Enter 
-* Depending on your browser, certain hot keys may preform browser actions rather than your expected actions.  For example, to paste in the cloud shell use ```Ctrl-Shift-V``` rather than ```Ctrl-V```.
+* When using nano in the cloud shell use ```Ctrl-Shift-V``` or ```Shift-Insert``` to paste, rather than ```Ctrl-V```.
 * At times you will be asked to use Git to add/commit/push your changes.  Use the follwoing commands.  
 ```
 git add .
@@ -86,7 +79,7 @@ git push
 ```
 
 ### Create an environment variable for your Database OCID
-Once the Cloud Shell is running, create and environment variable for your Database OCID you copied above.
+Once the Cloud Shell is running, create an environment variable for your Database OCID you copied above.
 
 ```
 export DB_OCID=<pasteYourOCIDhere>
@@ -96,13 +89,14 @@ export DB_OCID=<pasteYourOCIDhere>
 Once your ATP Database status is Available (the yellow box turns green) you can download the security wallet inside the Cloud Shell using the pre-configured OCI-CLI.
 
 You should change the password value in this command to something more secure.  
-This password is for the .zip file and not your database.
+Note: This password is for the .zip file and not your database.
 
 ```
 oci db autonomous-database generate-wallet --autonomous-database-id ${DB_OCID} --password Pw4ZipFile --file ~/Wallet_MyAtpDb.zip
 ```
 
-Later, after everything is setup, you will use SQLDeveloper Web to access your database.  Open it now.  
+### Open SQLDeveloper Web
+Later, after everything is setup, you will use SQLDeveloper Web to access your database.
 
 1. Click Tools
 1. In the SQL Developer Web box, click the "Open SQL Developer Web" button  
@@ -122,21 +116,23 @@ Click the "Oracle Cloud" logo on the left of the menu bar to return to the dashb
    ![](images/createComputeForm1.png)
 1. Scroll down the the "Add SSH keys" section.
 1. Select "Paste SSH keys".
-1. Generate a new RSA key pair in the Cloud Shell.
-   ```
-   ssh-keygen -t rsa -N "" -b 2048 -C "cloud_shell" -f ~/.ssh/id_rsa
-   ```
-1. In the cloud shell, display the public key, copy it then paste it in the SSH KEYS box.
-   ```
-   cat ~/.ssh/id_rsa.pub
-   ```
+1. In the **Cloud Shell**
+   1. Generate a new RSA key pair.
+      ```
+      ssh-keygen -t rsa -N "" -b 2048 -C "cloud_shell" -f ~/.ssh/id_rsa
+      ```
+   1. Display the public key and copy it.
+      ```
+      cat ~/.ssh/id_rsa.pub
+      ```
+1. In the Create Compute form, paste the public key in the SSH KEYS box.
    ![](images/createComputeForm2.png)
    If you intend to SSH into your compute instance from any other machine, you may click the "+ Another Key" button and enter the public key for that machine.  
    (you may also want to save a copy of the Cloud Shell private key '~/.ssh/id_rsa' on your local machine.  DO NOT SHARE your private key, this key allows access to your compute instance.)
 1. Click "Create".
 1. Once the Compute instance is Running, locate the Public IP Address and click Copy.  
 Keep this IP address handy, it will be used throught the lab and reffered to as \<YourPublicIP>.
-1. In your Cloud Shell, create an environment variable to store the IP.
+1. In the **Cloud Shell**, create an environment variable to store the IP.
    ```
    export COMPUTE_IP=<YourPublicIP>
    ```
@@ -164,7 +160,8 @@ Keep this IP address handy, it will be used throught the lab and reffered to as 
    **Be Aware**  
    **This will open ports 8080 8000 for any instance using the default security list**  
 
-1. In the Cloud Shell, use SCP to upload the security wallet (downloaded earlier) to new Compute instance.
+1. In the **Cloud Shell**  
+   Use SCP to upload the security wallet (downloaded earlier) to new Compute instance.
    ```
    scp Wallet_MyAtpDb.zip opc@${COMPUTE_IP}:/home/opc/
    ```
@@ -185,7 +182,7 @@ sudo yum install -y git
 git --version
 ```
 
-### Setup Wallet
+### Setup the Database Wallet
 ```
 sudo mkdir /opt/oracle
 sudo mkdir /opt/oracle/wallet
@@ -195,7 +192,7 @@ echo 'export TNS_ADMIN=/opt/oracle/wallet/' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-### Edit the wallet/ojdbc.properties file to simplify the database connection.
+Edit the wallet/ojdbc.properties file to simplify the database connection.
 ```
 sudo nano /opt/oracle/wallet/ojdbc.properties
 ```
@@ -306,9 +303,11 @@ This may take a few minutes since this is a new instance.
 Continue below while the update is running.
 
 ### Setup GitHub repository
-1. **In your browser** Go to https://github.com/OsBlaineOra/db-devops-tools
+1. **In your browser**  
+   Go to https://github.com/OsBlaineOra/db-devops-tools
 1. Click the 'Fork' button
-1. **In your new repository** click Settings
+1. **In your new repository**  
+   Click Settings
 1. Add your public key
    1. Click 'Deploy keys'
    1. Cick 'Add deploy key'
@@ -330,7 +329,8 @@ Continue below while the update is running.
 1. Click the button with a clipboard icon next to the clone string to copy it. 
 1. Go back to the Cloud Shell and wait for the yum update to complete.
    # (1:20 min)
-1. Clone your new Git repositiry
+1. **In your Compute instance**  
+   Clone your new Git repositiry
    ```
    git clone <The SSH string copied above>
    cd db-devops-tools
