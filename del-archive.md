@@ -78,3 +78,17 @@ If this is your first time connecting to the instance, you might see a message t
 10. Save the URL for the page.
 https://adgeraj32gr-myDb.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/_sdw/?nav=worksheet
 When you want to log in as the new user, change the /admin/ part of that URL to the value you set in p_url_mapping_pattern then login as the new user.
+
+
+
+Run the following command in the Cloud Shell.
+```
+oci db autonomous-database get --autonomous-database-id $DB_OCID --query 'data."connection-urls"."sql-dev-web-url"' --raw-output
+```
+1. Copy the Url
+1. Open a new browser tab
+1. Paste in the URL to open SQLDeveloper Web.
+   ![](images/sqlDevWebLogon.png)  
+1. Sign in using the admin user and password for your database.
+   ![](images/sqlDevWeb.png)
+# (Cloud Shell - 2 minutes not counting CS spin up time)

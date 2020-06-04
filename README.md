@@ -1,7 +1,19 @@
 # CI/CD Tools for Database Developers
 ## Before You Begin
 
-This 4-hour lab walks you through the steps to ...
+This 4-hour lab walks you through the steps to
+1. Create an Oracle Cloud account
+1. Create an Autonomous Transaction Processing (ATP) Database
+1. Create an Oracle Compute instance and install/configure  
+   1. Git
+   1. Java
+   1. Liquibase
+   1. SQLcl
+   1. utPLSQL
+   1. Jenkins
+1. Setup a Jenkins project that will keep your Database schema current and tested
+1. Use Liquibase to make changes to your Database schema
+1. Use utPLSQL to unit test your Database PL/SQL code
 
 ### Background
 Enter background information here..
@@ -15,11 +27,8 @@ Next paragraph of background information
 
 * Internet Browser
 * [GitHub](https://github.com/) Account
-* Oracle Cloud Account
 
 ## Create an Oracle Always-Free Cloud Account
-You can setup an Always-Free account.
-
 1. Go to https://www.oracle.com/cloud/free/
 2. Click "Start for free"
 3. Populate the forms and create an account.
@@ -32,25 +41,25 @@ https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.h
 1. Click the menu icon in the upper left corner.
 1. Scroll to the bottom, under Identity, click "Compartments".
    ![](images/compartmentMenu.png)
-1. Click "Create Compartment".
+1. Click "Create Compartment".  
    ![](images/createCompartment.png)
 1. Populate the Name and Description.
 1. Leave the parent compartment set to (root).
-1. Click "Create Compartment"
+1. Click "Create Compartment"  
    ![](images/compartmentForm.png)
 1. Click the "Oracle Cloud" logo to return to the dashboard.
 
 ## Create an ATP instance
-1. Click "Create an ATP database" in the Autonomous Transaction Processing box.
+1. Click "Create an ATP database" in the Autonomous Transaction Processing box.  
    ![](images/cloudDashboard.png)
 1. Choose your new compartment.
 1. Enter a Display name, or keep the default.
 1. Enter a Database name, or keep the default.
 1. Make sure "Transaction Processing" is selected.
-1. Make sure "Shared Infrastructure" is selected.
+1. Make sure "Shared Infrastructure" is selected.  
    ![](images/createATPForm1.png)
 1. Scroll down to "Create administrator credentials".  Enter and confirm the ADMIN password.
-1. Scroll to the bottom and click "Create Autonomous Database".
+1. Scroll to the bottom and click "Create Autonomous Database".  
    ![](images/createATPForm2.png)
    You will receive an email when your new ATP Database instance has been provisioned.
 1. Locate your new database's OCID and click Copy.
@@ -78,20 +87,18 @@ This password is for the .zip file and not your database.
 oci db autonomous-database generate-wallet --autonomous-database-id ${DB_OCID} --password Pw4ZipFile --file ~/Wallet_MyAtpDb.zip
 ```
 
-Click the "Oracle Cloud" logo to return to the dashboard.
+Later, after everything is setup, you will use SQLDeveloper Web to access your database.  Open it now.  
 
-Later, after everything is setup, you will use SQLDeveloper Web to access your database.  
-Run the following command in the Cloud Shell.
-```
-oci db autonomous-database get --autonomous-database-id $DB_OCID --query 'data."connection-urls"."sql-dev-web-url"' --raw-output
-```
-1. Copy the Url
-1. Open a new browser tab
-1. Paste in the URL to open SQLDeveloper Web.
+1. Click Tools
+1. In the SQL Developer Web box, click the "Open SQL Developer Web" button  
+   ![](images/OpenSqlDevWeb.png)  
+   This will open SQL Developer Web in a new browser tab.
    ![](images/sqlDevWebLogon.png)  
-1. Sign in using the admin user and password for your database.
+1. Log in as admin using the admin password you created for your Database.
    ![](images/sqlDevWeb.png)
-# (Cloud Shell - 2 minutes not counting CS spin up time)
+1. Switch back to the Oracle Cloud browser tab.
+
+Click the "Oracle Cloud" logo on the left of the menu bar to return to the dashboard.
 
 ## Create a Compute instance
 1. Click "Create a VM instance" in the Compute box.
