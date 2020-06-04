@@ -172,7 +172,13 @@ Keep this IP address handy, it will be used throughout the lab and referred to a
    ```
    ssh opc@${COMPUTE_IP}
    ```
-   ![](images/sshToCompute.png)
+   ![](images/sshToCompute.png)  
+**Note:** After this, any steps to be completed in the **Cloud Shell**, **Cloud Shell (ssh)** or in your **Compute Instance**, will be completed in the ssh session.
+You can tell which instance you are connected to by looking at the prompt.
+* ```<user>@cloudshell:``` is in the cloud shell but **not** the ssh session.
+* ```[opc@<yourComputeName> <dir>]``` is in the ssh session.  
+If you lose your ssh connection, return to the above step and reconnect.  
+Feel free to use your own ssh client if you prefer.
 # (5 min)
 
 ## Setup your Compute Instance

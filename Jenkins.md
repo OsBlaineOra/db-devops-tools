@@ -1,12 +1,14 @@
 # Jenkins
-### Open Jenkins
-Get the Jenkins admin password
+## Open Jenkins
+In the **Cloud Shell (ssh)**  
+Display and copy the Jenkins admin password
 ```
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
-In your browser, open another tab and go to ```<yourComputeIP>:8080```
-Use the admin password to log in
+**In your browser**  
+Open a new tab and go to ```https://<yourComputeIP>:8080```  
+Log in with the above password
 
 1. Install suggested
 1. admin/Tester
@@ -24,7 +26,7 @@ Use the admin password to log in
 1. Locate 'Cobertura' and check the Install checkbox.
 1. Click Install without restart.
 1. Check 'Restart Jenkins when installation is complete and no jobs are running'
-1. Sign in as admin/Testser
+1. Sign in as admin/Tester
 1. Click Back to Dashboard
 1. Click 'New Item'
 1. hol_db_cicd
