@@ -301,12 +301,6 @@ This rsa key pair will be used to access your GitHub repository from the compute
    ```
    cat ~/.ssh/id_rsa.pub
    ```
-### Update your instance
-```
-sudo yum update -y
-```
-This may take a few minutes since this is a new instance.  
-Continue below while the update is running.
 
 ### Setup GitHub repository
 1. **In your browser**  
