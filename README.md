@@ -323,7 +323,7 @@ This rsa key pair will be used to access your GitHub repository from the compute
    Click Settings  
    ![](images/GitHub-Settings.png)  
 1. Add your public key
-   1. On the left, Click 'Deploy keys'
+   1. On the left, click 'Deploy keys'
    1. Click the 'Add deploy key' button  
    ![](images/GitHub-DeployKey.png)  
    1. Enter a title for your key 'HoL Compute Instance'
@@ -332,10 +332,10 @@ This rsa key pair will be used to access your GitHub repository from the compute
    1. Click 'Add key'  
    ![](images/GitHub-AddKey.png)  
 1. Add a Webhook
-   1. Click Webhooks
+   1. On the left, click 'Webhooks'
    1. Click the Add webhook button  
    ![](images/GitHub-Webhooks.png)  
-   You may be asked to re-enter your GitHub password.
+   (You may be asked to re-enter your GitHub password)
    1. Use your Compute instance public IP to populate the Payload URL
       ```
       http://<YourPublicIP>:8080/github-webhook/
