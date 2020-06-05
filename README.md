@@ -93,7 +93,7 @@ Once your ATP Database status is Available (the yellow box turns green) you can 
 
 You should change the password value in this command to something more secure.  
 **Note:** This password is for the .zip file, not your database. 
- 
+
 In your **Cloud Shell** enter the following.
 ```
 oci db autonomous-database generate-wallet --autonomous-database-id ${DB_OCID} --password Pw4ZipFile --file ~/Wallet_MyAtpDb.zip
@@ -106,14 +106,15 @@ Later, after everything is setup, you will use SQLDeveloper Web to access your d
 1. In the SQL Developer Web box, click the "Open SQL Developer Web" button  
    ![](images/OpenSqlDevWeb.png)  
    This will open SQL Developer Web in a new browser tab.
+1. Log in as admin using the admin password you created for your Database.  
    ![](images/sqlDevWebLogon.png)  
-1. Log in as admin using the admin password you created for your Database.
-   ![](images/sqlDevWeb.png)
+   ![](images/sqlDevWeb.png)  
 1. Switch back to the Oracle Cloud browser tab.
 
 Click the "Oracle Cloud" logo on the left of the menu bar to return to the dashboard.
 
 ## Create a Compute instance
+An Oracle Compute instance is a Cloud VM that you will use to install and run all of the software for the lab.  
 1. Click "Create a VM instance" in the Compute box.
    ![](images/cloudDashboard.png)
 1. Populate the instance name or keep the default.
