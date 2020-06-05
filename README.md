@@ -58,13 +58,12 @@ You will need a database to complete the exercises.  An Oracle Autonomous Databa
    ![](images/createATPForm2.png)  
    You will receive an email when your new ATP Database instance has been provisioned.
 1. Locate your new database's OCID and click Copy.
-   ![](images/dbOcid.png)
-# (ATP - 2 minutes)
+   ![](images/dbOcid.png)  
 
 ## Cloud Shell
 Click on the Cloud Shell icon.  
 ![](images/cloudShell.png)  
-This will open a preconfigured VM that you will use to setup your project.
+This will open a preconfigured VM that you will use to access and setup your project.
 
 ### Working in the Oracle Cloud Shell
 * The instructions in this lab use nano to edit files.  (You are welcome to use another editor if you prefer.)  
@@ -86,13 +85,16 @@ Once the Cloud Shell is running, create an environment variable for your Databas
 ```
 export DB_OCID=<pasteYourOCIDhere>
 ```
-![](images/envVarDbOcid.png)
+![](images/envVarDbOcid.png)  
 
-Once your ATP Database status is Available (the yellow box turns green) you can download the security wallet inside the Cloud Shell using the pre-configured OCI-CLI.
+The Oracle Autonomous Database uses an extra level of security in the form of a wallet containing access keys for your new Database.  
+
+Once your ATP Database status is Available (the yellow box turns green) you can download the wallet inside the Cloud Shell using the pre-configured [OCI-CLI](https://docs.cloud.oracle.com/en-us/iaas/Content/API/Concepts/cliconcepts.htm).
 
 You should change the password value in this command to something more secure.  
-Note: This password is for the .zip file and not your database.
-
+**Note:** This password is for the .zip file, not your database. 
+ 
+In your **Cloud Shell** enter the following.
 ```
 oci db autonomous-database generate-wallet --autonomous-database-id ${DB_OCID} --password Pw4ZipFile --file ~/Wallet_MyAtpDb.zip
 ```
