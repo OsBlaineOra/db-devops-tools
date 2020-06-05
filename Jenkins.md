@@ -1,6 +1,6 @@
 # Jenkins
 ## Configure Jenkins
-In the **Cloud Shell (ssh)**  
+In your **Cloud Shell (ssh)**  
 Display and copy the Jenkins admin password
 ```
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
@@ -8,21 +8,19 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 **In your browser**  
 Open a new tab and go to ```https://<yourComputeIP>:8080```  
-   ![](images/Jenkins-Getting-Ready.png)
+   ![](images/Jenkins-getting-ready.png)  
 Log in with the above password
    ![](images/Jenkins-Unlock.png)
 
 1. Install suggested  
    ![](images/Jenkins-InstallSuggested.png)  
-   ![](images/Jenkins-GettingStarted.png)
-1. admin/Tester
-1. Name
-1. Email
-1. Save and continue  
+   ![](images/Jenkins-GettingStarted.png)  
+1. Populate the fields to create an admin user
+1. Click Save and continue  
    ![](images/Jenkins-CreateAdmin.png)
-1. Save and Finish  
+1. Click Save and Finish  
    ![](images/Jenkins-InstanceConfiguration.png)
-1. Start using Jenkins  
+1. Click Start using Jenkins  
    ![](images/Jenkins-Ready.png)
 1. Click 'Manage Jenkins'  
    ![](images/Jenkins-ManageJenkins.png)
@@ -30,15 +28,17 @@ Log in with the above password
    ![](images/Jenkins-ManagePlugins.png)
 1. Click 'Available' tab
 1. In the search box, enter 'utplsql'
-1. Locate 'utPLSQL plugin' and check the Install checkbox.
+1. Locate 'utPLSQL' and check the Install checkbox.
    ![](images/Jenkins-utPlsqlPlugin.png)  
 1. In the search box, enter 'Cobertura'  
 1. Locate 'Cobertura' and check the Install checkbox.  
 1. Click Install without restart.  
    ![](images/Jenkins-CoberturaPlugin.png)
 1. Check 'Restart Jenkins when installation is complete and no jobs are running'  
+   ![](images/Jenkins-InstallRestart.png)  
+1. Wait for Jenkins to restart  
    ![](images/Jenkins-Restarting.png)  
-1. Sign in as admin/Tester  
+1. Sign in as your admin user  
    ![](images/Jenkins-SignIn.png)  
 1. Click 'New Item'  
    ![](images/Jenkins-NewItem.png)  
@@ -50,18 +50,21 @@ Log in with the above password
 ## Setup Your Project
 1. Source Code Management
     1. Select Git
-    1. In Repository URL enter the https URL you copied from your fork of the repo
-    # Either include rsa key or put note about read only https  
+    1. In Repository URL enter the https URL from your fork of the repository  
+    **Note:** Using the https url (without credentials) instead of the ssh url will allow Jenkins read-only access to your repository.  This is all you need for this lab.  
    ![](images/Jenkins-SCM.png)  
 1. Build Triggers
     1. Check "GitHub hook trigger for GITScm polling"  
    ![](images/Jenkins-BuildTriggers.png)  
+   This will set your Jenkins build to listen for the webhook you created in your GitHub repository.  
+   Whenever you push a change to your repository it will automatically trigger a build.
 1. Build Environment 
     1. Check "Delete workspace before build starts"
     1. Check "Use secret text(s) or file(s)"  
    ![](images/Jenkins-BuildEnvironment.png)  
+   You will now create environment variables that will be bound to the database user & password for your hol_test schema.  The password will be kept in the Jenkins credentials manager and it will be obfuscated in the logs whenever it is used. 
 1. Bindings
-    1. Click Add button
+    1. Click the Add button
     1. Select "Username and password (separated)"  
         ![](images/Jenkins-NewBinding.png)  
     1. In "Username Variable" enter "username"
@@ -129,19 +132,39 @@ Log in with the above password
     1. Click 'Add post-build action'
     1. Select 'Archive the artifacts'  
         ![](images/Jenkins-AddArtifacts.png)  
-    1. In 'Files to archive' enter ```coverage.xml, xunit_test_results.xml, liquibase/liquibaseDocs.zip```  
+    1. In 'Files to archive' enter  
+        ```
+        coverage.xml, xunit_test_results.xml, liquibase/liquibaseDocs.zip
+        ```  
        (Ignore any message about the files not existing)  
         ![](images/Jenkins-ArchiveFiles.png)  
-    1. Click 'Add post-build action'
-    1. Select 'Publish JUnit test result report'  
-        ![](images/Jenkins-AddJunit.png)  
-    1. In 'Test report XMLs' enter ```xunit_test_results.xml```  
-        ![](images/Jenkins-JunitFile.png)  
     1. Click 'Add post-build action'
     1. Select 'Publish Cobertura Coverage Report'  
         ![](images/Jenkins-AddCobertura.png)  
     1. In 'Cobertura xml report pattern' enter ```coverage.xml```  
         ![](images/Jenkins-CoberturaFile.png)  
+    1. Click 'Add post-build action'
+    1. Select 'Publish JUnit test result report'  
+        ![](images/Jenkins-AddJunit.png)  
+    1. In 'Test report XMLs' enter ```xunit_test_results.xml```  
+        ![](images/Jenkins-JunitFile.png)  
 
 1. Click 'Save'  
         ![](images/Jenkins-Save.png)  
+
+## Summary
+Your new project will do the following when you manually run it or it is triggered by the GitHub webhook.
+1. Delete the previous workspace (if one exists)
+1. Checkout your GitHub repository
+1. Use Liquibase to make any database changes (covered in the Liquibase section)
+1. Use utPLSQL to unit test your PL/SQL function and generate a test coverage report (covered in the utPLSQL section)
+1. Use Liquibase to generate documentation for your database (covered in the Liquibase section)
+1. Archive the test results, coverage report and database documents
+1. Publish the coverage report
+1. Publish the unit test results
+
+You may run a build if you'd like, but there's not much for it to do until you work through the other sections of the lab.
+
+Keep this browser tab open so you can come back and check the status of your builds as they run.
+
+## Goto the [Liquibase](Liquibase.md) section

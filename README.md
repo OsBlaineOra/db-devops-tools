@@ -121,7 +121,7 @@ An Oracle Compute instance is a Cloud VM that you will use to install and run al
    ![](images/createComputeForm1.png)
 1. Scroll down the the "Add SSH keys" section.
 1. Select "Paste SSH keys".
-1. In the **Cloud Shell**
+1. In your **Cloud Shell**
    1. Generate a new RSA key pair.
       ```
       ssh-keygen -t rsa -N "" -b 2048 -C "cloud_shell" -f ~/.ssh/id_rsa
@@ -137,7 +137,7 @@ An Oracle Compute instance is a Cloud VM that you will use to install and run al
 1. Click "Create".
 1. Once the Compute instance is Running, locate the Public IP Address and click Copy.  
 Keep this IP address handy, it will be used throughout the lab and referred to as \<YourPublicIP>.
-1. In the **Cloud Shell**, create an environment variable to store the IP.
+1. In your **Cloud Shell**, create an environment variable to store the IP.
    ```
    export COMPUTE_IP=<YourPublicIP>
    ```
@@ -165,7 +165,7 @@ Keep this IP address handy, it will be used throughout the lab and referred to a
    **Be Aware**  
    **This will open ports 8080 8000 for any instance using the default security list**  
 
-1. In the **Cloud Shell**  
+1. In your **Cloud Shell**  
    Use SCP to upload the wallet .zip file (downloaded earlier) to new Compute instance.
    ```
    scp Wallet_MyAtpDb.zip opc@${COMPUTE_IP}:/home/opc/
@@ -178,7 +178,7 @@ Keep this IP address handy, it will be used throughout the lab and referred to a
    ssh opc@${COMPUTE_IP}
    ```
    ![](images/sshToCompute.png)  
-**Note:** After this, any steps to be completed in the **Cloud Shell**, **Cloud Shell (ssh)** or in your **Compute Instance**, will be completed in the ssh session.
+**Note:** After this, any steps to be completed in your **Cloud Shell**, **Cloud Shell (ssh)** or in your **Compute Instance**, will be completed in the ssh session.
 You can tell which instance you are connected to by looking at the prompt.
 * ```<user>@cloudshell:``` is in the cloud shell but **not** the ssh session.
 * ```[opc@<yourComputeName> <dir>]``` is in the ssh session.  
