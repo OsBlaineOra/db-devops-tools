@@ -117,7 +117,7 @@ Click the "Oracle Cloud" logo on the left of the menu bar to return to the dashb
 An Oracle Compute instance is a Cloud VM that you will use to install and run all of the software for the lab.  
 1. Click "Create a VM instance" in the Compute box.
    ![](images/cloudDashboard.png)
-1. Populate the instance name or keep the default.
+1. Populate the name or keep the default.
    ![](images/createComputeForm1.png)
 1. Scroll down the the "Add SSH keys" section.
 1. Select "Paste SSH keys".
@@ -143,7 +143,7 @@ Keep this IP address handy, it will be used throughout the lab and referred to a
    ```
    ![](images/saveComputeIp.png)
 
-1. Next, you will open ports 8080 and 8000.
+1. Next, you will open ports 8080 and 8000 in your cloud Virtual Network (VNIC).
    1. Click "Public Subnet"
       ![](images/openPort1.png)
    1. Click the Security List name.
