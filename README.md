@@ -347,7 +347,6 @@ This rsa key pair will be used to access your GitHub repository from the compute
 1. If it doesn't say 'Clone with SSH' click the 'Use SSH' link
 1. Click the button with a clipboard icon next to the clone string to copy it  
    ![](images/GitHub-CloneURL.png)  
-   # (1:20 min)
 1. In your **Cloud Shell(ssh)**  
    Clone your new Git repository
    ```
@@ -359,7 +358,6 @@ This rsa key pair will be used to access your GitHub repository from the compute
    sql admin/notMyPassword@MyAtpDb_TP @create_schema.sql
    ```
 
-# (30 - 45 minutes)
 ## Goto [Jenkins](Jenkins.md) section
 
 ## Goto [Liquibase](Liquibase.md) section
