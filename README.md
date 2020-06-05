@@ -146,10 +146,10 @@ Keep this IP address handy, it will be used throughout the lab and referred to a
 1. Next, you will open ports 8080 and 8000 in your cloud Virtual Network (VNIC).
    1. Click "Public Subnet"
       ![](images/openPort1.png)
-   1. Click the Security List name.
-      ![](images/openPort2.png)
-   1. Click Add Ingress Rule.
-      ![](images/openPort3.png)
+   1. Click the Security List name.  
+      ![](images/openPort2.png)  
+   1. Click Add Ingress Rule.  
+      ![](images/openPort3.png)  
    1. In the SOURCE CIDR box enter
       ```
       0.0.0.0/0
