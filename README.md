@@ -52,7 +52,8 @@ You will need a database to complete the exercises.  An Oracle Autonomous Databa
 1. Make sure "Transaction Processing" is selected.
 1. Make sure "Shared Infrastructure" is selected.  
    ![](images/createATPForm1.png)
-1. Scroll down to "Create administrator credentials".  Enter and confirm the ADMIN password.
+1. Scroll down to "Create administrator credentials".  Enter and confirm the ADMIN password.  
+   **Note:**  the Admin account is the top level user for your new database.  Create a strong password and keep it secure.
 1. Scroll to the bottom and click "Create Autonomous Database".  
    ![](images/createATPForm2.png)  
    You will receive an email when your new ATP Database instance has been provisioned.
