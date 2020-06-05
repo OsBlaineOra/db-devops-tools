@@ -237,15 +237,16 @@ sudo yum install -y jdk1.8
 java -version
 ```
 
-### Install SQLcl
+### Install [SQLcl](https://www.oracle.com/database/technologies/appdev/sqlcl.html)
+You will use SQLcl to execute some setup scripts from your Compute instance.  
 ```
 sudo yum install -y sqlcl
 alias sql="/opt/oracle/sqlcl/bin/sql"
 sql -v
 ```
 
-### Install utPLSQL
-Download utPLSQL
+### Install [utPLSQL](https://github.com/utPLSQL/utPLSQL)
+Download the utPLSQL testing framework
 ```
 curl -LOk $(curl --silent https://api.github.com/repos/utPLSQL/utPLSQL/releases/latest | awk '/browser_download_url/ { print $2 }' | grep ".tar.gz\"" | sed 's/"//g')
 ```
@@ -259,14 +260,16 @@ Use SQLcl to install utPLSQL
 sql admin/notMyPassword@MyAtpDb_TP @utPLSQL/source/install_headless_with_trigger.sql ut3 XNtxj8eEgA6X6b6f DATA
 ```
 
-### Install utPLSQL-cli
+### Install [utPLSQL-cli](https://github.com/utPLSQL/utPLSQL-cli)
+utPLSQL-cli is a Java command-line client for utPLSQL v3  
 ```
 curl -LOk $(curl --silent https://api.github.com/repos/utPLSQL/utPLSQL-cli/releases/latest | awk '/browser_download_url/ { print $2 }' | grep ".zip\"" | sed 's/"//g')
 sudo unzip utPLSQL-cli.zip -d /opt/ && sudo chmod -R u+x /opt/utPLSQL-cli
 sudo cp /opt/oracle/ojdbc8.jar /opt/utPLSQL-cli/lib
 ```
 
-### Install Liquibase
+### Install [Liquibase](https://github.com/liquibase/liquibase)
+Liquibase is a schema migration tool you will use to make changes to your database
 ```
 wget https://github.com/liquibase/liquibase/releases/download/liquibase-parent-3.6.3/liquibase-3.6.3-bin.tar.gz
 sudo mkdir /opt/liquibase
@@ -276,7 +279,8 @@ source ~/.bashrc
 liquibase --version
 ```
 
-### Install Jenkins
+### Install [Jenkins](https://www.jenkins.io/)
+Jenkins is an automation server you will use to build and deploy your project
 ```
 sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
 sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
@@ -291,7 +295,7 @@ sudo systemctl status jenkins
 sudo systemctl enable jenkins
 ```
 
-### Open ports 8080 and 8000 in the internal firewall
+### Open ports 8080 and 8000 in your compute instance's internal firewall
 ```
 sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
 sudo firewall-cmd --permanent --zone=public --add-port=8000/tcp
@@ -312,29 +316,37 @@ This rsa key pair will be used to access your GitHub repository from the compute
 
 ### Setup GitHub repository
 1. **In your browser**  
-   Go to https://github.com/OsBlaineOra/db-devops-tools
+   Go to https://github.com/OsBlaineOra/db-devops-tools  
+   ![](images/GitHub-Fork.png)  
 1. Click the 'Fork' button
 1. **In your new repository**  
-   Click Settings
+   Click Settings  
+   ![](images/GitHub-Settings.png)  
 1. Add your public key
    1. Click 'Deploy keys'
-   1. Click 'Add deploy key'
+   1. Click 'Add deploy key'  
+   ![](images/GitHub-DeployKey.png)  
    1. Enter a title for your key 'HoL Compute Instance'
    1. In the 'Key' field, past the public key you generated for this compute instance.
    1. Check 'Allow write access'
-   1. Click 'Add key'
+   1. Click 'Add key'  
+   ![](images/GitHub-AddKey.png)  
 1. Add a Webhook
    1. Click Webhooks
-   1. Click the Add webhook button
+   1. Click the Add webhook button  
+   ![](images/GitHub-Webhooks.png)  
+   You may be asked to re-enter your GitHub password.
    1. Use your Compute instance public IP to populate the Payload URL
       ```
       http://<YourPublicIP>:8080/github-webhook/
       ```
-   1. Click the Add webhook button. (Ignore the error for now)
+   1. Click the Add webhook button. (Ignore the error for now)  
+   ![](images/GitHub-AddWebhook.png)  
 1. Click the 'Code' tab
 1. Click the 'Clone or download' button
 1. If it doesn't say 'Clone with SSH' click the 'Use SSH' link
-1. Click the button with a clipboard icon next to the clone string to copy it. 
+1. Click the button with a clipboard icon next to the clone string to copy it  
+   ![](images/GitHub-CloneURL.png)  
    # (1:20 min)
 1. In your **Cloud Shell(ssh)**  
    Clone your new Git repository
