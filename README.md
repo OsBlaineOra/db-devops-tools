@@ -29,8 +29,8 @@ This 4-hour lab walks you through the steps to
 https://www.oracle.com/cloud/sign-in.html
    ![](images/cloudDashboard.png)
 
-## Create a compartment.
-https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm
+## Create a <a href="https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm" target="_blank">compartment</a>
+
 1. Click the menu icon in the upper left corner.
 1. Scroll to the bottom, under Identity, click "Compartments".
    ![](images/compartmentMenu.png)
@@ -330,9 +330,8 @@ This rsa key pair will be used to access your GitHub repository from the compute
 1. Click the 'Clone or download' button
 1. If it doesn't say 'Clone with SSH' click the 'Use SSH' link
 1. Click the button with a clipboard icon next to the clone string to copy it. 
-1. Go back to the Cloud Shell and wait for the yum update to complete.
    # (1:20 min)
-1. **In your Compute instance**  
+1. In your **Cloud Shell(ssh)**  
    Clone your new Git repository
    ```
    git clone <The SSH string copied above>
