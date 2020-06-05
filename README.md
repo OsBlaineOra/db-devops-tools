@@ -316,15 +316,15 @@ This rsa key pair will be used to access your GitHub repository from the compute
 
 ### Setup GitHub repository
 1. **In your browser**  
-   Go to https://github.com/OsBlaineOra/db-devops-tools  
+   Go to https://github.com/OsBlaineOra/db-devops-tools
+1. Click the 'Fork' button  
    ![](images/GitHub-Fork.png)  
-1. Click the 'Fork' button
 1. **In your new repository**  
    Click Settings  
    ![](images/GitHub-Settings.png)  
 1. Add your public key
-   1. Click 'Deploy keys'
-   1. Click 'Add deploy key'  
+   1. On the left, Click 'Deploy keys'
+   1. Click the 'Add deploy key' button  
    ![](images/GitHub-DeployKey.png)  
    1. Enter a title for your key 'HoL Compute Instance'
    1. In the 'Key' field, past the public key you generated for this compute instance.
