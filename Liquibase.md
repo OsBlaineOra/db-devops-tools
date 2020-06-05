@@ -1,5 +1,5 @@
 # Liquibase
-**In the SSH session**
+In your **Cloud Shell(ssh)**
 ```
 cd /home/opc/db-devops-tools/liquibase
 ```
@@ -254,8 +254,8 @@ select * from hol_dev.databasechangelog order by id;
 ```
 Note: The very last tag added in a set of changelogs will be overwritten by a tag added from the command line.
 
-## Shema Diff
-Your database has been setup with two schemas, hol_dev and hol_test.  Running ```liquibase update``` in your shell session is configured to update hol_dev and you have configured Jenkins to update hol_test whenever your code is pushed to GitHub.
+## Schema Diff
+Your database has been setup with two schemas, hol_dev and hol_test.  Running ```liquibase update``` in your shell session will update hol_dev and running your Jenkins build will update hol_test.  Your Jenkins build will be triggered whenever your code is pushed to GitHub.
 
 Switch to SQL Developer Web and run the following query to show the existing tables in hol_dev and hol_test.
 ```sql
@@ -271,7 +271,7 @@ You can also use the  ```liquibase diff``` to compare schemas by passing in a 'r
 ```
 liquibase --referenceUrl="jdbc:oracle:thin:hol_test/HandsOnLabUser1@demos_tp?TNS_ADMIN=/opt/oracle/wallet" diff
 ```
-If you plan to use the 'diff' comand a lot, you can add the reference values to the liquibase.properties file
+If you plan to use the 'diff' command a lot, you can add the reference values to the liquibase.properties file
 ```
 nano liquibase.properties
 ```
@@ -300,7 +300,7 @@ liquibase diff
 ```
 
 ### Generate diffChangeLog
-You can use the ```diffChangeLog``` command to compae your current schema to a "known good" and auto-generate a changelog.  You could use this changelog to sync your current schema with the reference schema.  
+You can use the ```diffChangeLog``` command to compare your current schema to a "known good" and auto-generate a changelog.  You could use this changelog to sync your current schema with the reference schema.  
 **Do not run this changelog, it is only an example**
 ```
 liquibase --changeLogFile=diff-changelog.json diffChangeLog
@@ -630,7 +630,7 @@ nano master.json
 ```
 
 ```
-liqubase update
+liquibase update
 
 ```
 
@@ -924,7 +924,7 @@ select * from hol_dev.orders;
 ```
 liquibase --contexts="test" update
 ```
-Remember, comand line options such as ```--contexts="test"``` will override the same setting in the liquibase.properties file.  In this case it instructs liquibase to include the 'test' changes.
+Remember, command line options such as ```--contexts="test"``` will override the same setting in the liquibase.properties file.  In this case it instructs liquibase to include the 'test' changes.
 
 To rollback this changeset you need to use --contexts="test".
 ```
@@ -935,7 +935,7 @@ liquibase --contexts="test" rollback Five
 Some database objects are created using the "Create or Replace" syntax such as Views and PL/SQL objects (Functions, Procedures, Packages and Triggers).  
 It is a good practice to maintain the source for these objects directly in your VCS and have liquibase "re-compile" them whenever they change.
 
-Tyically the source for these objects would reside in another directory but for simplicity sake in this lab, they are located in the runOnChange directory with the Liquibase changelogs.
+Typically the source for these objects would reside in another directory but for simplicity sake in this lab, they are located in the runOnChange directory with the Liquibase changelogs.
 
 Review the following files.
 runOnce/status_view.sql
@@ -1173,7 +1173,7 @@ cd liquibase
 ```
 Switch to your Jenkins tab in your browser and make sure the build does not error.  Once the build is complete, check the hol_test data in SDW.  
 
-## GenerateChanglogFile - Reverse engineer your current schema
+## GenerateChangelogFile - Reverse engineer your current schema
 ```
 liquibase --changeLogFile=generated.json generateChangeLog
 cat generated.json

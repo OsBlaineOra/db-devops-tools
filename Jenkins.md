@@ -153,7 +153,7 @@ Log in with the above password
         ![](images/Jenkins-Save.png)  
 
 ## Summary
-Your new project will do the following when you manually run it or it is triggered by the GitHub webhook.
+Your new project will do the following when you manually run it or when it is triggered by the GitHub webhook.
 1. Delete the previous workspace (if one exists)
 1. Checkout your GitHub repository
 1. Use Liquibase to make any database changes (covered in the Liquibase section)
