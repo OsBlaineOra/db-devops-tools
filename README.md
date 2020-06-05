@@ -29,7 +29,8 @@ This 4-hour lab walks you through the steps to
 https://www.oracle.com/cloud/sign-in.html
    ![](images/cloudDashboard.png)
 
-## Create a [compartment](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm)
+## Create a [compartment](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm)  
+Compartments are useful when you want to organize and isolate your cloud resources.  Create a compartment for the objects used in this lab.
 1. Click the menu icon in the upper left corner.
 1. Scroll to the bottom, under Identity, click "Compartments".
    ![](images/compartmentMenu.png)
@@ -42,6 +43,7 @@ https://www.oracle.com/cloud/sign-in.html
 1. Click the "Oracle Cloud" logo to return to the dashboard.
 
 ## Create an ATP instance
+You will need a database to complete the exercises.  An Oracle Autonomous Database handles a lot of the background admin tasks for you so you can focus on your project.
 1. Click "Create an ATP database" in the Autonomous Transaction Processing box.  
    ![](images/cloudDashboard.png)
 1. Choose your new compartment.
