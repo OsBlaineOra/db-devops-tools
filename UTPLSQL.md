@@ -1,7 +1,7 @@
 # utPLSQL
 # ? SETUP ?
 ## Test package
-For this exersice you will be creating a package of tests to test the generate_customers function.
+For this exercise you will be creating a package of tests to test the generate_customers function.
 
 Review the function
 ```
@@ -13,7 +13,7 @@ Review the test package specification
 cat test/test_generate_customers_func.pks
 ```
 
-utPLSQL uses annotaions to define the unit tests.  
+utPLSQL uses annotations to define the unit tests.  
 
 ```-- %suite(Generate Customers function)``` declares that this is a test suite named "Generate Customers function"  
 
@@ -100,11 +100,11 @@ In this test you are telling utPLSQL (ut) to expect that when you call the gener
 
 1. Run the tests locally
     ```
-    /opt/utPLSQL-cli/bin/utplsql run hol_dev/HandsOnLabUser1@demos_TP?TNS_ADMIN=/opt/oracle/wallet \
+    /opt/utPLSQL-cli/bin/utplsql run hol_dev/HandsOnLabUser1@MyAtpDb_TP?TNS_ADMIN=/opt/oracle/wallet \
     -f=ut_coverage_html_reporter  -o=coverage.html \
     -f=ut_documentation_reporter -c
     ```
-1. Reveiw the output to see that the test passed on Dev
+1. Review the output to see that the test passed on Dev
 1. Start Web Server
     ```
     pushd /home/opc/db-devops-tools; python -m SimpleHTTPServer; popd
@@ -201,7 +201,7 @@ Add the following after the ```procedure before_all;``` line
     procedure delete_added_customers;
   ```
   This will call the cleanup procedure after each test is run.  
-  Alternativly, you could make it a ```--%beforeeach``` and have it reset the environment before each test runs.  But then you would need to have an ```--$afterall``` to do a final cleanup.
+  Alternatively, you could make it a ```--%beforeeach``` and have it reset the environment before each test runs.  But then you would need to have an ```--$afterall``` to do a final cleanup.
 1. Git add/commit/push
 1. Check results, both tests should now pass.
 1. Check coverage
@@ -266,7 +266,7 @@ nano test/test_generate_customers_func.pks
 Add the following before the end of the package
 ```
   -- %test(Returns 0 for null input)
-  procedure null_ammount;
+  procedure null_amount;
 ```
 Edit the package body
 ```
@@ -274,7 +274,7 @@ nano test/test_generate_customers_func.pkb
 ```
 Add the following before the end of the package
 ```
-  procedure null_ammount is
+  procedure null_amount is
   begin
     ut.expect( generate_customers( null ) ).to_( equal(0) );
   end;

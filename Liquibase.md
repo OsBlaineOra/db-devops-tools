@@ -13,7 +13,7 @@ nano liquibase.properties
 Add the following values.  Correct the password if you have changed it.
 ```yaml
 changeLogFile: master.json
-url: jdbc:oracle:thin:@demos_tp?TNS_ADMIN=/opt/oracle/wallet
+url: jdbc:oracle:thin:@MyAtpDb_tp?TNS_ADMIN=/opt/oracle/wallet
 username: hol_dev
 password: HandsOnLabUser1
 classpath: /opt/oracle/ojdbc8.jar
@@ -269,7 +269,7 @@ As you can see, tables have been created in hol_dev and not hol_test.
 You can also use the  ```liquibase diff``` to compare schemas by passing in a 'reference Url'.
 
 ```
-liquibase --referenceUrl="jdbc:oracle:thin:hol_test/HandsOnLabUser1@demos_tp?TNS_ADMIN=/opt/oracle/wallet" diff
+liquibase --referenceUrl="jdbc:oracle:thin:hol_test/HandsOnLabUser1@MyAtpDb_tp?TNS_ADMIN=/opt/oracle/wallet" diff
 ```
 If you plan to use the 'diff' command a lot, you can add the reference values to the liquibase.properties file
 ```
@@ -277,7 +277,7 @@ nano liquibase.properties
 ```
 Add reference db connection information
 ```yaml
-referenceUrl: jdbc:oracle:thin:@demos_tp?TNS_ADMIN=/opt/oracle/wallet
+referenceUrl: jdbc:oracle:thin:@MyAtpDb_tp?TNS_ADMIN=/opt/oracle/wallet
 referenceUsername: hol_test
 referencePassword: HandsOnLabUser1
 ```

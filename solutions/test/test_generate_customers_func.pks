@@ -20,7 +20,7 @@ create or replace package test_generate_customers_func as
   procedure over_limit;
 
   -- %test(Returns null for null input)
-  procedure null_ammount;
+  procedure null_amount;
 
   -- %test(Throws numeric or value error for non numeric input)  
   --%throws(-06502)

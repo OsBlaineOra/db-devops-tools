@@ -47,8 +47,8 @@ You will need a database to complete the exercises.  An Oracle Autonomous Databa
 1. Click "Create an ATP database" in the Autonomous Transaction Processing box.  
    ![](images/cloudDashboard.png)
 1. Choose your new compartment.
-1. Enter a Display name, or keep the default.
-1. Enter a Database name, or keep the default.
+1. Enter ```MyAtpDb``` in Display name
+1. Enter  ```MyAtpDb``` in Database name
 1. Make sure "Transaction Processing" is selected.
 1. Make sure "Shared Infrastructure" is selected.  
    ![](images/createATPForm1.png)
