@@ -29,8 +29,7 @@ This 4-hour lab walks you through the steps to
 https://www.oracle.com/cloud/sign-in.html
    ![](images/cloudDashboard.png)
 
-## Create a <a href="https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm" target="_blank">compartment</a>
-
+## Create a [compartment](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm){:target="_blank"}
 1. Click the menu icon in the upper left corner.
 1. Scroll to the bottom, under Identity, click "Compartments".
    ![](images/compartmentMenu.png)
