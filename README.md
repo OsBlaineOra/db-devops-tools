@@ -166,7 +166,7 @@ Keep this IP address handy, it will be used throughout the lab and referred to a
    **This will open ports 8080 8000 for any instance using the default security list**  
 
 1. In the **Cloud Shell**  
-   Use SCP to upload the security wallet (downloaded earlier) to new Compute instance.
+   Use SCP to upload the wallet .zip file (downloaded earlier) to new Compute instance.
    ```
    scp Wallet_MyAtpDb.zip opc@${COMPUTE_IP}:/home/opc/
    ```
@@ -184,9 +184,11 @@ You can tell which instance you are connected to by looking at the prompt.
 * ```[opc@<yourComputeName> <dir>]``` is in the ssh session.  
 If you lose your ssh connection, return to the above step and reconnect.  
 Feel free to use your own ssh client if you prefer.
-# (5 min)
 
 ## Setup your Compute Instance
+Add the software needed for the lab.
+
+In your **Cloud Shell (ssh)**
 ### Install Git
 ```
 sudo yum install -y git
@@ -195,15 +197,13 @@ git --version
 
 ### Setup the Database Wallet
 ```
-sudo mkdir /opt/oracle
-sudo mkdir /opt/oracle/wallet
+sudo mkdir -p /opt/oracle/wallet
 sudo mv Wallet_MyAtpDb.zip /opt/oracle/wallet/
 sudo unzip /opt/oracle/wallet/Wallet_MyAtpDb.zip -d /opt/oracle/wallet/
 echo 'export TNS_ADMIN=/opt/oracle/wallet/' >> ~/.bashrc
 source ~/.bashrc
 ```
-
-Edit the wallet/ojdbc.properties file to simplify the database connection.
+Newer versions of Oracles ojdbc driver make it much easier to access a database using the extra wallet security.  To enable these features, edit the wallet/ojdbc.properties file.
 ```
 sudo nano /opt/oracle/wallet/ojdbc.properties
 ```
