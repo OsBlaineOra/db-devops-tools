@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION generate_customers (amount IN NUMBER)
      RETURN NUMBER
   AS
-    c_max_customers   CONSTANT INTEGER := 25;
+    c_max_customers   CONSTANT INTEGER := 20;
     customer_count number;
     adjusted_amount   NUMBER := amount;
     new_name varchar2(200);

@@ -32,6 +32,13 @@
               "tableName": "order_statuses",
               "file": "runOnce/status-data.csv"
             }
+          },
+          {
+            "rollback": {
+              "delete": {
+                "tableName": "order_statuses"
+              }
+            }
           }
         ]
       }

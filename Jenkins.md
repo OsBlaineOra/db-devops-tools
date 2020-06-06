@@ -93,7 +93,7 @@ Log in with the above password
         --username=${username} \
         --password=${password} \
         --classpath=/opt/oracle/ojdbc8.jar \
-        --contexts='!test' \
+        --contexts='test' \
         update
         ```  
         ![](images/Jenkins-ShellLb1.png)  

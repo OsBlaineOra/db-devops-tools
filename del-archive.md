@@ -92,3 +92,40 @@ oci db autonomous-database get --autonomous-database-id $DB_OCID --query 'data."
 1. Sign in using the admin user and password for your database.
    ![](images/sqlDevWeb.png)
 # (Cloud Shell - 2 minutes not counting CS spin up time)
+
+
+
+
+Rollback the change
+```
+liquibase rollback Four
+```
+
+Now you should get an error saying that the changelog has been modified.
+```
+Unexpected error running Liquibase: Validation Failed:
+     1 change sets check sum
+          runOnce/changelog-load-status-data.json::5::YourNameHere was: 8:808882540b8e59eb72c531c6f762ec8b but is now: 8:d0961735f2e626c20cb6df76860055ef
+```
+add ```"validCheckSum": "<but is now value>",``` to the changeset
+
+```
+nano runOnce/changelog-load-status-data.json
+```
+```json
+      "changeSet": {
+        "id": "5",
+        "author": "YourNameHere",
+        "comment": "Load Order_Statuses data",
+        "validCheckSum": "8:d0961735f2e626c20cb6df76860055ef",
+        "changes": [{
+```
+Rollback the change
+```
+liquibase rollback Four
+```
+remove "validCheckSum": "8:d0961735f2e626c20cb6df76860055ef",
+
+```
+nano runOnce/changelog-load-status-data.json
+```
