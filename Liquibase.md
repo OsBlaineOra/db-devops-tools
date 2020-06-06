@@ -1,12 +1,24 @@
 # Liquibase
-In your **Cloud Shell(ssh)**
+[Liquibase](https://github.com/liquibase/liquibase) is a [schema migration](https://en.wikipedia.org/wiki/Schema_migration) tool that you will use to create and modify the objects in your database.
+
+The below code examples will be run in your **Cloud Shell(ssh)** unless otherwise noted.
+
+## A little setup
+You could run liquibase from the command line with a ```java -jar``` command using parameters.  To make it a bit easier, Liquibase includes a shell script and a .bat file that you can call ```/opt/liquibase/liquibase```.  When you installed liquibase you added the directory to your the path for your opc user.  This will allow you to simply call ```liquibase``` in the below examples.
+
+Try it.
+```
+liquibase --version
+```
+
+Switch into the Liquibase directory.
+
 ```
 cd /home/opc/db-devops-tools/liquibase
 ```
 
-## Create Files
+You could pass all of the required information to Liquibase with parameters each time you run it, or you can make it easier by creating a ```liquibase.properties``` file.
 
-Create a file liquibase.properties 
 ```
 nano liquibase.properties
 ```
@@ -18,7 +30,11 @@ username: hol_dev
 password: HandsOnLabUser1
 classpath: /opt/oracle/ojdbc8.jar
 ```
+Now, when you run liquibase from this directory, it will use the above information to make the connection and run the changeLogFile.
 
+You can always override one or more of these values with a command line parameter.  For example, if you wanted to connect as the hol_test user you would use the parameter ```--username=hol_test``.  
+
+## Changelogs
 Create a file runOnce/changelog-create-customers.json
 ```
 nano runOnce/changelog-create-customers.json
