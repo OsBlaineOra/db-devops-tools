@@ -261,9 +261,9 @@ Add the following after the ```procedure before_all;``` line
   This will call the cleanup procedure before each test is run.  
   Alternatively, you could make it a ```--%aftereach``` and have it clean up after each test runs.  But then you wouldn't be as sure that the environment was ready before each test is run.
 1. [Git add/commit/push][GitLink]
-1. Check results, both tests should now pass.
-1. Check coverage
-   The coverage should now be at 86.67%.
+1. **In Jenkins**  
+    1. Check the test results.  Both tests should now pass.
+    1. Check coverage.  The coverage should now be at 86.67%.
 
 ## After all
 Run the following query in a **SQL Developer Web** worksheet.
