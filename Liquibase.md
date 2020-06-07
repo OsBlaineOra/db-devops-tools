@@ -3,15 +3,8 @@
 
 The below code examples will be run in your **Cloud Shell(ssh)** unless otherwise noted.
 
-## Standard Instructions
-Throughout this section you will see the following instruction links  
-
-[Liquibase Update][LbUpdateLink]
-
-[LbUpdateLink]: UTPLSQL.md#liquibase-update "Run the following in your Cloud Shell(ssh)
-cd ~/db-devops-tools/liquibase
-liquibase --contexts=test update
-cd ~/db-devops-tools"  
+## Standard Git Instructions
+Throughout this section you will see the following instruction link  
 
 [Git add/commit/push][GitLink]  
 
@@ -415,7 +408,7 @@ cat diff-changelog.json
 rm diff-changelog.json
 ```
 
-### [Push your changes to GitHub][GitLink] 
+[Git add/commit/push][GitLink]  
 This should trigger the webhook and test the Jenkins integration.  
 
 Switch to your Jenkins browser tab and make sure the build does not error.  Once the build is complete, run the diff command again.
@@ -699,7 +692,7 @@ Add the following to the file
   ]
 }
 ```
-In this changeset you are creating a new table **and** creating a foreign key on one of the columns.
+In this changeset you are creating a new table **and** creating a foreign key from the Orders table to the primary key of the new order_statuses table.
 
 Add the new change log to the bottom of the file master.json
 ```
