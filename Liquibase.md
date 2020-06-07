@@ -383,9 +383,9 @@ Run the following query in a **SQL Developer Web** worksheet to show the existin
 select owner, table_name
   from all_tables
  where owner in ('HOL_DEV', 'HOL_TEST')
-order by 1,2;
+order by 2.1;
 ```
-As you can see, tables have been created in hol_dev and not hol_test.
+As you can see, tables have been created in hol_dev and not hol_test.  (Unless you ran a build in Jenkins, then you'll see two Liquibase tables.)
 
 You can also use the `liquibase diff` to compare schemas by passing in a 'reference Url'.
 
@@ -1567,7 +1567,7 @@ Run the following queries in **SQL Developer Web**
 select owner, table_name
   from all_tables
  where owner in ('HOL_DEV', 'HOL_TEST')
-order by 1,2;
+order by 2.1;
 ```
 
 Notice that all of the tables in HOL_DEV have been dropped.  

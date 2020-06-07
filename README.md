@@ -79,8 +79,7 @@ To close and save a file in nano do the following.
    cd ~/db-devops-tools
    git add .
    git commit -m\"your commit message\"
-   git push
-   cd liquibase"  
+   git push"  
 
    You may click the link to return to the below instructions, if you would like to copy and paste the commands.  
    You may also hover the link to see the commands displayed in the popup text.
