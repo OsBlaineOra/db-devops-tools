@@ -162,7 +162,7 @@ In this test you are telling utPLSQL (ut) to expect that when you call the gener
     ```
 1. **In your browser**  
     Check Dev code coverage \<yourPublicIp>:8000/coverage.html
-1. **In Cloud Shell**  
+1. **In Cloud Shell(ssh)**  
     Ctrl-C to stop the web server
 1. [Git add/commit/push][GitLink]
 1. **In Jenkins**  
