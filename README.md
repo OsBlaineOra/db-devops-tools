@@ -47,8 +47,8 @@ You will need a database to complete the exercises.  An Oracle Autonomous Databa
 1. Click "Create an ATP database" in the Autonomous Transaction Processing box.  
    ![](images/cloudDashboard.png)
 1. Choose your new compartment.
-1. Enter ```MyAtpDb``` in Display name
-1. Enter  ```MyAtpDb``` in Database name
+1. Enter `MyAtpDb` in Display name
+1. Enter  `MyAtpDb` in Database name
 1. Make sure "Transaction Processing" is selected.
 1. Make sure "Shared Infrastructure" is selected.  
    ![](images/createATPForm1.png)
@@ -71,7 +71,7 @@ When instructed to save a file in nano do the following.
    1. Ctrl-X
    1. Y
    1. Enter 
-* When using nano in the cloud shell use ```Ctrl-Shift-V``` or ```Shift-Insert``` to paste, rather than ```Ctrl-V```.
+* When using nano in the cloud shell use `Ctrl-Shift-V` or `Shift-Insert` to paste, rather than `Ctrl-V`.
 * At times you will be asked to use Git to add/commit/push your changes.  Use the following commands.  
 ```
 git add .
@@ -180,8 +180,8 @@ Keep this IP address handy, it will be used throughout the lab and referred to a
    ![](images/sshToCompute.png)  
 **Note:** After this, any steps to be completed in your **Cloud Shell**, **Cloud Shell (ssh)** or in your **Compute Instance**, will be completed in the ssh session.
 You can tell which instance you are connected to by looking at the prompt.
-* ```<user>@cloudshell:``` is in the cloud shell but **not** the ssh session.
-* ```[opc@<yourComputeName> <dir>]``` is in the ssh session.  
+* `<user>@cloudshell:` is in the cloud shell but **not** the ssh session.
+* `[opc@<yourComputeName> <dir>]` is in the ssh session.  
 If you lose your ssh connection, return to the above step and reconnect.  
 Feel free to use your own ssh client if you prefer.
 
@@ -365,6 +365,7 @@ This rsa key pair will be used to access your GitHub repository from the compute
 
 ## Want to Learn More?
 * [Oracle Cloud](http://www.oracle.com/cloud/free)
-* [Jenkins](https://www.jenkins.io/)
-* [Liquibase](https://github.com/liquibase/liquibase)
-* [utPLSQL](https://github.com/utPLSQL/utPLSQL)
+* [Oracle Live Labs](https://oracle.github.io/learning-library/developer-library/)
+* [Jenkins](https://www.jenkins.io/doc)
+* [Liquibase](https://docs.liquibase.com/home.html)
+* [utPLSQL](http://utplsql.org/documentation)

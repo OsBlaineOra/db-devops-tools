@@ -4,7 +4,7 @@
 The below code examples will be run in your **Cloud Shell(ssh)** unless otherwise noted.
 
 ## A little setup
-You could run liquibase from the command line with a ```java -jar``` command using parameters.  To make it a bit easier, Liquibase includes a shell script and a .bat file that you can call ```/opt/liquibase/liquibase```.  When you installed liquibase you added the directory to your the path for your opc user.  This will allow you to simply call ```liquibase``` in the below examples.
+You could run liquibase from the command line with a `java -jar` command using parameters.  To make it a bit easier, Liquibase includes a shell script and a .bat file that you can call `/opt/liquibase/liquibase`.  When you installed liquibase you added the directory to your the path for your opc user.  This will allow you to simply call `liquibase` in the below examples.
 
 Try it in your **Cloud Shell(ssh)**
 ```
