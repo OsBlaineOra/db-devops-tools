@@ -6,19 +6,22 @@ Throughout this section you will see the following instruction links
 
 [Liquibase Update][LbUpdateLink]
 
-[LbUpdateLink]: UTPLSQL.md#liquibase-update "cd ~/db-devops-tools/liquibase
+[LbUpdateLink]: UTPLSQL.md#liquibase-update "Run the following in your Cloud Shell(ssh)
+cd ~/db-devops-tools/liquibase
 liquibase --contexts=test update
 cd ~/db-devops-tools"  
 
 [Run Tests Locally][RunTestsLink]
 
-[RunTestsLink]: UTPLSQL.md#Run-Tests-Locally "/opt/utPLSQL-cli/bin/utplsql run hol_dev/HandsOnLabUser1@MyAtpDb_TP?TNS_ADMIN=/opt/oracle/wallet \
+[RunTestsLink]: UTPLSQL.md#Run-Tests-Locally "Run the following in your Cloud Shell(ssh)
+/opt/utPLSQL-cli/bin/utplsql run hol_dev/HandsOnLabUser1@MyAtpDb_TP?TNS_ADMIN=/opt/oracle/wallet \
     -f=ut_coverage_html_reporter -o=coverage.html \
     -f=ut_documentation_reporter -c"
 
 [Git add/commit/push][GitLink]  
 
-[GitLink]: UTPLSQL.md#Git-Add-Commit-Push "cd ~/db-devops-tools
+[GitLink]: UTPLSQL.md#Git-Add-Commit-Push "Run the following in your Cloud Shell(ssh)
+cd ~/db-devops-tools
 git add .
 git commit -m\"your commit message\"
 git push"  
@@ -27,6 +30,7 @@ You may click the links to return to the below instructions, if you would like t
 You may also hover the links to see the commands displayed in the popup text.
 
 ### Liquibase Update
+Run the following in your **Cloud Shell(ssh)**
 ```
 cd ~/db-devops-tools/liquibase
 liquibase --contexts=test update
@@ -34,6 +38,7 @@ cd ~/db-devops-tools
 ```
 
 ### Run Tests Locally
+Run the following in your **Cloud Shell(ssh)**
 ```
 /opt/utPLSQL-cli/bin/utplsql run hol_dev/HandsOnLabUser1@MyAtpDb_TP?TNS_ADMIN=/opt/oracle/wallet \
     -f=ut_coverage_html_reporter -o=coverage.html \
@@ -41,6 +46,7 @@ cd ~/db-devops-tools
 ```
 
 ### Git Add Commit Push
+Run the following in your **Cloud Shell(ssh)**
 ```
 cd ~/db-devops-tools
 git add .
@@ -51,7 +57,8 @@ git push
 ## Test package
 For this exercise you will be creating a package of tests to test the generate_customers function.
 
-Review the function
+Review the function  
+Run the following in your **Cloud Shell(ssh)**
 ```
 cat source/gen_cust.fnc
 ```
@@ -97,7 +104,7 @@ In your Jenkins project page, you will see a "Code Coverage" graph on the right 
 
 The current code coverage is 0%.
 
-Your build is already configured to generate a Cobertura style coverage report by including the following parameters to the utPLSQL-cli call.
+Your Jenkins build is already configured to generate a Cobertura style coverage report by including the following parameters to the utPLSQL-cli call.
 
 ```
 -f=ut_coverage_cobertura_reporter -o=coverage.xml \
@@ -109,7 +116,8 @@ There are other [coverage reporters](http://utplsql.org/utPLSQL/latest/userguide
 ```
 
 ## Create a real test
-Edit the package spec
+Edit the package spec  
+Run the following in your **Cloud Shell(ssh)**
 ```
 nano test/test_generate_customers_func.pks
 ```
@@ -152,23 +160,26 @@ In this test you are telling utPLSQL (ut) to expect that when you call the gener
     ```
     pushd /home/opc/db-devops-tools; python -m SimpleHTTPServer; popd
     ```
-1. **In your browser**
-1. Check Dev code coverage \<yourPublicIp>:8000/coverage.html
-1. **In Cloud Shell**
-1. Ctrl-C to stop the web server
+1. **In your browser**  
+    Check Dev code coverage \<yourPublicIp>:8000/coverage.html
+1. **In Cloud Shell**  
+    Ctrl-C to stop the web server
 1. [Git add/commit/push][GitLink]
-1. Check Jenkins test results
-1. Check Jenkins code coverage
-1. **In Jenkins** click Build Now to run the build a second time  
-   The test Fails because the previous test data is still there.
-1. **In SQL Developer Web** Execute the following query in the worksheet to query the customers
+1. **In Jenkins**  
+    1. Check test results
+    1. Check code coverage
+    1. Click 'Build Now' to run the build a second time  
+      The test Fails because the previous test data is still there.
+1. **In SQL Developer Web**  
+    Execute the following query in the worksheet to query the customers
     ```
     select * from hol_test.customers;
     ```
 
 ## Before All
 
-Edit the package spec
+Edit the package spec  
+Run the following in your **Cloud Shell(ssh)**
 ```
 nano test/test_generate_customers_func.pks
 ```
@@ -229,12 +240,13 @@ Add the following before the end of the package
 ```
 
 1. [Git add/commit/push][GitLink]
-1. Check results  
+1. Check results in Jenkins  
    The new test fails.  3 new customers were created but it was expecting 23.  This is because the data was not cleaned up after the previous test.  
    The before_all setup procedure is only run once before all tests run.
 
 ## Before each
-Edit the package spec
+Edit the package spec  
+Run the following in your **Cloud Shell(ssh)**
 ```
 nano test/test_generate_customers_func.pks
 ```
@@ -261,6 +273,11 @@ The test customers are still there after the last test ran.
 
 It's a good idea to clean up when your tests are complete.  You should try and leave the environment the way you found it when you got there.
 
+Edit the package spec  
+Run the following in your **Cloud Shell(ssh)**
+```
+nano test/test_generate_customers_func.pks
+```
 Add the following above ```--%beforeeach```
 ```
   --%afterall
@@ -284,7 +301,8 @@ In your browser open the Jenkins tab (You may need to refresh)
 * Check code coverage
 
 ## Already over the limit
-Edit the package spec
+Edit the package spec  
+Run the following in your **Cloud Shell(ssh)**
 ```
 nano test/test_generate_customers_func.pks
 ```
@@ -311,7 +329,8 @@ Add the following before the end of the package
    The new test fails.  Since the 'after each' procedure is working there is still room to generate new customers before the limit.  You will need to add a little setup code to make sure there are more customers than the limit before running the test.  
 
 ## Add setup to test (insert 30 then run test)
-Edit the package body
+Edit the package body  
+Run the following in your **Cloud Shell(ssh)**
 ```
 nano test/test_generate_customers_func.pkb
 ```
@@ -335,7 +354,8 @@ This will create 30 new customers in the table before the test is run.
    The coverage should now be at 93.33%.
 
 ## Test for null in 0 out
-Edit the package spec
+Edit the package spec  
+Run the following in your **Cloud Shell(ssh)**
 ```
 nano test/test_generate_customers_func.pks
 ```
@@ -366,7 +386,8 @@ Add the following before the end of the package
 A change request has come in.  The user would like the function to return null when a null is passed in.  
 It is good practice to setup your tests so they test for what you want the code to do, before your change it.  
 
-Edit the package spec
+Edit the package spec  
+Run the following in your **Cloud Shell(ssh)**
 ```
 nano test/test_generate_customers_func.pks
 ```
@@ -395,7 +416,8 @@ To
 1. Check results, this test should now fail.
 
 ## Change the code to pass the test
-Edit the function
+Edit the function  
+Run the following in your **Cloud Shell(ssh)**
 ```
 nano source/gen_cust.fnc
 ```
@@ -419,7 +441,8 @@ To
 Even though we have 100% code coverage, there is still at least one potential bug.  
 If a user calls this function and passes in a non numeric value the function will throw an exception "numeric or value error".  Add a test to check for the expected exception.
 
-Edit the package spec
+Edit the package spec  
+Run the following in your **Cloud Shell(ssh)**
 ```
 nano test/test_generate_customers_func.pks
 ```
