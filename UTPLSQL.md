@@ -92,7 +92,8 @@ The placeholder test procedure creates a boolean variable set to true and tests 
 ```
 
 ## Test Coverage
-In your Jenkins project page, you will see a "Code Coverage" graph on the right hand side.
+In your Jenkins project page, you will see a "Code Coverage" graph on the right hand side.  
+![](images/Jenkins-CoverageReport.png)  
 
 The current code coverage is 0%.
 
