@@ -7,7 +7,7 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
 **In your browser**  
-Open a new tab and go to `https://<yourComputeIP>:8080`  
+Open a new tab and go to `https://<YourPublicIP>:8080`  
    ![](images/Jenkins-getting-ready.png)  
 Log in with the above password
    ![](images/Jenkins-Unlock.png)

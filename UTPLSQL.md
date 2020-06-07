@@ -161,7 +161,7 @@ In this test you are telling utPLSQL (ut) to expect that when you call the gener
     pushd /home/opc/db-devops-tools; python -m SimpleHTTPServer; popd
     ```
 1. **In your browser**  
-    Check Dev code coverage \<yourPublicIp>:8000/coverage.html
+    Check Dev code coverage \<YourPublicIP>:8000/coverage.html
 1. In your **Cloud Shell(ssh)**  
     Ctrl-C to stop the web server
 1. [Git add/commit/push][GitLink]

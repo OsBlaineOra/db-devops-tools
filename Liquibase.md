@@ -1583,7 +1583,7 @@ Use the following command to start a simple HTTP server with Python.
 ```
 pushd /home/opc/db-devops-tools/liquibase/docs; python -m SimpleHTTPServer; popd
 ```
-Open a tab in your browser and go to `<yourComputeIP>:8000` to review the docs.
+Open a tab in your browser and go to `<YourPublicIP>:8000` to review the docs.
 
 Click on 'Current Tables'.  Notice there are no tables in the documentation.
 

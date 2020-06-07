@@ -25,8 +25,7 @@ This 4-hour lab walks you through the steps to
 1. Go to https://www.oracle.com/cloud/free/
 2. Click "Start for free"
 3. Populate the forms and create an account.
-4. Once your account is created, log in and go to the dashboard  
-https://www.oracle.com/cloud/sign-in.html
+4. Once your account is created, [log in](https://www.oracle.com/cloud/sign-in.html) and go to the dashboard.  
    ![](images/cloudDashboard.png)
 
 ## Create a [compartment](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm)  
@@ -67,7 +66,7 @@ This will open a preconfigured VM that you will use to access and setup your pro
 
 ### Working in the Oracle Cloud Shell
 * The instructions in this lab use nano to edit files.  (You are welcome to use another editor if you prefer.)  
-When instructed to save a file in nano do the following.
+To close and save a file in nano do the following.
    1. Ctrl-X
    1. Y
    1. Enter 
@@ -94,7 +93,8 @@ Once your ATP Database status is Available (the yellow box turns green) you can 
 You should change the password value in this command to something more secure.  
 **Note:** This password is for the .zip file, not your database. 
 
-In your **Cloud Shell** enter the following.
+In your **Cloud Shell**  
+Enter the following.
 ```
 oci db autonomous-database generate-wallet --autonomous-database-id ${DB_OCID} --password Pw4ZipFile --file ~/Wallet_MyAtpDb.zip
 ```
@@ -130,14 +130,16 @@ An Oracle Compute instance is a Cloud VM that you will use to install and run al
       ```
       cat ~/.ssh/id_rsa.pub
       ```
-1. In the Create Compute form, paste the public key in the SSH KEYS box.
+1. In the **Create Compute form**, paste the public key in the SSH KEYS box.
    ![](images/createComputeForm2.png)
    If you intend to SSH into your compute instance from any other machine, you may click the "+ Another Key" button and enter the public key for that machine.  
-   (you may also want to save a copy of the Cloud Shell private key '~/.ssh/id_rsa' on your local machine.  DO NOT SHARE your private key, this key allows access to your compute instance.)
+   (you may also want to save a copy of the Cloud Shell private key '~/.ssh/id_rsa' on your local machine.)  
+   **DO NOT SHARE your private key**.  This key allows access to your compute instance.
 1. Click "Create".
 1. Once the Compute instance is Running, locate the Public IP Address and click Copy.  
 Keep this IP address handy, it will be used throughout the lab and referred to as \<YourPublicIP>.
-1. In your **Cloud Shell**, create an environment variable to store the IP.
+1. In your **Cloud Shell**  
+   Create an environment variable to store the IP.
    ```
    export COMPUTE_IP=<YourPublicIP>
    ```
@@ -160,7 +162,7 @@ Keep this IP address handy, it will be used throughout the lab and referred to a
       ```
    1. Click Add Ingress Rule.
       ![](images/openPort4.png)
-   1. Repeat for port 8000.
+   1. Repeat for 'DESTINATION PORT RANGE' 8000.
 
    **Be Aware**  
    **This will open ports 8080 8000 for any instance using the default security list**  
@@ -250,7 +252,7 @@ Download the utPLSQL testing framework
 ```
 curl -LOk $(curl --silent https://api.github.com/repos/utPLSQL/utPLSQL/releases/latest | awk '/browser_download_url/ { print $2 }' | grep ".tar.gz\"" | sed 's/"//g')
 ```
-Extract downloaded "tar.gz" file
+Extract the downloaded "tar.gz" file
 ```
 tar xvzf utPLSQL.tar.gz 
 ```
