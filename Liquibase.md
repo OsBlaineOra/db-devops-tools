@@ -3,6 +3,25 @@
 
 The below code examples will be run in your **Cloud Shell(ssh)** unless otherwise noted.
 
+## Standard Instructions
+Throughout this section you will see the following instruction links  
+
+[Liquibase Update][LbUpdateLink]
+
+[LbUpdateLink]: UTPLSQL.md#liquibase-update "Run the following in your Cloud Shell(ssh)
+cd ~/db-devops-tools/liquibase
+liquibase --contexts=test update
+cd ~/db-devops-tools"  
+
+[Git add/commit/push][GitLink]  
+
+[GitLink]: UTPLSQL.md#Git-Add-Commit-Push "Run the following in your Cloud Shell(ssh)
+cd ~/db-devops-tools
+git add .
+git commit -m\"your commit message\"
+git push"
+cd liquibase  
+
 ## A little setup
 You could run liquibase from the command line with a `java -jar` command using parameters.  To make it a bit easier, Liquibase includes a shell script and a .bat file that you can call `/opt/liquibase/liquibase`.  When you installed liquibase you added the directory to your the path for your opc user.  This will allow you to simply call `liquibase` in the below examples.
 
@@ -396,17 +415,9 @@ cat diff-changelog.json
 rm diff-changelog.json
 ```
 
-### Push your changes to GitHub
-This should trigger the webhook and test the Jenkins integration.
+### [Push your changes to GitHub][GitLink] 
+This should trigger the webhook and test the Jenkins integration.  
 
-```bash
-cd ~/db-devops-tools
-git status
-git add .
-git commit -m"Added customers and orders tables."
-git push
-cd liquibase
-```
 Switch to your Jenkins browser tab and make sure the build does not error.  Once the build is complete, run the diff command again.
 
 Run the following in your **Cloud Shell(ssh)**
@@ -602,15 +613,7 @@ Re-run the changes in your **Cloud Shell(ssh)**
 liquibase update
 ```
 
-Push your changes to GitHub
-```bash
-cd ~/db-devops-tools
-git status
-git add .
-git commit -m"Added customer name column."
-git push
-cd liquibase
-```
+[Git add/commit/push][GitLink] 
 
 Switch to your Jenkins tab in your browser and make sure the build does not error.  Once the build is complete, run the diff command again.
 ```
@@ -940,17 +943,8 @@ select * from hol_dev.order_statuses;
 ```
 The data is correct.
 
-Push your changes to GitHub
+[Git add/commit/push][GitLink]  
 
-Run the following in your **Cloud Shell(ssh)**
-```bash
-cd ~/db-devops-tools
-git status
-git add .
-git commit -m"Added order status data."
-git push
-cd liquibase
-```
 Switch to your Jenkins tab in your browser and make sure the build does not error.  Once the build is complete, check the hol_test data in SDW.  
 **Data differences are not shown in the diff results.**
 
@@ -1528,15 +1522,7 @@ Notice the dateexecuted timestamp has changed.
 
 A changelog flagged `"runOnChange": true,` will re-run whenever the changelog itself is changed or the file it's referencing has changed.  
 
-Push your changes to GitHub
-```bash
-cd ~/db-devops-tools
-git status
-git add .
-git commit -m"Added a view and function."
-git push
-cd liquibase
-```
+[Git add/commit/push][GitLink]  
 Switch to your Jenkins tab in your browser and make sure the build does not error.  Once the build is complete, check the hol_test data in SDW.  
 
 Run the following queries in **SQL Developer Web**
