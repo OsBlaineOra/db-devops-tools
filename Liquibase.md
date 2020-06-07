@@ -383,7 +383,7 @@ Run the following query in a **SQL Developer Web** worksheet to show the existin
 select owner, table_name
   from all_tables
  where owner in ('HOL_DEV', 'HOL_TEST')
-order by 2.1;
+order by 2, 1;
 ```
 As you can see, tables have been created in hol_dev and not hol_test.  (Unless you ran a build in Jenkins, then you'll see two Liquibase tables.)
 
@@ -435,7 +435,7 @@ Your two schema should be the same.
 ## Rollback
 
 ### Add a column
-When you make changes to existing objects you will create a new changelog.  You **do not** alter the previous changelogs.
+When you make changes to existing objects you will create a new changelog.  You **do not** alter the previous ran changelogs.
 
 ```
 nano runOnce/changelog-add-col-customers-name.json
@@ -1567,7 +1567,7 @@ Run the following queries in **SQL Developer Web**
 select owner, table_name
   from all_tables
  where owner in ('HOL_DEV', 'HOL_TEST')
-order by 2.1;
+order by 2, 1;
 ```
 
 Notice that all of the tables in HOL_DEV have been dropped.  
