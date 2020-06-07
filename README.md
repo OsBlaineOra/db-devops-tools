@@ -363,3 +363,9 @@ This rsa key pair will be used to access your GitHub repository from the compute
 ## Goto [Liquibase](Liquibase.md) section
 
 ## Goto [utPLSQL](UTPLSQL.md) section
+
+## Want to Learn More?
+* [Oracle Cloud](http://www.oracle.com/cloud/free)
+* [Jenkins](https://www.jenkins.io/)
+* [Liquibase](https://github.com/liquibase/liquibase)
+* [utPLSQL](https://github.com/utPLSQL/utPLSQL)
