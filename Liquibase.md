@@ -565,7 +565,7 @@ desc hol_dev.customers
 
 The name column has been added and is required '`not null`'.
 
-It can be risky to rollback X number of changesets.  If you count incorrectly or if someone else has run an update that your are unaware of.
+It can be risky to rollback X number of changesets.  You might count incorrectly or someone else may have run an update that your are unaware of.
 
 It is safer to
 ### Rollback to a tag
