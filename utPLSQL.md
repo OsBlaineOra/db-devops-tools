@@ -358,7 +358,7 @@ This will create 30 new customers in the table before the test is run.
 1. [Git add/commit/push][GitLink]
 1. **In Jenkins** (You may need to refresh your browser)
     * Check the test results, all 3 tests should now pass.
-    * Check the Lines code coverage, it should be at 93.33%.
+    * Check the Lines code coverage, it should be at 93%.
 
 ## Test for null in 0 out
 To get coverage for the remaining lines you need to test for a 'null in' returning 0.
