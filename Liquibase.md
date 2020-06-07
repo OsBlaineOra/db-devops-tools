@@ -435,7 +435,7 @@ Your two schema should be the same.
 ## Rollback
 
 ### Add a column
-When you make changes to existing objects you will create a new changelog.  You **do not** alter the previously ran changelogs.
+When you make changes to existing objects you will create a new changelog.  You **do not** alter the previously run changelogs.
 
 ```
 nano runOnce/changelog-add-col-customers-name.json
@@ -531,7 +531,7 @@ liquibase update
 
 Run the following in **SQL Developer Web**
 ```
-desc hol_dev.customers
+desc hol_dev.customers;
 ```
 
 ### The customer name column should be required.  
@@ -547,7 +547,7 @@ liquibase rollbackCount 1
 
 Run the following in **SQL Developer Web**
 ```
-desc hol_dev.customers
+desc hol_dev.customers;
 ```  
 The name column has been removed.
 
@@ -576,7 +576,7 @@ liquibase update
 
 Run the following in **SQL Developer Web**
 ```
-desc hol_dev.customers
+desc hol_dev.customers;
 ```  
 
 The name column has been added and is required '`not null`'.
@@ -754,7 +754,6 @@ Run the following queries in **SQL Developer Web**
 ```
 select owner,object_name, object_type from all_objects where object_name = 'ORDER_STATUSES';
 
-
 select constraint_name, table_name, r_constraint_name from all_constraints where constraint_name ='ORDER_STATUS_FK';
 ```
 
@@ -911,9 +910,15 @@ Run the following in your **Cloud Shell(ssh)**
 ```
 nano runOnce/changelog-load-status-data.json
 ```
-Add the following at the end of the changes array
+Add a rollback change at the end of the changes array
 ```json
-,
+        "changes": [
+          {
+            "loadData": {
+              "tableName": "order_statuses",
+              "file": "runOnce/status-data.csv"
+            }
+          },
           {
             "rollback": {
               "delete": {
@@ -921,6 +926,7 @@ Add the following at the end of the changes array
               }
             }
           }
+        ]
 ```
 Rollback the change
 ```
@@ -1416,7 +1422,7 @@ Add the following
             "createProcedure": {
               "dbms": "oracle",
               "encoding": "utf8",
-              "path": "../source/gen_cust.fnc",
+              "path": "../../source/gen_cust.fnc",
               "relativeToChangelogFile": true
             }
           }
@@ -1500,7 +1506,7 @@ Run the following queries in **SQL Developer Web**
 ```sql
 select *
   from hol_dev.databasechangelog
- where id='8'
+ where id='8';
 ```
 Notice the dateexecuted timestamp.
 
