@@ -259,7 +259,7 @@ tar xvzf utPLSQL.tar.gz
 Use SQLcl to install utPLSQL  
 ('XNtxj8eEgA6X6b6f' is the default utPLSQL password.  You should change it.)
 ```
-sql admin/notMyPassword@MyAtpDb_TP @utPLSQL/source/install_headless_with_trigger.sql ut3 XNtxj8eEgA6X6b6f DATA
+sql admin/n0tMyPassword@MyAtpDb_TP @utPLSQL/source/install_headless_with_trigger.sql ut3 XNtxj8eEgA6X6b6f DATA
 ```
 
 ### Install [utPLSQL-cli](https://github.com/utPLSQL/utPLSQL-cli)
@@ -357,7 +357,7 @@ This rsa key pair will be used to access your GitHub repository from the compute
    ```
 1. Use SQLcl to create the database schemas
    ```
-   sql admin/notMyPassword@MyAtpDb_TP @create_schema.sql
+   sql admin/n0tMyPassword@MyAtpDb_TP @create_schema.sql
    ```
 
 ## Continue through the following sections
