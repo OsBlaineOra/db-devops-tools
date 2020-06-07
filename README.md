@@ -358,11 +358,10 @@ This rsa key pair will be used to access your GitHub repository from the compute
    sql admin/notMyPassword@MyAtpDb_TP @create_schema.sql
    ```
 
-## Goto [Jenkins](Jenkins.md) section
-
-## Goto [Liquibase](Liquibase.md) section
-
-## Goto [utPLSQL](UTPLSQL.md) section
+## Continue through the following sections
+1. Setup [Jenkins](Jenkins.md)
+1. Schema Migration with [Liquibase](Liquibase.md)
+1. Unit test your Database code with [utPLSQL](UTPLSQL.md)
 
 ## Want to Learn More?
 * [Oracle Cloud](http://www.oracle.com/cloud/free)
