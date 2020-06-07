@@ -1531,7 +1531,7 @@ Run the following queries in **SQL Developer Web**
 ```sql
 select *
   from hol_dev.databasechangelog
- where id='8'
+ where id='8';
 ```
 Notice the dateexecuted timestamp has changed.
 
