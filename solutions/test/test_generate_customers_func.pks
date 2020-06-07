@@ -5,10 +5,8 @@ create or replace package test_generate_customers_func as
   -- %rollback(manual)
 
   -- %beforeall
-  procedure before_all;
-
-  --%afterall
-  --%beforeeach
+  -- %afterall
+  -- %beforeeach
   procedure delete_added_customers;
 
   -- %test(Generates all requested)
