@@ -394,7 +394,7 @@ Add the following before the end of the package
 
 ## Changing code covered by an existing test
 A change request has come in.  The user would like the function to return null when a null is passed in.  
-It is good practice to setup your tests so they test for what you want the code to do, before your change it.  
+It is good practice to setup your tests so they test for what you want the code to do, before changing the function code.  
 
 Edit the package spec  
 Run the following in your **Cloud Shell(ssh)**
@@ -423,9 +423,10 @@ To
 ```
 
 1. [Git add/commit/push][GitLink]
-1. Check results, this test should now fail.
+1. **In Jenkins**
+    1. Check results, this test should now fail.
 
-## Change the code to pass the test
+### Change the code to pass the test
 Edit the function  
 Run the following in your **Cloud Shell(ssh)**
 ```
@@ -445,7 +446,8 @@ To
 ```
 
 1. [Git add/commit/push][GitLink]
-1. Check results, all 4 tests should now pass.
+1. **In Jenkins**
+    1. Check results, all 4 tests should now pass.
 
 ## Test for Exceptions
 Even though we have 100% code coverage, there is still at least one potential bug.  
