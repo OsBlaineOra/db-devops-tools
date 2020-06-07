@@ -239,7 +239,7 @@ Add the following above ```--%beforeeach```
 ```
   --%afterall
 ```
-[Liquibase Update](utPLSQL.md#Liquibase-Update "cd ~/db-devops-tools/liquibase
+[Liquibase Update](UTPLSQL.md#liquibase-update "cd ~/db-devops-tools/liquibase
 liquibase --contexts=test update
 cd ~/db-devops-tools")  
 [Run Tests Locally](Run-Tests-Locally "/opt/utPLSQL-cli/bin/utplsql run hol_dev/HandsOnLabUser1@MyAtpDb_TP?TNS_ADMIN=/opt/oracle/wallet \
