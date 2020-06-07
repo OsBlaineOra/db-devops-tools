@@ -533,6 +533,7 @@ Run the following in **SQL Developer Web**
 ```
 desc hol_dev.customers
 ```  
+The name column has been removed.
 
 Run the following in your **Cloud Shell(ssh)**
 ```
@@ -562,6 +563,7 @@ Run the following in **SQL Developer Web**
 desc hol_dev.customers
 ```  
 
+The name column has been added and is required '`not null`'.
 
 It can be risky to rollback X number of changesets.  If you count incorrectly or if someone else has run an update that your are unaware of.
 
