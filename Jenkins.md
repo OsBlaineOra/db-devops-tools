@@ -7,7 +7,7 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
 **In your browser**  
-Open a new tab and go to ```https://<yourComputeIP>:8080```  
+Open a new tab and go to `https://<yourComputeIP>:8080`  
    ![](images/Jenkins-getting-ready.png)  
 Log in with the above password
    ![](images/Jenkins-Unlock.png)
@@ -141,12 +141,12 @@ Log in with the above password
     1. Click 'Add post-build action'
     1. Select 'Publish Cobertura Coverage Report'  
         ![](images/Jenkins-AddCobertura.png)  
-    1. In 'Cobertura xml report pattern' enter ```coverage.xml```  
+    1. In 'Cobertura xml report pattern' enter `coverage.xml`  
         ![](images/Jenkins-CoberturaFile.png)  
     1. Click 'Add post-build action'
     1. Select 'Publish JUnit test result report'  
         ![](images/Jenkins-AddJunit.png)  
-    1. In 'Test report XMLs' enter ```xunit_test_results.xml```  
+    1. In 'Test report XMLs' enter `xunit_test_results.xml`  
         ![](images/Jenkins-JunitFile.png)  
 
 1. Click 'Save'  

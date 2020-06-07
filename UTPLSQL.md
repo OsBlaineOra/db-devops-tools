@@ -70,19 +70,19 @@ cat test/test_generate_customers_func.pks
 
 utPLSQL uses annotations to define the unit tests.  
 
-```-- %suite(Generate Customers function)``` declares that this is a test suite named "Generate Customers function"  
+`-- %suite(Generate Customers function)` declares that this is a test suite named "Generate Customers function"  
 
-```-- %suitepath(generate_customers)``` is used to define the path to the unit being tested.  In this case it is a single stored function "generate_customers".  If you were testing a function inside of a package you could declare the path all the way from the schema to the function  
-```-- %suitepath(my_schema.the_package.a_function)```.  Use a path definition that makes sense for your project.  
+`-- %suitepath(generate_customers)` is used to define the path to the unit being tested.  In this case it is a single stored function "generate_customers".  If you were testing a function inside of a package you could declare the path all the way from the schema to the function  
+`-- %suitepath(my_schema.the_package.a_function)`.  Use a path definition that makes sense for your project.  
 
-The function that you will be testing inserts data and executes a commit.  You will need to manually rollback the test data and use ```-- %rollback(manual)``` so that utPLSQL will not attempt to control the rollbacks.  
+The function that you will be testing inserts data and executes a commit.  You will need to manually rollback the test data and use `-- %rollback(manual)` so that utPLSQL will not attempt to control the rollbacks.  
 
 A placeholder test that always passes has been included.
 ```
   -- %test(Placeholder Test)
   procedure always_pass;
 ```
-The ```-- %test(<Test Name>)``` annotation declares that the following procedure is a test.
+The `-- %test(<Test Name>)` annotation declares that the following procedure is a test.
 
 Review the test package body
 ```
@@ -183,7 +183,7 @@ Run the following in your **Cloud Shell(ssh)**
 ```
 nano test/test_generate_customers_func.pks
 ```
-Add the following between the ```-- %rollback(manual)``` and ```-- %test(Generates all requested)``` lines
+Add the following between the `-- %rollback(manual)` and `-- %test(Generates all requested)` lines
 ```
   -- %beforeall
   procedure delete_added_customers;
@@ -192,7 +192,7 @@ Edit the package body
 ```
 nano test/test_generate_customers_func.pkb
 ```
-Add the following before the line ```procedure gen_all is```
+Add the following before the line `procedure gen_all is`
 
 ```
   procedure delete_added_customers is
@@ -256,7 +256,7 @@ Add `-- %beforeeach` after the `-- %beforeall` annotation
     procedure delete_added_customers;
   ```
   This will call the cleanup procedure before each test is run.  
-  Alternatively, you could make it a ```-- %aftereach``` and have it clean up after each test runs.  But then you wouldn't be as sure that the environment was ready before each test is run.  
+  Alternatively, you could make it a `-- %aftereach` and have it clean up after each test runs.  But then you wouldn't be as sure that the environment was ready before each test is run.  
   Notice, if multiple annotations are performing the same action, you can stack the annotations and the same procedure will be called for each annotation.  
 1. [Git add/commit/push][GitLink]
 1. **In Jenkins** (You may need to refresh your browser)
@@ -341,7 +341,7 @@ Run the following in your **Cloud Shell(ssh)**
 ```
 nano test/test_generate_customers_func.pkb
 ```
-Add the following before the ```ut.expect(...``` line
+Add the following before the `ut.expect(...` line
 ```
     FOR counter IN 1 .. 30 LOOP
         new_name := 'custxxxTestOL' || counter || ' ' || CURRENT_TIMESTAMP;
@@ -462,7 +462,7 @@ Add the following before the end of the package
   -- %throws(-06502)
   procedure alpha_in;
 ```
-You use the ```-- %throws(<Exception number>)``` annotation to test for the exception number you expect to be thrown.  
+You use the `-- %throws(<Exception number>)` annotation to test for the exception number you expect to be thrown.  
 
 Edit the package body
 ```

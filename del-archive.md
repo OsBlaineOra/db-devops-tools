@@ -107,7 +107,7 @@ Unexpected error running Liquibase: Validation Failed:
      1 change sets check sum
           runOnce/changelog-load-status-data.json::5::YourNameHere was: 8:808882540b8e59eb72c531c6f762ec8b but is now: 8:d0961735f2e626c20cb6df76860055ef
 ```
-add ```"validCheckSum": "<but is now value>",``` to the changeset
+add `"validCheckSum": "<but is now value>",` to the changeset
 
 ```
 nano runOnce/changelog-load-status-data.json
