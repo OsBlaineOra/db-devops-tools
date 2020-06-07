@@ -1,4 +1,6 @@
-# utPLSQL
+# [utPLSQL](https://github.com/utPLSQL/utPLSQL)
+utPLSQL is a Unit Testing framework for Oracle PL/SQL and SQL.
+
 ## Standard Instructions
 Throughout this section you will see the following instruction links  
 
@@ -21,7 +23,7 @@ git add .
 git commit -m\"your commit message\"
 git push"  
 
-You may click the links to return to the below instructions if you would like to copy and paste the commands.  You may also hover the links to see the commands displayed in the popup text.
+You may click the links to return to the below instructions, if you would like to copy and paste the commands.  You may also hover the links to see the commands displayed in the popup text.
 
 ### Liquibase Update
 ```
@@ -89,7 +91,6 @@ The fake test procedure creates a boolean variable set to true and tests to see 
 ```
 
 ## Test Coverage
-
 In your Jenkins project page, you will see a "Code Coverage" graph on the right hand side.
 
 The current code coverage is 0%.
