@@ -763,7 +763,7 @@ Submitted,Awaiting payment
 Shipped,as been sent
 Complete,Has been delivered
 ```
-The first row defines the columns that data will be loaded into.  The remain rows contain the data to be loaded.
+The first row defines the columns that data will be loaded into.  The remaining rows contain the data to be loaded.
 
 Create a new changelog
 ```
@@ -938,7 +938,7 @@ The data is correct.
 
 [Git add/commit/push][GitLink]  
 
-Switch to your Jenkins tab in your browser and make sure the build does not error.  Once the build is complete, check the hol_test data in SDW.  
+Switch to your Jenkins tab in your browser and make sure the build does not error.  Once the build is complete, check the hol_test data.  
 **Data differences are not shown in the diff results.**
 
 Run the following queries in **SQL Developer Web**
@@ -1094,7 +1094,9 @@ Add the following to the file
   ]
 }
 ```
-In this changelog you are using the insert change to add data to the customer and orders tables.
+Notice this changeset has the property `"context": "test",`.
+
+Also, in this changelog you are using the `insert` change type to add data to the customer and orders tables.
 
 When data is added to the customer table the ID is generated automatically.  Since this new ID could be any number, you can not define it with a 'value' object when you add an order record.
 
