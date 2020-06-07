@@ -383,7 +383,7 @@ This rsa key pair will be used to access your GitHub repository from the compute
 ## Continue through the following sections
 1. Setup [Jenkins](Jenkins.md)
 1. Schema Migration with [Liquibase](Liquibase.md)
-1. Unit test your Database code with [utPLSQL](UTPLSQL.md)
+1. Unit test your Database code with [utPLSQL](utPLSQL.md)
 
 ## Want to Learn More?
 * [Oracle Cloud](http://www.oracle.com/cloud/free)
