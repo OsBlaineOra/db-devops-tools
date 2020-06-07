@@ -12,7 +12,7 @@ Open a new tab and go to `https://<YourPublicIP>:8080`
 Log in with the above password
    ![](images/Jenkins-Unlock.png)
 
-1. Install suggested  
+1. Click Install suggested plugins  
    ![](images/Jenkins-InstallSuggested.png)  
    ![](images/Jenkins-GettingStarted.png)  
 1. Populate the fields to create an admin user
@@ -24,7 +24,7 @@ Log in with the above password
    ![](images/Jenkins-Ready.png)
 1. Click 'Manage Jenkins'  
    ![](images/Jenkins-ManageJenkins.png)
-1. Click 'Manage Plugins'
+1. Click 'Manage Plugins'  
    ![](images/Jenkins-ManagePlugins.png)
 1. Click 'Available' tab
 1. In the search box, enter 'utplsql'
