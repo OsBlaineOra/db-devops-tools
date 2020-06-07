@@ -71,12 +71,32 @@ To close and save a file in nano do the following.
    1. Y
    1. Enter 
 * When using nano in the cloud shell use `Ctrl-Shift-V` or `Shift-Insert` to paste, rather than `Ctrl-V`.
-* At times you will be asked to use Git to add/commit/push your changes.  Use the following commands.  
-```
-git add .
-git commit -m"enter your commit message here"
-git push
-```
+* At times you will see the following instruction link  
+
+   [Git add/commit/push][GitLink]  
+
+   [GitLink]: UTPLSQL.md#Git-Add-Commit-Push "Run the following in your Cloud Shell(ssh)
+   cd ~/db-devops-tools
+   git add .
+   git commit -m\"your commit message\"
+   git push
+   cd liquibase"  
+
+   You may click the link to return to the below instructions, if you would like to copy and paste the commands.  
+   You may also hover the link to see the commands displayed in the popup text.
+
+   #### Git Add Commit Push
+   Run the following in your **Cloud Shell(ssh)**
+   ```
+   cd ~/db-devops-tools
+   git add .
+   git commit -m"your commit message"
+   git push
+   ```
+
+
+
+
 
 ### Create an environment variable for your Database OCID
 Once the Cloud Shell is running, create an environment variable for your Database OCID you copied above.

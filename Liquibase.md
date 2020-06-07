@@ -12,8 +12,20 @@ Throughout this section you will see the following instruction link
 cd ~/db-devops-tools
 git add .
 git commit -m\"your commit message\"
-git push"
-cd liquibase  
+git push
+cd liquibase"  
+
+You may click the link to return to the below instructions, if you would like to copy and paste the commands.  
+You may also hover the link to see the commands displayed in the popup text.
+
+### Git Add Commit Push
+Run the following in your **Cloud Shell(ssh)**
+```
+cd ~/db-devops-tools
+git add .
+git commit -m"your commit message"
+git push
+```
 
 ## A little setup
 You could run liquibase from the command line with a `java -jar` command using parameters.  To make it a bit easier, Liquibase includes a shell script and a .bat file that you can call `/opt/liquibase/liquibase`.  When you installed liquibase you added the directory to your the path for your opc user.  This will allow you to simply call `liquibase` in the below examples.
