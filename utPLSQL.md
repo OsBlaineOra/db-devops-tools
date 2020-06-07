@@ -6,21 +6,21 @@ Throughout this section you will see the following instruction links
 
 [Liquibase Update][LbUpdateLink]
 
-[LbUpdateLink]: UTPLSQL.md#liquibase-update "Run the following in your Cloud Shell(ssh)
+[LbUpdateLink]: utPLSQL.md#liquibase-update "Run the following in your Cloud Shell(ssh)
 cd ~/db-devops-tools/liquibase
 liquibase --contexts=test update
 cd ~/db-devops-tools"  
 
 [Run Tests Locally][RunTestsLink]
 
-[RunTestsLink]: UTPLSQL.md#Run-Tests-Locally "Run the following in your Cloud Shell(ssh)
+[RunTestsLink]: utPLSQL.md#Run-Tests-Locally "Run the following in your Cloud Shell(ssh)
 /opt/utPLSQL-cli/bin/utplsql run hol_dev/HandsOnLabUser1@MyAtpDb_TP?TNS_ADMIN=/opt/oracle/wallet \
     -f=ut_coverage_html_reporter -o=coverage.html \
     -f=ut_documentation_reporter -c"
 
 [Git add/commit/push][GitLink]  
 
-[GitLink]: UTPLSQL.md#Git-Add-Commit-Push "Run the following in your Cloud Shell(ssh)
+[GitLink]: utPLSQL.md#Git-Add-Commit-Push "Run the following in your Cloud Shell(ssh)
 cd ~/db-devops-tools
 git add .
 git commit -m\"your commit message\"

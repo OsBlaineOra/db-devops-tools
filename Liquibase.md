@@ -1619,4 +1619,4 @@ pushd /home/opc/db-devops-tools/liquibase/docs; python -m SimpleHTTPServer; popd
 Refresh the browser tab.  Notice there documentation is now current.
 
 Use Ctrl+C to stop the web server.
-## Goto [utPLSQL](UTPLSQL.md) section
+## Goto [utPLSQL](utPLSQL.md) section
