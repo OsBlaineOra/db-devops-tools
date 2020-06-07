@@ -335,7 +335,9 @@ Add the following before the end of the package
     Check the test results.  The new test fails.  
     Since the 'before each' procedure is working there is still room to generate new customers before the limit.  You will need to add a little setup code to your test to make sure there are more customers than the limit before running the test.  
 
-### Add setup to test (insert 30 then run test)
+### Add setup to test
+Add some code to insert 30 customers before running the test.  
+
 Edit the package body  
 Run the following in your **Cloud Shell(ssh)**
 ```
@@ -361,6 +363,8 @@ This will create 30 new customers in the table before the test is run.
     1. Check coverage, the coverage should now be at 93.33%.
 
 ## Test for null in 0 out
+To get coverage for the remaining lines you need to test for a null in returning 0.
+
 Edit the package spec  
 Run the following in your **Cloud Shell(ssh)**
 ```
@@ -384,12 +388,11 @@ Add the following before the end of the package
 ```
 
 1. [Git add/commit/push][GitLink]
-1. Check results, all 4 tests should pass.
-1. Check coverage
-   The coverage should now be at 100%.
+1. **In Jenkins**
+    1. Check results, all 4 tests should pass.
+    1. Check coverage, the coverage should now be at 100%.
 
-
-## Test for null out
+## Changing code covered by an existing test
 A change request has come in.  The user would like the function to return null when a null is passed in.  
 It is good practice to setup your tests so they test for what you want the code to do, before your change it.  
 
