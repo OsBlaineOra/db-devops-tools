@@ -242,9 +242,9 @@ Add the following before the end of the package
 ```
 
 1. [Git add/commit/push][GitLink]
-1. Check results in Jenkins  
-   The new test fails.  3 new customers were created but it was expecting 23.  This is because the data was not cleaned up after the previous test.  
-   The before_all setup procedure is only run once before all tests run.
+1. **In Jenkins**  
+    Check the test results.  The new test fails.  3 new customers were created but it was expecting 23.  
+    This is because the data was not cleaned up after the previous test ran.  The before_all setup procedure is only run once before all tests run.
 
 ## Before each
 Edit the package spec  
