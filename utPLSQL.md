@@ -60,6 +60,7 @@ For this exercise you will be creating a package of tests to test the generate_c
 Review the function  
 Run the following in your **Cloud Shell(ssh)**
 ```
+cd ~/db-devops-tools
 cat source/gen_cust.fnc
 ```
 
