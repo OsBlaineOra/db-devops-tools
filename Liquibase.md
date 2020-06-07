@@ -435,7 +435,7 @@ Your two schema should be the same.
 ## Rollback
 
 ### Add a column
-When you make changes to existing objects you will create a new changelog.  You **do not** alter the previous ran changelogs.
+When you make changes to existing objects you will create a new changelog.  You **do not** alter the previously ran changelogs.
 
 ```
 nano runOnce/changelog-add-col-customers-name.json
