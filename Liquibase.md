@@ -104,12 +104,12 @@ Add the following to the file
 }
 ```
 This changelog includes the following elements:
-* [preconditions](https://docs.liquibase.com/concepts/advanced/preconditions.html) are checks that will be evaluated before the changes are executed.  In this changelog you are ensuring that the changes will only be executed if you are either connected as `hol_dev` or `hol_test`.
+* [Preconditions](https://docs.liquibase.com/concepts/advanced/preconditions.html) are checks that will be evaluated before the changes are executed.  In this changelog you are ensuring that the changes will only be executed if you are either connected as `hol_dev` or `hol_test`.
 * A [changeset] is a group of changes.  The id value can be any string that makes sense for your project.  The author value should be changed to your name.
 * The changes array can contain one or more [Change Types](https://docs.liquibase.com/change-types/home.html).  In this changelog you will be creating a table.  As you read through the JSON object it may sound similar to how you would write an SQL script.
 
 ### Changelog Master file
-The master file is basically a changelog file that defines the run order for the other changelogs.  Instead of a master, you could start with a single changelog and chain all of your changelogs together.  If you were to do this, it would get complicated very fast.  Using a master changelog is a [better practice](https://docs.liquibase.com/concepts/bestpractices.html).
+The master.json file is a changelog file that defines the run order for the other changelogs.  Instead of a master, you could start with a single changelog and chain all of your changelogs together.  If you were to do this, it would get complicated very fast.  Using a master changelog is a [better practice](https://docs.liquibase.com/concepts/bestpractices.html).
 
 Modify the file master.json
 ```
@@ -169,7 +169,7 @@ order by dateexecuted;
 ```  
 ![](images/SqlDevWeb-Query1.png)  
 
-Scroll through the row data to see what Liquibase tracks about the changesets.  Notice towards the end that``tag` is `(null)`.
+Scroll through the row data to see what Liquibase tracks about the changesets.  Notice towards the end that `tag` is `(null)`.
 
 ## Tags
 Tagging your changeset is can be useful in many ways.  In the following exercises you will use tags as a point to rollback to.

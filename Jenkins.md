@@ -26,13 +26,13 @@ Log in with the above password
    ![](images/Jenkins-ManageJenkins.png)
 1. Click 'Manage Plugins'  
    ![](images/Jenkins-ManagePlugins.png)
-1. Click 'Available' tab
+1. Click the 'Available' tab
 1. In the search box, enter 'utplsql'
 1. Locate 'utPLSQL' and check the Install checkbox.
    ![](images/Jenkins-utPlsqlPlugin.png)  
 1. In the search box, enter 'Cobertura'  
 1. Locate 'Cobertura' and check the Install checkbox.  
-1. Click Install without restart.  
+1. Click Install without restart at the bottom.  
    ![](images/Jenkins-CoberturaPlugin.png)
 1. Check 'Restart Jenkins when installation is complete and no jobs are running'  
    ![](images/Jenkins-InstallRestart.png)  
@@ -56,7 +56,7 @@ Log in with the above password
 1. Build Triggers
     1. Check "GitHub hook trigger for GITScm polling"  
    ![](images/Jenkins-BuildTriggers.png)  
-   This will set your Jenkins build to listen for the webhook you created in your GitHub repository.  
+   This will configure your Jenkins build to listen for the webhook you created in your GitHub repository.  
    Whenever you push a change to your repository it will automatically trigger a build.
 1. Build Environment 
     1. Check "Delete workspace before build starts"
