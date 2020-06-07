@@ -249,14 +249,14 @@ Run the following in your **Cloud Shell(ssh)**
 ```
 nano test/test_generate_customers_func.pks
 ```
-Add `--% beforeeach` after the `--% beforeall` annotation
+Add `-- %beforeeach` after the `-- %beforeall` annotation
   ```  
-    --% beforeall
-    --% beforeeach
+    -- %beforeall
+    -- %beforeeach
     procedure delete_added_customers;
   ```
   This will call the cleanup procedure before each test is run.  
-  Alternatively, you could make it a ```--% aftereach``` and have it clean up after each test runs.  But then you wouldn't be as sure that the environment was ready before each test is run.  
+  Alternatively, you could make it a ```-- %aftereach``` and have it clean up after each test runs.  But then you wouldn't be as sure that the environment was ready before each test is run.  
   Notice, if multiple annotations are performing the same action, you can stack the annotations and the same procedure will be called for each annotation.  
 1. [Git add/commit/push][GitLink]
 1. **In Jenkins**  
@@ -278,11 +278,11 @@ Run the following in your **Cloud Shell(ssh)**
 ```
 nano test/test_generate_customers_func.pks
 ```
-Add `--% afterall` after the `--% beforeeach` annotation
+Add `-- %afterall` after the `-- %beforeeach` annotation
   ```  
-    --% beforeall
-    --% beforeeach
-    --% afterall
+    -- %beforeall
+    -- %beforeeach
+    -- %afterall
     procedure delete_added_customers;
   ```
 
@@ -450,7 +450,7 @@ To
     1. Check results, all 4 tests should now pass.
 
 ## Test for Exceptions
-Even though we have 100% code coverage, there is still at least one potential bug.  
+Even though we have 100% code coverage, there is still at least one more test you should create.  
 If a user calls this function and passes in a non numeric value the function will throw an exception "numeric or value error".  Add a test to check for the expected exception.
 
 Edit the package spec  
@@ -461,10 +461,10 @@ nano test/test_generate_customers_func.pks
 Add the following before the end of the package
 ```
   -- %test(Throws numeric or value error for non numeric input)  
-  --% throws(-06502)
+  -- %throws(-06502)
   procedure alpha_in;
 ```
-You use the ```--% throws(<Exception number>)``` annotation to test for the exception number you expect to be thrown.  
+You use the ```-- %throws(<Exception number>)``` annotation to test for the exception number you expect to be thrown.  
 
 Edit the package body
 ```
@@ -481,4 +481,5 @@ Add the following before the end of the package
 In this test you're expecting an exception to be thrown so there will not be a value to test for.
 
 1. [Git add/commit/push][GitLink]
-1. Check results, all 5 tests should pass.
+1. **In Jenkins**
+    1. Check results, all 5 tests should pass.
