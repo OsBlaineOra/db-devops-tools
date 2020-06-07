@@ -7,7 +7,8 @@ create or replace package test_generate_customers_func as
   -- %beforeall
   procedure before_all;
 
-  --%aftereach
+  --%afterall
+  --%beforeeach
   procedure delete_added_customers;
 
   -- %test(Generates all requested)
@@ -15,15 +16,5 @@ create or replace package test_generate_customers_func as
 
   -- %test(Generates up to the limit)
   procedure gen_to_limit;
-
-  -- %test(Already at the limit, Generates 0)
-  procedure over_limit;
-
-  -- %test(Returns null for null input)
-  procedure null_amount;
-
-  -- %test(Throws numeric or value error for non numeric input)  
-  --%throws(-06502)
-  procedure alpha_in;
-end;
+end test_generate_customers_func;
 /
