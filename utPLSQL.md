@@ -266,7 +266,7 @@ Add `-- %beforeeach` after the `-- %beforeall` annotation
 ## After all
 Run the following query in a **SQL Developer Web** worksheet.
 ```sql
-select * from hol_dev.customers;
+select * from hol_test.customers;
 ```
 
 The test customers are still there after the last test ran.
@@ -292,7 +292,7 @@ Add `-- %afterall` after the `-- %beforeeach` annotation
 
 Run the following query in a **SQL Developer Web** worksheet.
 ```sql
-select * from hol_dev.customers;
+select * from hol_test.customers;
 ```
 
 The test customers should be removed.
