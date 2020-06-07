@@ -260,8 +260,8 @@ Add `-- %beforeeach` after the `-- %beforeall` annotation
   Notice, if multiple annotations are performing the same action, you can stack the annotations and the same procedure will be called for each annotation.  
 1. [Git add/commit/push][GitLink]
 1. **In Jenkins** (You may need to refresh your browser)
-    * Check the test results.  Both tests should now pass.
-    * Check coverage.  The coverage should now be at 86.67%.
+    * Check the test results, both tests should now pass.
+    * Check coverage, the coverage should now be at 86.67%.
 
 ## After all
 Run the following query in a **SQL Developer Web** worksheet.
@@ -300,8 +300,7 @@ The test customers should be removed.
 [Git add/commit/push][GitLink]
 
 1. **In Jenkins** (You may need to refresh your browser)  
-    * Check the test results
-    * Check code coverage
+    * Check the test results, both tests should pass.
 
 ## Already over the limit
 Add a test to make sure that no new customers are created if you are already over the limit.
