@@ -8,7 +8,7 @@ Throughout this section you will see the following instruction link
 
 [Git add/commit/push][GitLink]  
 
-[GitLink]: UTPLSQL.md#Git-Add-Commit-Push "Run the following in your Cloud Shell(ssh)
+[GitLink]: Liquibase.md#git-add-commit-push "Run the following in your Cloud Shell(ssh)
 cd ~/db-devops-tools
 git add .
 git commit -m\"your commit message\"

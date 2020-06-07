@@ -75,7 +75,7 @@ To close and save a file in nano do the following.
 
    [Git add/commit/push][GitLink]  
 
-   [GitLink]: UTPLSQL.md#Git-Add-Commit-Push "Run the following in your Cloud Shell(ssh)
+   [GitLink]: db-devops-tools#git-add-commit-push "Run the following in your Cloud Shell(ssh)
    cd ~/db-devops-tools
    git add .
    git commit -m\"your commit message\"
