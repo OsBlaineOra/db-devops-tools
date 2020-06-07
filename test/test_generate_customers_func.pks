@@ -6,5 +6,5 @@ create or replace package test_generate_customers_func as
 
   -- %test(Placeholder Test)
   procedure always_pass;
-end;
+end test_generate_customers_func;
 /
