@@ -15,3 +15,4 @@ oracle_wallet
 coverage.html
 coverage.html_assets
 xunit_test_results.xml
+del-*
