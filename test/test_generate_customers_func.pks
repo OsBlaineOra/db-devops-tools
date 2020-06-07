@@ -4,7 +4,7 @@ create or replace package test_generate_customers_func as
   -- %suitepath(generate_customers)
   -- %rollback(manual)
 
-  -- %test(Fake Test)
+  -- %test(Placeholder Test)
   procedure always_pass;
 end;
 /
