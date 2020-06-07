@@ -165,7 +165,7 @@ In this test you are telling utPLSQL (ut) to expect that when you call the gener
 1. In your **Cloud Shell(ssh)**  
     Ctrl-C to stop the web server
 1. [Git add/commit/push][GitLink]
-1. **In Jenkins** (You may need to refresh your browser)
+1. **In Jenkins**  
     * Check the test results, the test should pass.
     * Click 'Build Now' to run the build a second time.  
       The test Fails because the previous test data is still there.
@@ -361,7 +361,7 @@ This will create 30 new customers in the table before the test is run.
     * Check coverage, the coverage should now be at 93.33%.
 
 ## Test for null in 0 out
-To get coverage for the remaining lines you need to test for a null in returning 0.
+To get coverage for the remaining lines you need to test for a 'null in' returning 0.
 
 Edit the package spec  
 Run the following in your **Cloud Shell(ssh)**
@@ -449,7 +449,9 @@ To
 
 ## Test for Exceptions
 Even though we have 100% code coverage, there is still at least one more test you should create.  
-If a user calls this function and passes in a non numeric value the function will throw an exception "numeric or value error".  Add a test to check for the expected exception.
+If a user calls this function and passes in a non numeric value the function will throw an exception "numeric or value error".  
+
+Add a test to check for the expected exception.
 
 Edit the package spec  
 Run the following in your **Cloud Shell(ssh)**
