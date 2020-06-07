@@ -242,6 +242,8 @@ Add the following before the end of the package
     This is because the data was not cleaned up after the previous test ran.  The before_all setup procedure is only run once before all tests run.
 
 ## Before each
+Call the clean up procedure before each test is run.
+
 Edit the package spec  
 Run the following in your **Cloud Shell(ssh)**
 ```
@@ -255,7 +257,7 @@ Add `--% beforeeach` after the `--% beforeall` annotation
   ```
   This will call the cleanup procedure before each test is run.  
   Alternatively, you could make it a ```--% aftereach``` and have it clean up after each test runs.  But then you wouldn't be as sure that the environment was ready before each test is run.  
-  Notice, if multiple annotations are performing the same action, you can stack the annotations and the same procedure can be called for each annotation.  
+  Notice, if multiple annotations are performing the same action, you can stack the annotations and the same procedure will be called for each annotation.  
 1. [Git add/commit/push][GitLink]
 1. **In Jenkins**  
     1. Check the test results.  Both tests should now pass.
@@ -303,6 +305,8 @@ In your browser open the Jenkins tab (You may need to refresh)
 * Check code coverage
 
 ## Already over the limit
+Add a test to make sure that no new customers are created if you are already over the limit.
+
 Edit the package spec  
 Run the following in your **Cloud Shell(ssh)**
 ```
@@ -327,10 +331,11 @@ Add the following before the end of the package
 ```
 
 1. [Git add/commit/push][GitLink]
-1. Check results
-   The new test fails.  Since the 'after each' procedure is working there is still room to generate new customers before the limit.  You will need to add a little setup code to make sure there are more customers than the limit before running the test.  
+1. **In Jenkins**  
+    Check the test results.  The new test fails.  
+    Since the 'before each' procedure is working there is still room to generate new customers before the limit.  You will need to add a little setup code to your test to make sure there are more customers than the limit before running the test.  
 
-## Add setup to test (insert 30 then run test)
+### Add setup to test (insert 30 then run test)
 Edit the package body  
 Run the following in your **Cloud Shell(ssh)**
 ```
@@ -351,9 +356,9 @@ Add the following before the ```ut.expect(...``` line
 ```
 This will create 30 new customers in the table before the test is run.
 1. [Git add/commit/push][GitLink]
-1. Check results, all 3 tests should now pass.
-1. Check coverage
-   The coverage should now be at 93.33%.
+1. **In Jenkins**
+    1. Check results, all 3 tests should now pass.
+    1. Check coverage, the coverage should now be at 93.33%.
 
 ## Test for null in 0 out
 Edit the package spec  
