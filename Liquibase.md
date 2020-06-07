@@ -1185,7 +1185,7 @@ This time the data was loaded.
 
 Remember, command line options such as `--contexts="test"` will override the same setting in the liquibase.properties file.  In this case it instructs liquibase to include the 'test' changes.
 
-To rollback this changeset you also need to use --contexts="test".
+To rollback this changeset you also need to use `--contexts="test"`.
 ```
 liquibase --contexts="test" rollback Five
 ```
@@ -1200,8 +1200,10 @@ The test data has been removed.
 
 ## Run on Change
 Some database objects are created using the "Create or Replace" syntax such as Views and PL/SQL objects (Functions, Procedures, Packages and Triggers).  
-It is a good practice to maintain the source for these objects directly in your VCS and have liquibase "re-compile" them whenever they change.
 
+It's a good practice to maintain the source for PL/SQL objects directly in your VCS and have liquibase "re-compile" them whenever they change.
+
+### Create a View
 Create a new changelog
 
 Run the following in your **Cloud Shell(ssh)**
@@ -1337,7 +1339,7 @@ nano runOnChange/changelog-status-view.json
 Change the SQL in "selectQuery" to the following.
 
 ```
-              "selectQuery": "create or replace view status as select status order_status, description from order_statuses",
+"selectQuery": "create or replace view status as select status order_status, description from order_statuses",
 ```
 Run the update
 ```
@@ -1348,7 +1350,7 @@ Run the following queries in **SQL Developer Web**
 ```sql
 select * from hol_dev.status;
 ```
-The view now executes the new query.
+The view now executes the new query including the description column.
 
 Look at Liquibase Data
 ```sql
@@ -1416,7 +1418,7 @@ Add the following
 
 Notice this changelog references a file in the "path" value and that this file path is relative to the changelog file.
 ```
-              "path": "gen_cust.fnc",
+              "path": "../source/gen_cust.fnc",
               "relativeToChangelogFile": true
 ```
 
@@ -1526,6 +1528,7 @@ select * from hol_test.customers;
 
 select * from hol_test.orders;
 ```
+The Jenkins build is setup with `--contexts="test"` so the test data should be loaded.
 
 ## Reverse engineer your current schema
 Liquibase uses the `generateChangeLog` command to reverse engineer your current schema into a changelog.
