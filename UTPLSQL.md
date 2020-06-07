@@ -162,7 +162,7 @@ In this test you are telling utPLSQL (ut) to expect that when you call the gener
     ```
 1. **In your browser**  
     Check Dev code coverage \<yourPublicIp>:8000/coverage.html
-1. **In Cloud Shell(ssh)**  
+1. In your **Cloud Shell(ssh)**  
     Ctrl-C to stop the web server
 1. [Git add/commit/push][GitLink]
 1. **In Jenkins**  
@@ -177,6 +177,7 @@ In this test you are telling utPLSQL (ut) to expect that when you call the gener
     ```
 
 ## Before All
+Add a 'Before All' annotation to your test package to make sure the test environment is setup correctly before running any tests.
 
 Edit the package spec  
 Run the following in your **Cloud Shell(ssh)**
