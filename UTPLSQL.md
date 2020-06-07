@@ -1,5 +1,5 @@
-# [utPLSQL](https://github.com/utPLSQL/utPLSQL)
-utPLSQL is a Unit Testing framework for Oracle PL/SQL and SQL.
+# utPLSQL
+[utPLSQL](https://github.com/utPLSQL/utPLSQL) is a Unit Testing framework for Oracle PL/SQL and SQL.
 
 ## Standard Instructions
 Throughout this section you will see the following instruction links  
@@ -23,7 +23,8 @@ git add .
 git commit -m\"your commit message\"
 git push"  
 
-You may click the links to return to the below instructions, if you would like to copy and paste the commands.  You may also hover the links to see the commands displayed in the popup text.
+You may click the links to return to the below instructions, if you would like to copy and paste the commands.  
+You may also hover the links to see the commands displayed in the popup text.
 
 ### Liquibase Update
 ```
@@ -69,9 +70,9 @@ utPLSQL uses annotations to define the unit tests.
 
 The function that you will be testing inserts data and executes a commit.  You will need to manually rollback the test data and use ```-- %rollback(manual)``` so that utPLSQL will not attempt to control the rollbacks.  
 
-A fake test that always passes has been included.
+A placeholder test that always passes has been included.
 ```
-  -- %test(Fake Test)
+  -- %test(Placeholder Test)
   procedure always_pass;
 ```
 The ```-- %test(<Test Name>)``` annotation declares that the following procedure is a test.
@@ -81,7 +82,7 @@ Review the test package body
 cat test/test_generate_customers_func.pkb
 ```
 
-The fake test procedure creates a boolean variable set to true and tests to see if it's true.  This will always pass.
+The placeholder test procedure creates a boolean variable set to true and tests to see if it's true.  This will always pass.
 ```
  procedure always_pass is
     l_is_true boolean := true;
@@ -113,7 +114,7 @@ nano test/test_generate_customers_func.pks
 ```
 Replace the lines
 ```
-  -- %test(Fake Test)
+  -- %test(Placeholder Test)
   procedure always_pass;
 ```
 With the following
