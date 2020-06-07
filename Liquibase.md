@@ -1538,7 +1538,7 @@ Run the following in your **Cloud Shell(ssh)**
 liquibase --changeLogFile=generated.json generateChangeLog
 cat generated.json
 ```
-It is a good idea to review any code that is generated automatically by a tool.  You will want to verify that everything is good before you use the generated changelog.
+It is a good idea to review any code that is generated automatically by a tool.  You will want to verify that everything is correct before you use the generated changelog.
 
 If you were going to use the generated code it would be a good idea to break it into smaller changelogs to make it easier to troubleshoot.
 
