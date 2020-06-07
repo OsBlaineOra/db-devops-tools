@@ -359,7 +359,7 @@ Add the following before the end of the package
    The coverage should now be at 100%.
 
 
-## test for null out
+## Test for null out
 A change request has come in.  The user would like the function to return null when a null is passed in.  
 It is good practice to setup your tests so they test for what you want the code to do, before your change it.  
 
