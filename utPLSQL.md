@@ -103,7 +103,7 @@ The placeholder test procedure creates a boolean variable set to true and tests 
 In your Jenkins project page, you will see a "Code Coverage" graph on the right hand side.  
 ![](images/Jenkins-CoverageReport.png)  
 
-The current code coverage is 0%.
+The Lines code coverage is 0%.
 
 Your Jenkins build is already configured to generate a Cobertura style coverage report by including the following parameters to the utPLSQL-cli call.
 
@@ -211,7 +211,7 @@ The helper procedure, "delete_added_customers", is used to clean up the customer
 1. **In Jenkins** (You may need to refresh your browser)
     * Check the test results, the test should pass.  
     The `-- %beforeall` annotation sets up the environment so that it only contains the two "test" records created by the liquibase insert test data step.
-    * Check the code coverage, it should now be at 80%.
+    * Check the Lines code coverage, it should be at 80%.
 
 ## Add a test for requesting more than the limit.
 Edit the package spec
@@ -261,7 +261,7 @@ Add `-- %beforeeach` after the `-- %beforeall` annotation
 1. [Git add/commit/push][GitLink]
 1. **In Jenkins** (You may need to refresh your browser)
     * Check the test results, both tests should now pass.
-    * Check the code coverage, the coverage should now be at 86.67%.
+    * Check the Lines code coverage, it should be at 86.67%.
 
 ## After all
 Run the following query in a **SQL Developer Web** worksheet.
@@ -358,7 +358,7 @@ This will create 30 new customers in the table before the test is run.
 1. [Git add/commit/push][GitLink]
 1. **In Jenkins** (You may need to refresh your browser)
     * Check the test results, all 3 tests should now pass.
-    * Check the code coverage, the coverage should now be at 93.33%.
+    * Check the Lines code coverage, it should be at 93.33%.
 
 ## Test for null in 0 out
 To get coverage for the remaining lines you need to test for a 'null in' returning 0.
@@ -388,7 +388,7 @@ Add the following before the end of the package
 1. [Git add/commit/push][GitLink]
 1. **In Jenkins** (You may need to refresh your browser)
     * Check the test results, all 4 tests should pass.
-    * Check the code coverage, the coverage should now be at 100%.
+    * Check the Lines code coverage, it should be at 100%.
 
 ## Changing code covered by an existing test
 A change request has come in.  The user would like the function to return null when a null is passed in.  
@@ -483,6 +483,6 @@ In this test you're expecting an exception to be thrown so there will not be a v
 1. [Git add/commit/push][GitLink]
 1. **In Jenkins** (You may need to refresh your browser)
     * Check the test results, all 5 tests should pass.
-    * Check the code coverage, the coverage should be at 100%.
+    * Check the Lines code coverage, it should be at 100%.
 
 ## Return to the [main](README.md#want-to-learn-more) section
