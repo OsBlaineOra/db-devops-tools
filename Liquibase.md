@@ -184,7 +184,8 @@ liquibase tag One
 
 Run the following query in a **SQL Developer Web** worksheet.
 ```sql
-select id, author, dateexecuted, tag from hol_dev.databasechangelog
+select id, author, dateexecuted, tag
+  from hol_dev.databasechangelog
  where id != 'T1'
 order by dateexecuted;
 ```
@@ -194,7 +195,7 @@ tag is now `One`
 You can add a tag to a changelog with the following
 ```json
       "tagDatabase": {
-        "tag": "<YourTagGoesHer>"
+        "tag": "<YourTagGoesHere>"
       },
 ```
 
@@ -326,7 +327,8 @@ liquibase update
 
 Run the following query in a **SQL Developer Web** worksheet.
 ```sql
-select id, author, dateexecuted, tag from hol_dev.databasechangelog
+select id, author, dateexecuted, tag
+  from hol_dev.databasechangelog
  where id != 'T1'
 order by dateexecuted;
 ```
@@ -339,7 +341,8 @@ liquibase tag Two
 
 Run the following query in a **SQL Developer Web** worksheet.
 ```sql
-select id, author, dateexecuted, tag from hol_dev.databasechangelog
+select id, author, dateexecuted, tag
+  from hol_dev.databasechangelog
  where id != 'T1'
 order by dateexecuted;
 ```
@@ -567,7 +570,8 @@ It is safer to
 
 Run the following query in a **SQL Developer Web** worksheet.
 ```sql
-select id, author, dateexecuted, tag from hol_dev.databasechangelog
+select id, author, dateexecuted, tag
+  from hol_dev.databasechangelog
  where id != 'T1'
 order by dateexecuted;
 ```
@@ -581,7 +585,8 @@ liquibase rollback "Two"
 
 Run the following query in a **SQL Developer Web** worksheet.
 ```sql
-select id, author, dateexecuted, tag from hol_dev.databasechangelog
+select id, author, dateexecuted, tag
+  from hol_dev.databasechangelog
  where id != 'T1'
 order by dateexecuted;
 ```
