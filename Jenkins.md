@@ -9,7 +9,7 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 **In your browser**  
 Open a new tab and go to `http://<YourPublicIP>:8080`  
    ![](images/Jenkins-getting-ready.png)  
-**Note:** Your Compute instance is not setup with an SSL certificate so make sure you're accessing Jenkins with `http` and not `https`
+**Note:** Your Compute instance is not setup with an SSL certificate so make sure you're accessing Jenkins with `http` and not `https`  
 Log in with the above password
    ![](images/Jenkins-Unlock.png)
 
