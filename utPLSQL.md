@@ -163,6 +163,7 @@ In this test you are telling utPLSQL (ut) to expect that when you call the gener
     ```
 1. **In your browser**  
     Check hol_dev code coverage \<YourPublicIP>:8000/coverage.html
+    **Note:** Your Compute instance is not setup with an SSL certificate so make sure you're accessing the page with `http` and not `https`
 1. In your **Cloud Shell(ssh)**  
     Ctrl-C to stop the web server
 1. [Git add/commit/push][GitLink]

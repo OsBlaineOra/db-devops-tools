@@ -56,7 +56,7 @@ classpath: /opt/oracle/ojdbc8.jar
 ```
 Now, when you run liquibase from this directory, it will use the above information to make the connection and run the changeLogFile.
 
-You can always override one or more of these values with a command line parameter.  For example, if you wanted to connect as the hol_test user you would use the parameter ```--username=hol_test``.  
+You can always override one or more of these values with a command line parameter.  For example, if you wanted to connect as the hol_test user you would use the parameter `--username=hol_test`.  
 
 ### [Changelogs](https://docs.liquibase.com/concepts/basic/changelog.html?Highlight=changelog)
 A changelog is a file that contains a list of changes to be made.  They can be written in many formats including JSON, XML, SQL, YAML and others.  For these exercises you will be using JSON.
@@ -524,7 +524,7 @@ Modify the file to include the new changelog.
 }
 ```
 
-Run the updat
+Run the update
 ```
 liquibase update
 ```
@@ -1593,6 +1593,7 @@ Use the following command to start a simple HTTP server with Python.
 pushd /home/opc/db-devops-tools/liquibase/docs; python -m SimpleHTTPServer; popd
 ```
 Open a tab in your browser and go to `<YourPublicIP>:8000` to review the docs.
+**Note:** Your Compute instance is not setup with an SSL certificate so make sure you're accessing the page with `http` and not `https`
 
 Click on 'Current Tables'.  Notice there are no tables in the documentation.
 
