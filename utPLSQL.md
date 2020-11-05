@@ -187,9 +187,17 @@ nano test/test_generate_customers_func.pks
 ```
 Add the following between the `-- %rollback(manual)` and `-- %test(Generates all requested)` lines
 ```
+
   -- %beforeall
   procedure delete_added_customers;
 ```
+Note: Do not forget the empty line between the rollback and beforeall annotations
+```
+  -- %rollback(manual)
+
+  -- %beforeall
+```
+
 Edit the package body
 ```
 nano test/test_generate_customers_func.pkb
@@ -293,7 +301,7 @@ Add `-- %afterall` after the `-- %beforeeach` annotation
 
 Run the following query in a **SQL Developer Web** worksheet.
 ```sql
-select * from hol_test.customers;
+select * from hol_dev.customers;
 ```
 
 The test customers should be removed.

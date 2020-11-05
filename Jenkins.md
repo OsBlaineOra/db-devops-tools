@@ -25,6 +25,11 @@ Log in with the above password
    ![](images/Jenkins-Ready.png)
 1. Click 'Manage Jenkins'  
    ![](images/Jenkins-ManageJenkins.png)
+1. Click 'Configure Global Security'  
+   ![](images/Jenkins-ConfigSecurity.png)
+1. Scroll down to "CSRF Protection"
+1. Check "Enable proxy compatibility"
+   ![](images/Jenkins-EnablePoxyCompatibility.png)
 1. Click 'Manage Plugins'  
    ![](images/Jenkins-ManagePlugins.png)
 1. Click the 'Available' tab
