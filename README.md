@@ -391,12 +391,21 @@ This rsa key pair will be used to access your GitHub repository from the compute
 ### SSH Keys (Optional)
 
 I recommend that you keep your ssh keys to use with future projects.  
-If you choose to keep them, skip this section
+If you choose to keep them, skip this section.
 
 Run the following in your **Cloud Shell**
-1. ssh-keygen -R ${COMPUTE_IP}
-1. rm ~/.ssh/id_rsa
-1. rm ~/.ssh/id_rsa.pub
+1. Remove the compute instance from your Known Hosts  
+   ```
+   ssh-keygen -R ${COMPUTE_IP}
+   ```
+1. Delete your Private Key  
+   ```
+   rm ~/.ssh/id_rsa
+   ```
+1. Delete your Public Key
+   ```
+   rm ~/.ssh/id_rsa.pub
+   ```
 
 ### Database
 
