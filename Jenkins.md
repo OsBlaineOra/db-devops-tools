@@ -30,6 +30,7 @@ Log in with the above password
 1. Scroll down to "CSRF Protection"
 1. Check "Enable proxy compatibility"
    ![](images/Jenkins-EnablePoxyCompatibility.png)
+1. Click Save
 1. Click 'Manage Plugins'  
    ![](images/Jenkins-ManagePlugins.png)
 1. Click the 'Available' tab
