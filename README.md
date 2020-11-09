@@ -23,7 +23,7 @@ This 4-hour lab walks you through the steps to
    If you do not already have a GitHub account, create one now
 
 ## Create an Oracle Always-Free Cloud Account
-1. Go to https://www.oracle.com/cloud/free/
+1. Go to https://bit.ly/agiledevops-trial
 2. Click "Start for free"
 3. Populate the forms and create an account.
 4. Once your account is created, [log in](https://www.oracle.com/cloud/sign-in.html) and go to the dashboard.  
@@ -435,7 +435,7 @@ Run the following in your **Cloud Shell**
    ![](images/Cleanup-TerminateCompute2.png)  
 
 ## Want to Learn More?
-* [Oracle Cloud](http://www.oracle.com/cloud/free)
+* [Oracle Cloud](https://bit.ly/agiledevops-trial)
 * [Oracle Live Labs](https://oracle.github.io/learning-library/developer-library/)
 * [Jenkins](https://www.jenkins.io/doc)
 * [Liquibase](https://docs.liquibase.com/home.html)
