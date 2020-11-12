@@ -238,7 +238,8 @@ sudo nano /opt/oracle/wallet/ojdbc.properties
 ```
 1. Comment line 2
 1. Un-comment the last 4 lines that start with '#javax.net.ssl'
-1. Replace <password_from_console> with the password you used when you downloaded the wallet .zip file.
+1. Replace <password_from_console> with the password you used when you downloaded the wallet .zip file.  
+   (The password must be changed on in TWO places in the file)  
    ```
    # Connection property while using Oracle wallets.
    # oracle.net.wallet_location=(SOURCE=(METHOD=FILE)(METHOD_DATA=(DIRECTORY=${TNS_ADMIN})))
@@ -284,7 +285,8 @@ Extract the downloaded "tar.gz" file
 tar xvzf utPLSQL.tar.gz 
 ```
 Use SQLcl to install utPLSQL  
-('XNtxj8eEgA6X6b6f' is the default utPLSQL password.  You should change it.)
+(Replace 'n0tMyPassword' with your Database Admin Password  
+'XNtxj8eEgA6X6b6f' is the default utPLSQL password.  You should change it.)
 ```
 sql admin/n0tMyPassword@MyAtpDb_TP @utPLSQL/source/install_headless_with_trigger.sql ut3 XNtxj8eEgA6X6b6f DATA
 ```
@@ -382,10 +384,19 @@ This rsa key pair will be used to access your GitHub repository from the compute
    git clone <The SSH string copied above>
    cd db-devops-tools
    ```
-1. Use SQLcl to create the database schemas
+1. Use SQLcl to create the database schemas  
+   (Replace 'n0tMyPassword' with your Database Admin Password)  
    ```
    sql admin/n0tMyPassword@MyAtpDb_TP @create_schema.sql
    ```
+   You should see the following if the script was successful. 
+   ```
+  connect hol_dev/HandsOnLabUser1
+  select user || ' created successfully' did_it_work from dual;
+
+  connect hol_test/HandsOnLabUser1
+  select user || ' created successfully' did_it_work from dual;
+  ```
 
 ## Continue through the following sections
 1. Setup [Jenkins](Jenkins.md)

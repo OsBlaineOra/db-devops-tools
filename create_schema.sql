@@ -51,4 +51,11 @@ BEGIN
  commit;
 END;
 /
+
+connect hol_dev/HandsOnLabUser1
+select user || ' created successfully' did_it_work from dual;
+
+connect hol_test/HandsOnLabUser1
+select user || ' created successfully' did_it_work from dual;
+
 exit;
