@@ -76,6 +76,11 @@ To close and save a file in nano do the following.
 * When using nano in the cloud shell use `Ctrl-Shift-V` or `Shift-Insert` to paste, rather than `Ctrl-V`.
 * At times you will see the following instruction link  
 
+   [SaveLink]: README.md#working-in-the-oracle-cloud-Shell "Save and exit Nano
+   Ctrl-X
+   Y
+   Enter"  
+
    [Git add/commit/push][GitLink]  
 
    [GitLink]: README.md#git-add-commit-push "Run the following in your Cloud Shell(ssh)
@@ -247,7 +252,7 @@ sudo nano /opt/oracle/wallet/ojdbc.properties
    javax.net.ssl.keyStore=${TNS_ADMIN}/keystore.jks
    javax.net.ssl.keyStorePassword=Pw4ZipFile
    ```
-1. Save the file
+1. [Save the file][SaveLink]
 
 ### Download the Oracle Database Driver ojdbc8.jar
 ```
