@@ -388,15 +388,21 @@ This rsa key pair will be used to access your GitHub repository from the compute
    (Replace 'n0tMyPassword' with your Database Admin Password)  
    ```
    sql admin/n0tMyPassword@MyAtpDb_TP @create_schema.sql
+   ```  
+   You should see the following if the script was successful.  
    ```
-   You should see the following if the script was successful. 
-   ```
-  connect hol_dev/HandsOnLabUser1
-  select user || ' created successfully' did_it_work from dual;
+    Connected.
 
-  connect hol_test/HandsOnLabUser1
-  select user || ' created successfully' did_it_work from dual;
-  ```
+                        DID_IT_WORK 
+    _______________________________ 
+    HOL_DEV created successfully    
+
+    Connected.
+
+                        DID_IT_WORK 
+    ________________________________ 
+    HOL_TEST created successfully
+   ```  
 
 ## Continue through the following sections
 1. Setup [Jenkins](Jenkins.md)
