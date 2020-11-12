@@ -387,52 +387,8 @@ This rsa key pair will be used to access your GitHub repository from the compute
 1. Schema Migration with [Liquibase](Liquibase.md)
 1. Unit test your Database code with [utPLSQL](utPLSQL.md)
 
-## Cleanup
-
-### SSH Keys (Optional)
-
-I recommend that you keep your ssh keys to use with future projects.  
-If you choose to keep them, skip this section.
-
-Run the following in your **Cloud Shell**
-1. Remove the compute instance from your Known Hosts  
-   ```
-   ssh-keygen -R ${COMPUTE_IP}
-   ```
-1. Delete your Private Key  
-   ```
-   rm ~/.ssh/id_rsa
-   ```
-1. Delete your Public Key
-   ```
-   rm ~/.ssh/id_rsa.pub
-   ```
-
-### Database
-
-1. Open the menu
-1. Click "Autonomous Transaction Processing"  
-   ![](images/Cleanup-OpenDB1.png)  
-1. Locate your database
-1. Click the three dots menu
-1. Click Terminate  
-   ![](images/Cleanup-TerminateDB1.png)  
-1. Enter your Database Name in the box
-1. Click Terminate  
-   ![](images/Cleanup-TerminateDB2.png)  
-
-### Compute Instance
-
-1. Open the menu
-1. Click "Autonomous Transaction Processing"  
-   ![](images/Cleanup-OpenCompute1.png)  
-1. Locate your Compute Instance
-1. Click the three dots menu
-1. Click Terminate  
-   ![](images/Cleanup-TerminateCompute1.png)  
-1. Check the box "PERMANENTLY DELETE THE ATTACHED BOOT VOLUME"
-1. Click Terminate  
-   ![](images/Cleanup-TerminateCompute2.png)  
+## Cleanup when you are finished
+[Cleanup](Cleanup.md)
 
 ## Want to Learn More?
 * [Oracle Cloud](https://bit.ly/agiledevops-trial)
